@@ -4,13 +4,16 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import de.MakaitGhahramanianZeising.model.BoardModel;
+import de.MakaitGhahramanianZeising.model.GameModel;
 import de.MakaitGhahramanianZeising.model.CellModel;
-import de.MakaitGhahramanianZeising.model.PacmanBoardModel;
+import de.MakaitGhahramanianZeising.model.GameOfLifeModeModel;
+import de.MakaitGhahramanianZeising.model.ModeModel;
+import de.MakaitGhahramanianZeising.model.PacmanGameModel;
 
-public class PacmanBoardModelTest {
+public class PacmanGameModelTest {
 	
-	private BoardModel board;
+	private GameModel game;
+	private ModeModel mode;
 	
 	@Test
 	public void shouldCountAllLivingNeighbors() {
@@ -24,13 +27,14 @@ public class PacmanBoardModelTest {
 		cells[1][2] = new CellModel(true);
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
-		cells[2][2] = new CellModel(true);		
-		board = new PacmanBoardModel(cells);
+		cells[2][2] = new CellModel(true);	
+		mode = new GameOfLifeModeModel();
+		game = new PacmanGameModel(mode, cells);
 		//then
-		assertEquals(6, board.numberOfLivingNeighbors(1,1));
-		assertEquals(6, board.numberOfLivingNeighbors(0,1));
-		assertEquals(6, board.numberOfLivingNeighbors(1,2));
-		assertEquals(6, board.numberOfLivingNeighbors(0,0));
+		assertEquals(6, game.numberOfLivingNeighbors(1,1));
+		assertEquals(6, game.numberOfLivingNeighbors(0,1));
+		assertEquals(6, game.numberOfLivingNeighbors(1,2));
+		assertEquals(6, game.numberOfLivingNeighbors(0,0));
 	}
 	
 	@Test
@@ -39,10 +43,11 @@ public class PacmanBoardModelTest {
 		CellModel[][] cells = new CellModel[1][3];
 		cells[0][0] = new CellModel(true);
 		cells[0][1] = new CellModel(true);
-		cells[0][2] = new CellModel(false);	
-		board = new PacmanBoardModel(cells);
+		cells[0][2] = new CellModel(false);			
+		mode = new GameOfLifeModeModel();
+		game = new PacmanGameModel(mode, cells);
 		//then
-		assertEquals(5, board.numberOfLivingNeighbors(0,0));
+		assertEquals(5, game.numberOfLivingNeighbors(0,0));
 	}
 	
 	@Test
@@ -51,10 +56,11 @@ public class PacmanBoardModelTest {
 		CellModel[][] cells = new CellModel[3][1];
 		cells[0][0] = new CellModel(true);
 		cells[1][0] = new CellModel(true);
-		cells[2][0] = new CellModel(false);	
-		board = new PacmanBoardModel(cells);
+		cells[2][0] = new CellModel(false);
+		mode = new GameOfLifeModeModel();
+		game = new PacmanGameModel(mode, cells);
 		//then
-		assertEquals(5, board.numberOfLivingNeighbors(0,0));
+		assertEquals(5, game.numberOfLivingNeighbors(0,0));
 	}
 	
 	@Test
@@ -67,9 +73,10 @@ public class PacmanBoardModelTest {
 		cells[1][0] = new CellModel(false);
 		cells[1][1] = new CellModel(false);
 		cells[1][2] = new CellModel(true);
-		board = new PacmanBoardModel(cells);
+		mode = new GameOfLifeModeModel();
+		game = new PacmanGameModel(mode, cells);
 		//then
-		assertEquals(3, board.numberOfLivingNeighbors(0,0));
+		assertEquals(3, game.numberOfLivingNeighbors(0,0));
 	}
 	
 	@Test
@@ -81,10 +88,11 @@ public class PacmanBoardModelTest {
 		cells[1][0] = new CellModel(false);
 		cells[1][1] = new CellModel(true);
 		cells[2][0] = new CellModel(false);
-		cells[2][1] = new CellModel(true);	
-		board = new PacmanBoardModel(cells);
+		cells[2][1] = new CellModel(true);
+		mode = new GameOfLifeModeModel();
+		game = new PacmanGameModel(mode, cells);
 		//then
-		assertEquals(6, board.numberOfLivingNeighbors(0,0));
+		assertEquals(6, game.numberOfLivingNeighbors(0,0));
 	}
 
 }

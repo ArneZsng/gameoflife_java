@@ -6,7 +6,6 @@ public class CellModel {
 	private boolean willBeAlive;
 	
 	public CellModel(boolean isAlive) {
-		super();
 		this.isAlive = isAlive;
 	}
 
@@ -18,12 +17,12 @@ public class CellModel {
 		isAlive = willBeAlive;
 	}
 	
-	public void willBeDead() {
-		willBeAlive = false;
+	public void willBeAlive(boolean nextRoundStatus) {
+		willBeAlive = nextRoundStatus;
 	}
 	
-	public void willBeAlive() {
-		willBeAlive = true;
+	public boolean willEvolve() {
+		return !(isAlive == willBeAlive);
 	}
 	
 }

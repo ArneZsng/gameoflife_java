@@ -1,31 +1,24 @@
 package de.MakaitGhahramanianZeising.model;
 
-import java.util.ArrayList;
-
-public class PacmanBoardModel extends AbstractBoardModel {
+public class PacmanGameModel extends GameModel {
 	
-	public PacmanBoardModel() {
-		cells = new CellModel[3][3];
-		super.populate();
-	}
-	
-	public PacmanBoardModel(CellModel[][] cells) {
+	public PacmanGameModel(ModeModel mode, CellModel[][] cells) {
 		this.cells = cells;
+		this.mode = mode;
 	}
-
+	
 	@Override
-	protected int countLivingNeighbors(int x, int y) {
+	public int numberOfLivingNeighbors(int x, int y) {
 		int numberOfLivingNeighbors = 0;
 		x = ensurePositiveCoordinate(x, getWidth());
 		y = ensurePositiveCoordinate(y, getHeight());
 
-		//Test
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				if (!(i == 0 && j == 0)) {
 					int xCoordinate = ((x+i) % getWidth()); 
 					int yCoordinate = ((y+j) % getHeight());
-					if ( isAlive(xCoordinate,yCoordinate) ) {
+					if (cells[xCoordinate][yCoordinate].isAlive()) {
 						numberOfLivingNeighbors++;
 					}
 				}
