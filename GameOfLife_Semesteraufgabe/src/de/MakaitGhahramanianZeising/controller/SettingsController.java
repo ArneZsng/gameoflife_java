@@ -5,12 +5,15 @@ package de.MakaitGhahramanianZeising.controller;
  *
  */
 
+import de.MakaitGhahramanianZeising.utils.FileParser;
 import de.MakaitGhahramanianZeising.view.SettingsViewSWT;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class SettingsController {
 	private SettingsViewSWT mySettingsView;
+	private FileParser myFileParser;
 	
 	public SettingsController() {
 		mySettingsView = new SettingsViewSWT();
