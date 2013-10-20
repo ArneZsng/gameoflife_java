@@ -2,17 +2,20 @@ package de.MakaitGhahramanianZeising.controller;
 
 import de.MakaitGhahramanianZeising.model.*;
 import de.MakaitGhahramanianZeising.view.*;
+import de.MakaitGhahramanianZeising.controller.SettingsController;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class GameController {
 	
+	private SettingsController mySettingsController;
 	private GameModel myGame;
 	private BoardModel myBoard;
 	private GameViewSWT myGameView;
 
 	public GameController() {
+		mySettingsController = new SettingsController();
 		myBoard = new WallOfDeathBoardModel();
 		myGame = new GameOfLifeGameModel(myBoard);
 		myGameView = new GameViewSWT(myBoard.getWidth());
