@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="de.MakaitGhahramanianZeising.model.WallOfDeathGameModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/WallOfDeathGameModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1053" y="805"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="de.MakaitGhahramanianZeising.model.CellModel" project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/CellModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1679" y="695"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="de.MakaitGhahramanianZeising.model.GameOfLifeModeModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/GameOfLifeModeModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1919" y="922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="de.MakaitGhahramanianZeising.model.GameModel" project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/GameModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="223" x="1326" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="de.MakaitGhahramanianZeising.model.ThreeFourModeModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/ThreeFourModeModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2147" y="922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="de.MakaitGhahramanianZeising.model.PacmanGameModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/PacmanGameModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1041" y="659"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="de.MakaitGhahramanianZeising.model.ModeModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/ModeModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2114" y="650"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="8" language="java" name="de.MakaitGhahramanianZeising.model.HighLifeModeModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/HighLifeModeModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2375" y="922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="de.MakaitGhahramanianZeising.model.LifeWithoutDeathModeModel" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/model/LifeWithoutDeathModeModel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2621" y="922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="de.MakaitGhahramanianZeising.controller.GameController" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/controller/GameController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="202" x="1570" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="de.MakaitGhahramanianZeising.controller.SettingsController" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/controller/SettingsController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1289" y="109"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="de.MakaitGhahramanianZeising.view.SettingsViewSWT" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/view/SettingsViewSWT.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="922" y="-315"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="de.MakaitGhahramanianZeising.view.GameViewSWT" 
+    project="MakaitGhahramanianZeising" 
+    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/view/GameViewSWT.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1891" y="-228"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="14">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="15">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="16" name="myGameView"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="18">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="19">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="20" name="cells"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="23" name="mode"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="25">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <realization id="26">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="27">    
+    <bendpoint x="1924" y="211"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="28" name="myMode"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="31" name="mySettingsView"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="34" name="cells"/>      
+      <multiplicity id="35" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="37" name="mySettingsController"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="39">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="41">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="42" name="myGame"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
