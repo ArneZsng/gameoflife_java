@@ -20,6 +20,7 @@ public class SettingsController {
 		mySettingsView.addSelectFileListener(new SelectFileListener());
 		mySettingsView.addCreateGameListener(new CreateGameListener());
 		mySettingsView.start();
+		myFileParser = new FileParser("/Users/Arne/Dropbox/Nordakademie/Module/I143 - Praxis der Softwareentwicklung/Semesteraufgabe/gols/5by5.gol");
 	}
 	
 	class SelectFileListener extends SelectionAdapter {

@@ -113,13 +113,11 @@ public class SettingsViewSWT {
 	}
 	
 	public void selectFile() {
-		String filename = dlgFileSelector.open();		
-		if (filename != null) {
-			
+		String filepath = dlgFileSelector.open();		
+		if (filepath != null) {
 			String name = dlgFileSelector.getFileName();
 			lblInitialBoardFileName.setText(name);
 		}
-		
 	}
 	
 	private void initBtnSelectFile() {

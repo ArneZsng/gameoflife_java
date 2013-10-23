@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.model.tests;
+package de.MakaitGhahramanianZeising.tests.model;
 
 import static org.junit.Assert.assertEquals;
 

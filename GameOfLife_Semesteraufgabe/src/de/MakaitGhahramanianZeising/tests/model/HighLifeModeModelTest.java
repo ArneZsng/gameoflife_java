@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.model.tests;
+package de.MakaitGhahramanianZeising.tests.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -7,11 +7,11 @@ import org.junit.Test;
 
 import de.MakaitGhahramanianZeising.model.GameModel;
 import de.MakaitGhahramanianZeising.model.CellModel;
-import de.MakaitGhahramanianZeising.model.GameOfLifeModeModel;
+import de.MakaitGhahramanianZeising.model.HighLifeModeModel;
 import de.MakaitGhahramanianZeising.model.ModeModel;
 import de.MakaitGhahramanianZeising.model.WallOfDeathGameModel;
 
-public class GameOfLifeModeModelTest {
+public class HighLifeModeModelTest {
 	
 	private ModeModel mode;
 	private GameModel game;
@@ -28,8 +28,8 @@ public class GameOfLifeModeModelTest {
 		cells[1][2] = new CellModel(false);
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
-		cells[2][2] = new CellModel(false);	
-		mode = new GameOfLifeModeModel();
+		cells[2][2] = new CellModel(false);		
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
@@ -51,7 +51,7 @@ public class GameOfLifeModeModelTest {
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
 		cells[2][2] = new CellModel(false);		
-		mode = new GameOfLifeModeModel();
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
@@ -73,7 +73,7 @@ public class GameOfLifeModeModelTest {
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
 		cells[2][2] = new CellModel(false);		
-		mode = new GameOfLifeModeModel();
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
@@ -95,7 +95,7 @@ public class GameOfLifeModeModelTest {
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
 		cells[2][2] = new CellModel(false);		
-		mode = new GameOfLifeModeModel();
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
@@ -117,7 +117,7 @@ public class GameOfLifeModeModelTest {
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
 		cells[2][2] = new CellModel(false);		
-		mode = new GameOfLifeModeModel();
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
@@ -139,7 +139,7 @@ public class GameOfLifeModeModelTest {
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
 		cells[2][2] = new CellModel(false);		
-		mode = new GameOfLifeModeModel();
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
@@ -161,7 +161,29 @@ public class GameOfLifeModeModelTest {
 		cells[2][0] = new CellModel(false);
 		cells[2][1] = new CellModel(false);
 		cells[2][2] = new CellModel(false);		
-		mode = new GameOfLifeModeModel();
+		mode = new HighLifeModeModel();
+		game = new WallOfDeathGameModel(mode, cells);
+		//given
+		game.prepareNextRound();
+		//when
+		game.playNextRound();
+		//then
+		assertTrue(game.cellAlive(1,1));	
+	}
+	
+	@Test
+	public void shouldReviveWithSixNeighbors() {
+		//assume
+		cells[0][0] = new CellModel(true);
+		cells[0][1] = new CellModel(true);
+		cells[0][2] = new CellModel(true);
+		cells[1][0] = new CellModel(true);
+		cells[1][1] = new CellModel(false);
+		cells[1][2] = new CellModel(true);
+		cells[2][0] = new CellModel(true);
+		cells[2][1] = new CellModel(false);
+		cells[2][2] = new CellModel(false);		
+		mode = new HighLifeModeModel();
 		game = new WallOfDeathGameModel(mode, cells);
 		//given
 		game.prepareNextRound();
