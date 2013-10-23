@@ -5,6 +5,8 @@ package de.MakaitGhahramanianZeising.view;
  *
  */
 
+import java.util.EnumSet;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
@@ -16,17 +18,16 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import de.MakaitGhahramanianZeising.enums.BoardEnum;
+import de.MakaitGhahramanianZeising.enums.ModeEnum;
+
 public class SettingsViewSWT {
 	private Shell shell;
 	private static Display display = new Display();
 	private Button btnSelectFile;
 	private Button btnCreateGame;
-	private Button btnGameOfLife;
-	private Button btnLifeWithoutDeath;
-	private Button btnHighLife;
-	private Button btn34Life;
-	private Button btnPacManStyle;
-	private Button btnWallOfDeath;
+	private Button btnMode;
+	private Button btnBoard;
 	private Composite compBoardType;
 	private Composite compGameMode;
 	private Composite compInitialBoard;
@@ -62,10 +63,10 @@ public class SettingsViewSWT {
 	}
 	
 	private void initBtnsForGameMode() {
-		btnGameOfLife = createRadioButton("Game of Life", compGameMode);
-		btnLifeWithoutDeath = createRadioButton("Life without Death", compGameMode);
-		btnHighLife = createRadioButton("HighLife", compGameMode);
-		btn34Life = createRadioButton("34 Life", compGameMode);
+		EnumSet<ModeEnum> modes =  EnumSet.allOf(ModeEnum.class);
+		for (ModeEnum mode : modes) {
+			btnMode = createRadioButton(mode.getName(), compGameMode);
+		}
 	}
 	
 	private void initBoardTypeComposite() {
@@ -77,8 +78,10 @@ public class SettingsViewSWT {
 	}
 	
 	private void initBtnsForBoardType() {
-		btnWallOfDeath = createRadioButton("Wall of Death", compBoardType);
-		btnPacManStyle = createRadioButton("PacMan Style", compBoardType);
+		EnumSet<BoardEnum> boards =  EnumSet.allOf(BoardEnum.class);
+		for (BoardEnum board : boards) {
+			btnBoard = createRadioButton(board.getName(), compBoardType);
+		}
 	}
 	
 	private Button createRadioButton(String buttonText, Composite composite) {
@@ -137,6 +140,7 @@ public class SettingsViewSWT {
 	public String getFilePath() {
 		return filePath;
 	}
+		
 	
 	public Shell getShell() {
 		return shell;
