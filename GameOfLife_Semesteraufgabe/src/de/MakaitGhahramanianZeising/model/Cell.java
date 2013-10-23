@@ -1,11 +1,11 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class CellModel {
+public class Cell {
 
 	private boolean isAlive;
 	private boolean willBeAlive;
 	
-	public CellModel(boolean isAlive) {
+	public Cell(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
 

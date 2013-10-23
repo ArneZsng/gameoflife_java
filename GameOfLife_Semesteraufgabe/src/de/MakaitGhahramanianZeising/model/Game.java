@@ -1,9 +1,9 @@
 package de.MakaitGhahramanianZeising.model;
 
-public abstract class GameModel {
+public abstract class Game {
 	
-	protected CellModel[][] cells;
-	protected ModeModel mode;
+	protected Cell[][] cells;
+	protected Mode mode;
 	private int generation;
 	
 	public int getWidth() {
@@ -14,7 +14,7 @@ public abstract class GameModel {
 		return cells[0].length;
 	}
 	
-	public CellModel[][] getCells() {
+	public Cell[][] getCells() {
 		return cells;
 	}
 	

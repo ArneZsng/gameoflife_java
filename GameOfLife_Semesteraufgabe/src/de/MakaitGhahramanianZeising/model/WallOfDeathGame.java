@@ -1,8 +1,8 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class WallOfDeathGameModel extends GameModel {
+public class WallOfDeathGame extends Game {
 	
-	public WallOfDeathGameModel(ModeModel mode, CellModel[][] cells) {
+	public WallOfDeathGame(Mode mode, Cell[][] cells) {
 		this.cells = cells;
 		this.mode = mode;
 	}

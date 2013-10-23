@@ -1,6 +1,6 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class ThreeFourModeModel implements ModeModel {
+public class ThreeFourMode implements Mode {
 	
 	public boolean cellSurvives(int livingNeighbors) {
 		return (livingNeighbors == 3 || livingNeighbors == 4);

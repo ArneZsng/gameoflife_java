@@ -10,24 +10,16 @@ import org.eclipse.swt.events.SelectionEvent;
 public class GameController {
 	
 	private SettingsController mySettingsController;
-	private GameModel myGame;
-	private ModeModel myMode;
-	private CellModel[][] cells = new CellModel[3][3];
+	private Game myGame;
+	private Mode myMode;
+	private Cell[][] myBoard;
 	private GameViewSWT myGameView;
 
 	public GameController() {
 		mySettingsController = new SettingsController();
-		cells[0][0] = new CellModel(true);
-		cells[0][1] = new CellModel(true);
-		cells[0][2] = new CellModel(true);
-		cells[1][0] = new CellModel(true);
-		cells[1][1] = new CellModel(true);
-		cells[1][2] = new CellModel(true);
-		cells[2][0] = new CellModel(true);
-		cells[2][1] = new CellModel(true);
-		cells[2][2] = new CellModel(true);	
-		myMode = new GameOfLifeModeModel();
-		myGame = new WallOfDeathGameModel(myMode, cells);
+		myBoard = mySettingsController.getBoard();
+		myMode = new GameOfLifeMode();
+		myGame = new WallOfDeathGame(myMode, myBoard);
 		myGameView = new GameViewSWT(myGame.getWidth());
 		myGameView.updateView(convertCellArray());
 		myGameView.start();

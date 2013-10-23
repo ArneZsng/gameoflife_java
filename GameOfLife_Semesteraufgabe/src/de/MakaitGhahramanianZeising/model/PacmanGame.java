@@ -1,8 +1,8 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class PacmanGameModel extends GameModel {
+public class PacmanGame extends Game {
 	
-	public PacmanGameModel(ModeModel mode, CellModel[][] cells) {
+	public PacmanGame(Mode mode, Cell[][] cells) {
 		this.cells = cells;
 		this.mode = mode;
 	}

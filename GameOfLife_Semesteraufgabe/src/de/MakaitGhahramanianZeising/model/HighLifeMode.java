@@ -1,6 +1,6 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class HighLifeModeModel implements ModeModel {
+public class HighLifeMode implements Mode {
 	
 	public boolean cellSurvives(int livingNeighbors) {
 		return (livingNeighbors == 2 || livingNeighbors == 3);

@@ -1,6 +1,6 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class GameOfLifeModeModel implements ModeModel {
+public class GameOfLifeMode implements Mode {
 	
 	public boolean cellSurvives(int livingNeighbors) {
 		return (livingNeighbors == 2 || livingNeighbors == 3);

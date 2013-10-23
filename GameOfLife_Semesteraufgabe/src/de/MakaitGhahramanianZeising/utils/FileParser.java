@@ -7,26 +7,28 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 import de.MakaitGhahramanianZeising.exceptions.FileException;
-import de.MakaitGhahramanianZeising.model.CellModel;
+import de.MakaitGhahramanianZeising.model.Cell;
 
 public class FileParser {
 
-	private CellModel[][] board;
+	private Cell[][] board;
+	private ValidBean validBean;
 
 	public FileParser(String filePathString) {
 		Path filePath = Paths.get(filePathString);
-		try {
-			validate(filePath);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		validBean = isValidFile(filePath);
 	}
 	
-	private void validate(Path filePath) throws Exception {
-		ValidBean validBean = isValidFile(filePath); 
-		if (! validBean.isValid()) {
-			throw validBean.getExceptionOnInvalid();
-		}
+	public Cell[][] getBoard() {
+		return board;
+	}
+	
+	public ValidBean getValidBean() {
+		return validBean;
+	}
+	
+	public boolean isValid() {
+		return validBean.isValid();
 	}
 	
 	private ValidBean isValidFile(Path filePath) {
@@ -105,7 +107,7 @@ public class FileParser {
 	private void initializeBoard(Path filePath) throws IOException {
 		int i = numberOfColumns(filePath);
 		int j = numberOfRows(filePath);
-		board = new CellModel[i][j];
+		board = new Cell[i][j];
 	}
 	
 	private int numberOfColumns(Path filePath) throws IOException {
@@ -134,9 +136,9 @@ public class FileParser {
 	private void fillBoardWithLine(String line, int row) throws FileException{
 		for (int column = 0; column < line.length(); column++) {
 			if (line.charAt(column) == '0') {
-				board[column][row] = new CellModel(false);
+				board[column][row] = new Cell(false);
 			} else if (line.charAt(column) == '1') {
-				board[column][row] = new CellModel(true);
+				board[column][row] = new Cell(true);
 			} else {
 				throw new FileException("Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.");
 			}

@@ -1,6 +1,6 @@
 package de.MakaitGhahramanianZeising.model;
 
-public interface ModeModel {
+public interface Mode {
 
 	public abstract boolean cellSurvives(int livingNeighbors);
 

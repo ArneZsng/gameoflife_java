@@ -1,6 +1,6 @@
 package de.MakaitGhahramanianZeising.model;
 
-public class LifeWithoutDeathModeModel implements ModeModel {
+public class LifeWithoutDeathMode implements Mode {
 	
 	public boolean cellSurvives(int livingNeighbors) {
 		return true;

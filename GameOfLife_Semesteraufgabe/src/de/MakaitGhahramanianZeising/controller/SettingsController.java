@@ -5,7 +5,9 @@ package de.MakaitGhahramanianZeising.controller;
  *
  */
 
+import de.MakaitGhahramanianZeising.model.Cell;
 import de.MakaitGhahramanianZeising.utils.FileParser;
+import de.MakaitGhahramanianZeising.view.ErrorMessageBox;
 import de.MakaitGhahramanianZeising.view.SettingsViewSWT;
 
 import org.eclipse.swt.events.SelectionAdapter;
@@ -20,7 +22,10 @@ public class SettingsController {
 		mySettingsView.addSelectFileListener(new SelectFileListener());
 		mySettingsView.addCreateGameListener(new CreateGameListener());
 		mySettingsView.start();
-		myFileParser = new FileParser("/Users/Arne/Dropbox/Nordakademie/Module/I143 - Praxis der Softwareentwicklung/Semesteraufgabe/gols/5by5.gol");
+	}
+	
+	public Cell[][] getBoard() {
+		return myFileParser.getBoard();
 	}
 	
 	class SelectFileListener extends SelectionAdapter {
@@ -31,7 +36,21 @@ public class SettingsController {
 	
 	class CreateGameListener extends SelectionAdapter {
 		public void widgetSelected(SelectionEvent e) {
-			mySettingsView.dispose();
+			myFileParser = new FileParser(mySettingsView.getFilePath());
+			if (! myFileParser.isValid()) {
+				throwErrorMessage();
+			} else {
+				mySettingsView.dispose();
+			}
 		}
 	}
+		
+	private void throwErrorMessage() {
+		try {
+			throw myFileParser.getValidBean().getExceptionOnInvalid();
+		} catch (Exception e) {
+			new ErrorMessageBox(mySettingsView.getShell(), e.getMessage());
+		}
+	}
+
 }

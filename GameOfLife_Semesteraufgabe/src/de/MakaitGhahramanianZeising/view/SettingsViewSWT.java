@@ -35,6 +35,7 @@ public class SettingsViewSWT {
 	private Label lblInitialBoardFileName;
 	private Label lblUpload;
 	private FileDialog dlgFileSelector;
+	public String filePath;
 
 	
 	public SettingsViewSWT() {
@@ -113,8 +114,8 @@ public class SettingsViewSWT {
 	}
 	
 	public void selectFile() {
-		String filepath = dlgFileSelector.open();		
-		if (filepath != null) {
+		filePath = dlgFileSelector.open();		
+		if (filePath != null) {
 			String name = dlgFileSelector.getFileName();
 			lblInitialBoardFileName.setText(name);
 		}
@@ -131,7 +132,15 @@ public class SettingsViewSWT {
 		btnCreateGame.setText("Spiel erstellen");
 		btnCreateGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-	}	
+	}
+	
+	public String getFilePath() {
+		return filePath;
+	}
+	
+	public Shell getShell() {
+		return shell;
+	}
 	
 	public void start() {
 		shell.open();
