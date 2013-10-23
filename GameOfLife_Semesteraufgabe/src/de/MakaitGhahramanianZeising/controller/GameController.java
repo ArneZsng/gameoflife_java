@@ -29,37 +29,17 @@ public class GameController {
 		myMode = new GameOfLifeModeModel();
 		myGame = new WallOfDeathGameModel(myMode, cells);
 		myGameView = new GameViewSWT(myGame.getWidth());
-		myGameView.addNextRoundListener(new NextRoundListener());
-		myGameView.addResetGameListener(new ResetGameListener());
 		myGameView.updateView(convertCellArray());
 		myGameView.start();
 
 	}
 
-	class NextRoundListener extends SelectionAdapter {
+	class StartStopListener extends SelectionAdapter {
 		public void widgetSelected(SelectionEvent e) {
-			playRound();
-		}
-	}
-
-	class ResetGameListener extends SelectionAdapter {
-		public void widgetSelected(SelectionEvent e) {
-			cells[0][0] = new CellModel(true);
-			cells[0][1] = new CellModel(true);
-			cells[0][2] = new CellModel(true);
-			cells[1][0] = new CellModel(true);
-			cells[1][1] = new CellModel(true);
-			cells[1][2] = new CellModel(true);
-			cells[2][0] = new CellModel(true);
-			cells[2][1] = new CellModel(true);
-			cells[2][2] = new CellModel(true);	
-			myMode = new GameOfLifeModeModel();
-			myGame = new WallOfDeathGameModel(myMode, cells);
-			myGameView.updateView(convertCellArray());
 			
 		}
 	}
-
+	
 	private void playRound() {
 		if (!myGame.isGameOver()) {
 			System.out.println("Round played!");

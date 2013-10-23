@@ -4,6 +4,7 @@ public abstract class GameModel {
 	
 	protected CellModel[][] cells;
 	protected ModeModel mode;
+	private int generation;
 	
 	public int getWidth() {
 		return cells.length;
@@ -33,6 +34,7 @@ public abstract class GameModel {
 		for (int i = 0; i < getWidth(); i++) {
 			for (int j = 0; j < getHeight(); j++) {
 				cells[i][j].updateStatus();
+				generation++;
 			}
 		}
 	}

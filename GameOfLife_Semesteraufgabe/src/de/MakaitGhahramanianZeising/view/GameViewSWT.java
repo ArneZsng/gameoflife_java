@@ -5,19 +5,30 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 
 public class GameViewSWT implements GameView {
 	
 	private Shell shell;
 	private static Display display = new Display();
+	private Button btnStartStop;
+	private Label lblGeneration;
+	private Label lblSpeed;
+	private Label lbl0;
+	private Label lbl1;
+	private Slider sldSpeed;
+	private Composite compControls;
+	private Text txtSpeed;
+
 	private Table table;
-	private Button btnNextRound;
-	private Button btnResetGame;
 	private int boardSize;
 
 	public GameViewSWT() {
@@ -34,23 +45,27 @@ public class GameViewSWT implements GameView {
 
 	private void init(Shell s) {
 		shell.setLayout(new GridLayout());
+		initControls();
 		initTable();
-		initBtnNextRound();
-		initBtnResetGame();
 	}
-
-	private void initBtnNextRound() {
-		btnNextRound = new Button(shell, SWT.NONE);
-		btnNextRound.setText("Next Round");
-		btnNextRound.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
-	}
-
-	private void initBtnResetGame() {
-		btnResetGame = new Button(shell, SWT.NONE);
-		btnResetGame.setText("Reset Game");
-		btnResetGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
+	
+	private void initControls() {
+		compControls = new Composite(shell, SWT.NULL);
+		compControls.setLayout(new GridLayout(10,false));
+		lblGeneration = new Label(compControls, SWT.NONE);
+		lblGeneration.setText("Generation: 1");
+		lblSpeed = new Label(compControls, SWT.NONE);
+		lbl0 = new Label(compControls, SWT.NONE);
+		lbl0.setText("0");
+		sldSpeed = new Slider(compControls, SWT.HORIZONTAL);
+		sldSpeed.setValues(500, 0, 1000, 1, 50, 50);
+		lbl1 = new Label(compControls, SWT.NONE);
+		lbl1.setText("1");
+		lblSpeed.setText("Spielgeschwindigkeit:" + (sldSpeed.getSelection()/1000));
+		txtSpeed = new Text(compControls, SWT.NONE);
+		txtSpeed.setText("0.5");
+		btnStartStop = new Button(compControls, SWT.NONE);
+		btnStartStop.setText("Start");
 	}
 	
 	private void initTable() {
@@ -64,14 +79,6 @@ public class GameViewSWT implements GameView {
 			TableColumn column = new TableColumn(table, SWT.CENTER);
 			column.setWidth(580 / boardSize);
 		}
-	}
-
-	public void addNextRoundListener(SelectionAdapter listenForNextButton) {
-		btnNextRound.addSelectionListener(listenForNextButton);
-	}
-
-	public void addResetGameListener(SelectionAdapter listenForResetButton) {
-		btnResetGame.addSelectionListener(listenForResetButton);
 	}
 	
 	public void start() {
