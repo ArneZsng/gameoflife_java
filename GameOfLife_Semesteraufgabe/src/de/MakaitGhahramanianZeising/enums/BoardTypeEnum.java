@@ -1,12 +1,12 @@
 package de.MakaitGhahramanianZeising.enums;
 
-public enum BoardEnum {
+public enum BoardTypeEnum {
 	
 	WALLOFDEATH("Wall of Death"), PACMAN("Pacman Style");
 	
 	private final String name;
 	
-	BoardEnum (String name) {
+	BoardTypeEnum (String name) {
 		this.name = name;
 	}
 	

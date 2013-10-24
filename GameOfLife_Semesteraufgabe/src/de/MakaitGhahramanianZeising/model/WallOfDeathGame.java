@@ -1,10 +1,14 @@
 package de.MakaitGhahramanianZeising.model;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class WallOfDeathGame extends Game {
 	
-	public WallOfDeathGame(Mode mode, Cell[][] cells) {
+	public WallOfDeathGame(Cell[][] cells, Integer[] survives, Integer[] revives) {
 		this.cells = cells;
-		this.mode = mode;
+		this.survives = new HashSet<Integer>(Arrays.asList(survives));
+		this.revives = new HashSet<Integer>(Arrays.asList(revives));
 	}
 	
 	@Override

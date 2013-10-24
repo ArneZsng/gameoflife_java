@@ -6,48 +6,42 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import de.MakaitGhahramanianZeising.exceptions.FileException;
+import de.MakaitGhahramanianZeising.exceptions.GOLException;
 import de.MakaitGhahramanianZeising.model.Cell;
 
 public class FileParser {
 
 	private Cell[][] board;
-	private ValidBean validBean;
 
-	public FileParser(String filePathString) {
+	public FileParser(String filePathString) throws Exception {
+		if (filePathString == null) {
+			throw new GOLException("Bitte Datei auswählen.");
+		}
 		Path filePath = Paths.get(filePathString);
-		validBean = isValidFile(filePath);
+		parse(filePath);
 	}
 	
 	public Cell[][] getBoard() {
 		return board;
 	}
 	
-	public ValidBean getValidBean() {
-		return validBean;
-	}
-	
-	public boolean isValid() {
-		return validBean.isValid();
-	}
-	
-	private ValidBean isValidFile(Path filePath) {
+	private void parse(Path filePath) throws Exception {
 		try {
 			if (fileTypeIsNotGol(filePath)) {
-				return new ValidBean(false, new FileException("Datei muss vom Typ .gol sein."));
+				throw new GOLException("Datei muss vom Typ .gol sein.");
 			}
 			if (fileSizeTooBig(filePath)) {
-				return new ValidBean(false, new FileException("Dateigröße muss kleiner als 250kb sein."));
+				throw new GOLException("Dateigröße muss kleiner als 250kb sein.");
 			}
 			if (fileIsEmpty(filePath)) {
-				return new ValidBean(false, new FileException("Datei darf nicht leer sein."));
+				throw new GOLException("Datei darf nicht leer sein.");
 			}
 			if (boardDimensionsWrong(filePath)) {
-				return new ValidBean(false, new FileException("Das Spielbrett muss in jeder Zeile gleich viele Zellen haben."));
+				throw new GOLException("Das Spielbrett muss in jeder Zeile gleich viele Zellen haben.");
 			}
-			return buildBoard(filePath);
+			buildBoard(filePath);
 		} catch (IOException ioe) {
-			return new ValidBean(false, new FileException("Die Datei konnte nicht geöffnet werden."));
+			throw new GOLException("Die Datei konnte nicht geöffnet werden.");
 		}	
 	}
 	
@@ -87,7 +81,7 @@ public class FileParser {
 		}
 	}
 
-	private ValidBean buildBoard(Path filePath) throws IOException {
+	private void buildBoard(Path filePath) throws Exception {
 		initializeBoard(filePath);
 		int row = 0;
 		Scanner scanner = new Scanner(filePath);
@@ -96,9 +90,6 @@ public class FileParser {
 				fillBoardWithLine(scanner.nextLine(), row);
 				row++;
 			}
-			return new ValidBean(true, null);
-		} catch (FileException e) {
-			return new ValidBean(false, e);
 		} finally {
 			scanner.close();
 		}
@@ -133,14 +124,14 @@ public class FileParser {
 		}
 	}
 	
-	private void fillBoardWithLine(String line, int row) throws FileException{
+	private void fillBoardWithLine(String line, int row) throws GOLException{
 		for (int column = 0; column < line.length(); column++) {
 			if (line.charAt(column) == '0') {
 				board[column][row] = new Cell(false);
 			} else if (line.charAt(column) == '1') {
 				board[column][row] = new Cell(true);
 			} else {
-				throw new FileException("Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.");
+				throw new GOLException("Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.");
 			}
 		}
 	}

@@ -3,6 +3,8 @@ package de.MakaitGhahramanianZeising.controller;
 import de.MakaitGhahramanianZeising.model.*;
 import de.MakaitGhahramanianZeising.view.*;
 import de.MakaitGhahramanianZeising.controller.SettingsController;
+import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
+import de.MakaitGhahramanianZeising.enums.ModeEnum;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -11,19 +13,22 @@ public class GameController {
 	
 	private SettingsController mySettingsController;
 	private Game myGame;
-	private Mode myMode;
-	private Cell[][] myBoard;
 	private GameViewSWT myGameView;
 
 	public GameController() {
 		mySettingsController = new SettingsController();
-		myBoard = mySettingsController.getBoard();
-		myMode = new GameOfLifeMode();
-		myGame = new WallOfDeathGame(myMode, myBoard);
+		myGame = createGame(mySettingsController.getBoard(), mySettingsController.getMode(), mySettingsController.getBoardType());
 		myGameView = new GameViewSWT(myGame.getWidth());
 		myGameView.updateView(convertCellArray());
 		myGameView.start();
-
+	}
+	
+	private Game createGame(Cell[][] board, ModeEnum modeEnum, BoardTypeEnum boardTypeEnum) {
+		if (boardTypeEnum == BoardTypeEnum.WALLOFDEATH) {
+			return new WallOfDeathGame(board, modeEnum.getSurvives(), modeEnum.getRevives());
+		} else {
+			return new PacmanGame(board, modeEnum.getSurvives(), modeEnum.getRevives());
+		}
 	}
 
 	class StartStopListener extends SelectionAdapter {

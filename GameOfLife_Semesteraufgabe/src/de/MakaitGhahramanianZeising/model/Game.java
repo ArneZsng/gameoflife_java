@@ -1,10 +1,13 @@
 package de.MakaitGhahramanianZeising.model;
 
+import java.util.HashSet;
+
 public abstract class Game {
 	
 	protected Cell[][] cells;
-	protected Mode mode;
-	private int generation;
+	private int round;
+	protected HashSet<Integer> survives;
+	protected HashSet<Integer> revives;
 	
 	public int getWidth() {
 		return cells.length;
@@ -22,9 +25,9 @@ public abstract class Game {
 		for (int i = 0; i < getWidth(); i++) {
 			for (int j = 0; j < getHeight(); j++) {
 				if (cellAlive(i,j)) {
-					cells[i][j].willBeAlive(mode.cellSurvives(numberOfLivingNeighbors(i,j)));
+					cells[i][j].willBeAlive(cellSurvives(numberOfLivingNeighbors(i,j)));
 				} else {
-					cells[i][j].willBeAlive(mode.cellRevives(numberOfLivingNeighbors(i,j)));
+					cells[i][j].willBeAlive(cellRevives(numberOfLivingNeighbors(i,j)));
 				}
 			}
 		}
@@ -34,13 +37,21 @@ public abstract class Game {
 		for (int i = 0; i < getWidth(); i++) {
 			for (int j = 0; j < getHeight(); j++) {
 				cells[i][j].updateStatus();
-				generation++;
+				round++;
 			}
 		}
 	}
 	
 	public boolean cellAlive(int x, int y) {
 		return cells[x][y].isAlive();
+	}
+	
+	private boolean cellSurvives(int livingNeighbors) {
+		return survives.contains(livingNeighbors);
+	}
+	
+	private boolean cellRevives(int livingNeighbors) {
+		return revives.contains(livingNeighbors);
 	}
 	
 	public boolean isGameOver() {

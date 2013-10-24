@@ -1,23 +1,23 @@
 package de.MakaitGhahramanianZeising.exceptions;
 
-public class FileException extends Exception {
+public class GOLException extends Exception {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 2402416882699940169L;
 
-	public FileException() {}
+	public GOLException() {}
 
-    public FileException(String message) {
+    public GOLException(String message) {
     	super(message);
     }
 
-	public FileException(Throwable cause) {
+	public GOLException(Throwable cause) {
 		super(cause);
 	}
 
-	public FileException(String message, Throwable cause) {
+	public GOLException(String message, Throwable cause) {
 		super(message, cause);
 	}
 	

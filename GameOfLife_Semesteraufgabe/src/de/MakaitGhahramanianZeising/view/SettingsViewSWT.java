@@ -12,22 +12,24 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import de.MakaitGhahramanianZeising.enums.BoardEnum;
+import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
 import de.MakaitGhahramanianZeising.enums.ModeEnum;
+import de.MakaitGhahramanianZeising.exceptions.GOLException;
 
 public class SettingsViewSWT {
 	private Shell shell;
 	private static Display display = new Display();
 	private Button btnSelectFile;
 	private Button btnCreateGame;
-	private Button btnMode;
-	private Button btnBoard;
+	private Combo comboMode;
+	private Combo comboBoard;
 	private Composite compBoardType;
 	private Composite compGameMode;
 	private Composite compInitialBoard;
@@ -36,7 +38,9 @@ public class SettingsViewSWT {
 	private Label lblInitialBoardFileName;
 	private Label lblUpload;
 	private FileDialog dlgFileSelector;
-	public String filePath;
+	private ModeEnum[] availableModes;
+	private BoardTypeEnum[] availableBoardTypes;
+	private String filePath;
 
 	
 	public SettingsViewSWT() {
@@ -59,14 +63,20 @@ public class SettingsViewSWT {
 		compGameMode.setLayout(new GridLayout());
 		lblChooseGameMode = new Label(compGameMode, SWT.NONE);
 		lblChooseGameMode.setText("Bitte wählen Sie den Spielmodus:");
-		initBtnsForGameMode();
+		initComboForGameMode();
 	}
 	
-	private void initBtnsForGameMode() {
+	private void initComboForGameMode() {
 		EnumSet<ModeEnum> modes =  EnumSet.allOf(ModeEnum.class);
+		comboMode = new Combo(compGameMode, SWT.READ_ONLY);
+		availableModes = modes.toArray(new ModeEnum[modes.size()]);
+		String[] modesString = new String[modes.size()];
+		int i = 0;
 		for (ModeEnum mode : modes) {
-			btnMode = createRadioButton(mode.getName(), compGameMode);
+			modesString[i] = mode.getName();
+			i++;
 		}
+		comboMode.setItems(modesString);
 	}
 	
 	private void initBoardTypeComposite() {
@@ -78,10 +88,16 @@ public class SettingsViewSWT {
 	}
 	
 	private void initBtnsForBoardType() {
-		EnumSet<BoardEnum> boards =  EnumSet.allOf(BoardEnum.class);
-		for (BoardEnum board : boards) {
-			btnBoard = createRadioButton(board.getName(), compBoardType);
+		EnumSet<BoardTypeEnum> boardTypes =  EnumSet.allOf(BoardTypeEnum.class);
+		comboBoard = new Combo(compBoardType, SWT.READ_ONLY);
+		availableBoardTypes = boardTypes.toArray(new BoardTypeEnum[boardTypes.size()]);
+		String[] boardsString = new String[boardTypes.size()];
+		int i = 0;
+		for (BoardTypeEnum board : boardTypes) {
+			boardsString[i] = board.getName();
+			i++;
 		}
+		comboBoard.setItems(boardsString);
 	}
 	
 	private Button createRadioButton(String buttonText, Composite composite) {
@@ -135,6 +151,24 @@ public class SettingsViewSWT {
 		btnCreateGame.setText("Spiel erstellen");
 		btnCreateGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
+	}
+	
+	public ModeEnum getSelectedMode() throws GOLException {
+		int i = comboMode.getSelectionIndex();
+		if (i == -1) {
+			throw new GOLException("Bitte Spielmodus auswählen.");
+		} else {
+			return availableModes[i];
+		}
+	}
+	
+	public BoardTypeEnum getSelectedBoardType() throws GOLException {
+		int i = comboBoard.getSelectionIndex();
+		if (i == -1) {
+			throw new GOLException("Bitte Art des Spielbretts auswählen.");
+		} else {
+			return availableBoardTypes[i];
+		}
 	}
 	
 	public String getFilePath() {

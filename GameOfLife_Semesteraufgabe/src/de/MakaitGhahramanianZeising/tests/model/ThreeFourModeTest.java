@@ -5,15 +5,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import de.MakaitGhahramanianZeising.enums.ModeEnum;
 import de.MakaitGhahramanianZeising.model.Game;
 import de.MakaitGhahramanianZeising.model.Cell;
-import de.MakaitGhahramanianZeising.model.Mode;
-import de.MakaitGhahramanianZeising.model.ThreeFourMode;
 import de.MakaitGhahramanianZeising.model.WallOfDeathGame;
 
 public class ThreeFourModeTest {
-	
-	private Mode mode;
+
 	private Game game;
 	private Cell[][] cells = new Cell[3][3];
 	
@@ -29,8 +27,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -51,8 +48,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -73,8 +69,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -95,8 +90,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -117,8 +111,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -139,8 +132,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -161,8 +153,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
@@ -183,8 +174,7 @@ public class ThreeFourModeTest {
 		cells[2][0] = new Cell(false);
 		cells[2][1] = new Cell(false);
 		cells[2][2] = new Cell(false);		
-		mode = new ThreeFourMode();
-		game = new WallOfDeathGame(mode, cells);
+		game = new WallOfDeathGame(cells, ModeEnum.THREEFOUR.getSurvives(), ModeEnum.THREEFOUR.getRevives());
 		//given
 		game.prepareNextRound();
 		//when
