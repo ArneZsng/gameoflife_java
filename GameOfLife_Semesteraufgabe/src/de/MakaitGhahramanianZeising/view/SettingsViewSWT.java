@@ -77,6 +77,7 @@ public class SettingsViewSWT {
 			i++;
 		}
 		comboMode.setItems(modesString);
+		comboMode.select(0);
 	}
 	
 	private void initBoardTypeComposite() {
@@ -98,12 +99,7 @@ public class SettingsViewSWT {
 			i++;
 		}
 		comboBoard.setItems(boardsString);
-	}
-	
-	private Button createRadioButton(String buttonText, Composite composite) {
-		Button radioButton = new Button(composite, SWT.RADIO);
-		radioButton.setText(buttonText);
-		return radioButton;
+		comboBoard.select(0);
 	}
 	
 	private void initInitialBoardComposite() {

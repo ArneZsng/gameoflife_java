@@ -1,24 +1,29 @@
 package de.MakaitGhahramanianZeising.view;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-public class GameViewSWT implements GameView {
+import de.MakaitGhahramanianZeising.model.Game;
+
+public class GameViewSWT {
 	
 	private Shell shell;
 	private static Display display = new Display();
-	private Button btnStartStop;
+	private Button btnStart;
 	private Label lblGeneration;
 	private Label lblSpeed;
 	private Label lbl0;
@@ -26,26 +31,30 @@ public class GameViewSWT implements GameView {
 	private Slider sldSpeed;
 	private Composite compControls;
 	private Text txtSpeed;
+	private Canvas canvas;
+	private Game game;
+	private int cellSize;
+	private GC gc;
 
-	private Table table;
-	private int boardSize;
-
-	public GameViewSWT() {
-		new GameViewSWT(10);
-	}
-
-	public GameViewSWT(int boardSize) {
-		this.boardSize = boardSize;
+	public GameViewSWT(Game game) {
 		shell = new Shell();
 		shell.setText("Game of Life");
-		shell.setSize(600, 600);
+		setSize(shell);
+		this.game = game;
 		init(shell);
 	}
-
+	
+	private void setSize(Shell shell) {
+        Rectangle bds = shell.getDisplay().getBounds();
+        int width = bds.width;
+        int height = bds.height;
+        shell.setBounds(0,0,width,height);
+	}
+	
 	private void init(Shell s) {
 		shell.setLayout(new GridLayout());
 		initControls();
-		initTable();
+		initCanvas();
 	}
 	
 	private void initControls() {
@@ -63,21 +72,52 @@ public class GameViewSWT implements GameView {
 		lblSpeed.setText("Spielgeschwindigkeit:" + (sldSpeed.getSelection()/1000));
 		txtSpeed = new Text(compControls, SWT.NONE);
 		txtSpeed.setText("0.5");
-		btnStartStop = new Button(compControls, SWT.NONE);
-		btnStartStop.setText("Start");
+		btnStart = new Button(compControls, SWT.NONE);
+		btnStart.setText("Start");
 	}
 	
-	private void initTable() {
-		table = new Table(shell, SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
-		table.setLinesVisible(false);
-		table.setHeaderVisible(false);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.heightHint = 600;
-		table.setLayoutData(data);
-		for (int i = 0; i < boardSize; i++) {
-			TableColumn column = new TableColumn(table, SWT.CENTER);
-			column.setWidth(580 / boardSize);
+	private void initCanvas() {
+		canvas = new Canvas(shell, SWT.NONE);
+		gc = new GC(canvas);
+		GridData gridData = new GridData();
+		gridData.verticalAlignment = GridData.FILL;
+		gridData.grabExcessVerticalSpace = true;
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		canvas.setLayoutData(gridData);
+		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		
+		drawBoard(gc, canvas);
+	}
+	
+	private void drawBoard(GC gc, Canvas canvas) {
+		int height, width;
+		if (game.getHeight() > game.getWidth()) {
+			height = 500;
+			width = 500*(game.getWidth()/game.getHeight());
+			cellSize = 500/game.getHeight();
+		} else {
+			width = 500;
+			height = 500*(game.getHeight()/game.getWidth());
+			cellSize = 500/game.getHeight();
 		}
+		canvas.drawBackground(gc, 0, 0, width, height);
+		paintCells();
+	}
+	
+	private void paintCells() {
+	    canvas.addPaintListener(new PaintListener() {
+	    	public void paintControl(PaintEvent e) {
+	    		e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_BLACK));
+	    		for (int i = 0; i < game.getWidth(); i++) {
+					for (int j = 0; j < game.getHeight(); j++) {
+						if (game.cellAlive(i,j)) {
+							e.gc.fillRectangle(i*cellSize, j*cellSize, cellSize, cellSize);
+						}
+					}
+				}
+	    	}
+	    });
 	}
 	
 	public void start() {
@@ -89,21 +129,15 @@ public class GameViewSWT implements GameView {
 		display.dispose();
 	}
 
-	@Override
-	public void updateView(boolean[][] cells) {
-		table.removeAll();
-		for (int i = 0; i < cells.length; i++) {
-			TableItem item = new TableItem(table, SWT.NONE);
-			String[] values = new String[cells.length];
-			for (int j = 0; j < cells[i].length; j++) {
-				if (cells[i][j]) {
-					values[j] = "x";
-				} else {
-					values[j] = " ";
-				}
-			}
-			item.setText(values);
-		}
+	public void updateView() {
+		canvas.redraw();
+		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		canvas.drawBackground(gc, 0, 0, 500, 500);
+		paintCells();
+	}
+	
+	public void addStartGameListener(SelectionAdapter listenForStartGameButton) {
+		btnStart.addSelectionListener(listenForStartGameButton);
 	}
 	
 }
