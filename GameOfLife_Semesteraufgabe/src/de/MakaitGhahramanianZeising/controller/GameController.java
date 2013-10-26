@@ -3,7 +3,6 @@ package de.MakaitGhahramanianZeising.controller;
 import de.MakaitGhahramanianZeising.model.*;
 import de.MakaitGhahramanianZeising.view.*;
 import de.MakaitGhahramanianZeising.controller.SettingsController;
-import de.MakaitGhahramanianZeising.controller.SettingsController.CreateGameListener;
 import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
 import de.MakaitGhahramanianZeising.enums.ModeEnum;
 

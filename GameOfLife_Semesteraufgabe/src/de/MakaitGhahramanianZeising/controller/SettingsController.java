@@ -7,7 +7,6 @@ package de.MakaitGhahramanianZeising.controller;
 
 import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
 import de.MakaitGhahramanianZeising.enums.ModeEnum;
-import de.MakaitGhahramanianZeising.exceptions.GOLException;
 import de.MakaitGhahramanianZeising.model.Cell;
 import de.MakaitGhahramanianZeising.utils.FileParser;
 import de.MakaitGhahramanianZeising.utils.ValidBean;
