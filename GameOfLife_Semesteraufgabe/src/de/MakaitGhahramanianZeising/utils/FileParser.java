@@ -25,7 +25,7 @@ public class FileParser {
 		return board;
 	}
 	
-	private void parse(Path filePath) throws Exception {
+	public void parse(Path filePath) throws Exception {
 		try {
 			if (fileTypeIsNotGol(filePath)) {
 				throw new GOLException("Datei muss vom Typ .gol sein.");
