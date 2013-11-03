@@ -141,11 +141,6 @@ public class GameViewSWT {
 	public void updateView() {
 		setRound(game.getRound());
 		canvas.redraw();
-		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-		canvas.drawBackground(gc, 0, 0, 500, 500);
-		
-		// TODO Verify calling paintCells() is obsolete;
-		//paintCells();
 	}
 	
 	public void setSpeed() {

@@ -31,7 +31,7 @@ public class FileParser {
 				throw new GOLException("Datei muss vom Typ .gol sein.");
 			}
 			if (fileSizeTooBig(filePath)) {
-				throw new GOLException("Dateigröße muss kleiner als 250kb sein.");
+				throw new GOLException("Dateigröße darf maximal 250kb betragen.");
 			}
 			if (fileIsEmpty(filePath)) {
 				throw new GOLException("Datei darf nicht leer sein.");
@@ -52,7 +52,7 @@ public class FileParser {
 	
 	private boolean fileSizeTooBig(Path filePath) throws IOException {
 		double bytes = Files.size(filePath);
-		return (bytes > 250000);
+		return (bytes >= 250000);
 	}
 	
 	private boolean fileIsEmpty(Path filePath) throws IOException {
