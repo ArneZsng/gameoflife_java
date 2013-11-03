@@ -29,7 +29,7 @@ public class LifeWithoutDeathModeTest {
 		cells[2][2] = new Cell(false);		
 		game = new WallOfDeathGame(cells, ModeEnum.LIFEWITHOUTDEATH.getSurvives(), ModeEnum.LIFEWITHOUTDEATH.getRevives());
 		//given
-		game.prepareNextRound();
+		game.playNextRound();
 		//when
 		game.playNextRound();
 		//then
