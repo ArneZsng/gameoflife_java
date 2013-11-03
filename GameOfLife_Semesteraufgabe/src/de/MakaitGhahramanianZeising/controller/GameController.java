@@ -18,8 +18,11 @@ public class GameController {
 	public GameController() {
 		mySettingsController = new SettingsController();
 		myGame = createGame(mySettingsController.getBoard(), mySettingsController.getMode(), mySettingsController.getBoardType());
+		Thread t1 = new Thread(myGame);
+		t1.start();
 		myGameView = new GameViewSWT(myGame);
 		myGameView.addStartGameListener(new StartGameListener());
+		myGameView.addSpeedSliderListener(new SpeedSliderListener());
 		myGameView.start();
 	}
 	
@@ -30,13 +33,19 @@ public class GameController {
 			return new PacmanGame(board, modeEnum.getSurvives(), modeEnum.getRevives());
 		}
 	}
-
+	
+	class SpeedSliderListener extends SelectionAdapter {
+		public void widgetSelected(SelectionEvent e) {
+			myGame.setSpeed(myGameView.getSpeed());
+			myGameView.setNewSpeed();
+		}
+	}
+	
 	class StartGameListener extends SelectionAdapter {
 		public void widgetSelected(SelectionEvent e) {
 			myGame.prepareNextRound();
 			if (!myGame.isGameOver()) {
 				myGame.playNextRound();
-				myGameView.updateView();
 			}
 		}
 	}

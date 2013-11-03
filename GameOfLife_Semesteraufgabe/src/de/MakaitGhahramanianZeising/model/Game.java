@@ -1,13 +1,42 @@
 package de.MakaitGhahramanianZeising.model;
 
 import java.util.HashSet;
+import java.util.Observable;
 
-public abstract class Game {
+public abstract class Game extends Observable implements Runnable {
 	
 	protected Cell[][] cells;
-	private int round;
+	private int round = 1;
+	private int msSpeed = 500;
 	protected HashSet<Integer> survives;
 	protected HashSet<Integer> revives;
+	
+	public void run() {
+		while (true) {
+			try {
+			    Thread.sleep(msSpeed);
+			} catch(InterruptedException ex) {
+			}
+			prepareNextRound();
+			if (!isGameOver()) {
+				playNextRound();
+			} else {
+				break;
+			}
+		}
+	}
+	
+	public void setSpeed(int speed) {
+		this.msSpeed = speed;
+	}
+	
+	public double getSpeed() {
+		return msSpeed;
+	}
+	
+	public int getRound() {
+		return round;
+	}
 	
 	public int getWidth() {
 		return cells.length;
@@ -34,12 +63,14 @@ public abstract class Game {
 	}
 	
 	public void playNextRound() {
+		setChanged();
 		for (int i = 0; i < getWidth(); i++) {
 			for (int j = 0; j < getHeight(); j++) {
 				cells[i][j].updateStatus();
-				round++;
 			}
 		}
+		round++;
+		notifyObservers();
 	}
 	
 	public boolean cellAlive(int x, int y) {

@@ -1,5 +1,8 @@
 package de.MakaitGhahramanianZeising.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
@@ -15,7 +18,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
-import org.eclipse.swt.widgets.Text;
 
 import de.MakaitGhahramanianZeising.model.Game;
 
@@ -24,13 +26,13 @@ public class GameViewSWT {
 	private Shell shell;
 	private static Display display = new Display();
 	private Button btnStart;
-	private Label lblGeneration;
+	private Label lblRound;
 	private Label lblSpeed;
 	private Label lbl0;
 	private Label lbl1;
 	private Slider sldSpeed;
 	private Composite compControls;
-	private Text txtSpeed;
+	private Label lblCurrentSpeed;
 	private Canvas canvas;
 	private Game game;
 	private int cellSize;
@@ -41,6 +43,7 @@ public class GameViewSWT {
 		shell.setText("Game of Life");
 		setSize(shell);
 		this.game = game;
+		game.addObserver(new GameObserver());
 		init(shell);
 	}
 	
@@ -60,8 +63,8 @@ public class GameViewSWT {
 	private void initControls() {
 		compControls = new Composite(shell, SWT.NULL);
 		compControls.setLayout(new GridLayout(10,false));
-		lblGeneration = new Label(compControls, SWT.NONE);
-		lblGeneration.setText("Generation: 1");
+		lblRound = new Label(compControls, SWT.NONE);
+		setRound(game.getRound());
 		lblSpeed = new Label(compControls, SWT.NONE);
 		lbl0 = new Label(compControls, SWT.NONE);
 		lbl0.setText("0");
@@ -69,9 +72,9 @@ public class GameViewSWT {
 		sldSpeed.setValues(500, 0, 1000, 1, 50, 50);
 		lbl1 = new Label(compControls, SWT.NONE);
 		lbl1.setText("1");
-		lblSpeed.setText("Spielgeschwindigkeit:" + (sldSpeed.getSelection()/1000));
-		txtSpeed = new Text(compControls, SWT.NONE);
-		txtSpeed.setText("0.5");
+		lblSpeed.setText("Spielgeschwindigkeit:");
+		lblCurrentSpeed = new Label(compControls, SWT.NONE);
+		lblCurrentSpeed.setText(String.valueOf(getSpeed()));
 		btnStart = new Button(compControls, SWT.NONE);
 		btnStart.setText("Start");
 	}
@@ -130,14 +133,44 @@ public class GameViewSWT {
 	}
 
 	public void updateView() {
+		setRound(game.getRound());
 		canvas.redraw();
 		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		canvas.drawBackground(gc, 0, 0, 500, 500);
 		paintCells();
 	}
 	
+	public void setNewSpeed() {
+		String speed = String.valueOf(getSpeed());
+		lblCurrentSpeed.setText(speed);
+	}
+	
+	public void setRound(int round) {
+		lblRound.setText("Generation: "+ String.valueOf(round));
+	}
+	
 	public void addStartGameListener(SelectionAdapter listenForStartGameButton) {
 		btnStart.addSelectionListener(listenForStartGameButton);
 	}
 	
+	public int getSpeed() {
+		int speed = sldSpeed.getSelection();
+		return speed;
+	}
+	
+	public void addSpeedSliderListener(SelectionAdapter listenForSpeedSlider) {
+		sldSpeed.addSelectionListener(listenForSpeedSlider);
+	}
+	
+	private class GameObserver implements Observer {
+
+	    @Override
+	    public void update(Observable o, Object arg) {
+	    	Display.getDefault().syncExec(new Runnable() {
+	    		public void run() {
+	    			updateView();
+	    		}
+	    	});
+	    }
+	}
 }
