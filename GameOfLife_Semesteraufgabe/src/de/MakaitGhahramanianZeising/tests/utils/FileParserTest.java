@@ -17,69 +17,66 @@ import de.MakaitGhahramanianZeising.utils.FileParser;
 
 public class FileParserTest {	
 
-private FileParser fileparser;
-
-
-	
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
 	private File tmp_file;
 
 	@Test
-	public void test_fileTypeIsNotGol() throws Exception {
-		
+	public void shouldThrowErrorWhenFileTypeIsNotGol() throws Exception {
 		//assume
 		tmp_file = folder.newFile("file.txt");
+		//given
 		String filePathString = tmp_file.getAbsolutePath();
-		//then
+		//when
 		try {
-		fileparser = new FileParser(filePathString);
-		}catch (GOLException e) {
-			String msg="Datei muss vom Typ .gol sein.";
+			new FileParser(filePathString);
+		} catch (GOLException e) {
+			//then
+			String msg = "Datei muss vom Typ .gol sein.";
 			assertEquals(msg,e.getMessage());
 		}
 	}
 
 	@Test
-	public void test_fileSizeTooBig() throws Exception {
-		
+	public void shouldThrowErrorWhenFileSizeTooBig() throws Exception {
 		//assume
 		tmp_file = folder.newFile("file.gol");
+		//given
 		String filePathString = tmp_file.getAbsolutePath();
 		Path filePath = Paths.get(filePathString);
-		//when
 		byte[] bytes = new byte[260000];
 		Files.write(filePath, bytes, StandardOpenOption.APPEND);
-		//then
+		//when
 		try {
-			fileparser = new FileParser(filePathString);
+			new FileParser(filePathString);
 		} catch (GOLException e) {
-			String msg="Dateigröße muss kleiner als 250kb sein.";
+			//then
+			String msg="Dateigröße darf maximal 250kb betragen.";
 			assertEquals(msg,e.getMessage());
 		}
 	}
 
 	@Test
-	public void test_fileIsEmpty() throws Exception {
-		
+	public void shouldThrowErrorWhenFileIsEmpty() throws Exception {
 		//assume
 		tmp_file = folder.newFile("file.gol");
+		//given
 		String filePathString = tmp_file.getAbsolutePath();
-		//then
+		//when
 		try {
-			fileparser = new FileParser(filePathString);
-		} catch (GOLException e) {  
+			new FileParser(filePathString);
+		} catch (GOLException e) { 
+			//then
 			String msg="Datei darf nicht leer sein.";
 			assertEquals(msg, e.getMessage());
 		}
 	}
 
 	@Test
-	public void test_boardDimensionsWrong() throws Exception {
-		
+	public void shouldThrowErrorWhenBoardDimensionsWrong() throws Exception {
 		//assume
 		tmp_file = folder.newFile("file.gol");
-		//when
+		//given
 		FileWriter writer = new FileWriter(tmp_file, true);
 		writer.write("01");
 		writer.write(System.getProperty("line.separator"));
@@ -87,10 +84,11 @@ private FileParser fileparser;
 		writer.flush();
 		writer.close();
 		String filePathString = tmp_file.getAbsolutePath();
-		//then
+		//when
 		try {
-			fileparser = new FileParser(filePathString);
+			new FileParser(filePathString);
 		} catch (GOLException e) {  
+			//then
 			String msg="Das Spielbrett muss in jeder Zeile gleich viele Zellen haben.";
 			assertEquals(msg, e.getMessage());
 		}
@@ -98,8 +96,7 @@ private FileParser fileparser;
 		
 
 	@Test
-	public void test_fillBoardWithLine() throws Exception {
-		
+	public void shouldThrowErrorWhenCharactersAreInvalid() throws Exception {
 		//assume
 		tmp_file = folder.newFile("file.gol");
 		FileWriter writer = new FileWriter(tmp_file, true);
@@ -112,7 +109,7 @@ private FileParser fileparser;
 		String filePathString = tmp_file.getAbsolutePath();
 		//then
 		try {
-			fileparser = new FileParser(filePathString);
+			new FileParser(filePathString);
 		} catch (GOLException e) {  
 			String msg="Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.";
 			assertEquals(msg, e.getMessage());
@@ -120,17 +117,17 @@ private FileParser fileparser;
 	}
 	
 	@Test 
-	public void test_buildBoard() throws Exception {
-		
+	public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
 		//assume 
 		tmp_file= folder.newFile("file.gol");
-		String filePathString=tmp_file.getAbsolutePath();
-		//when 
+		//given
+		String filePathString=tmp_file.getAbsolutePath(); 
 		tmp_file.delete();
-		//then 
+		//when 
 		try {
-			fileparser = new FileParser(filePathString);
+			new FileParser(filePathString);
 		} catch (GOLException e) {  
+			//then
 			String msg="Die Datei konnte nicht geöffnet werden.";
 			assertEquals(msg, e.getMessage());
 		}
