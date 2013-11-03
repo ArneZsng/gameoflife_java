@@ -15,6 +15,7 @@ import de.MakaitGhahramanianZeising.view.SettingsViewSWT;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Display;
 
 public class SettingsController {
 	private SettingsViewSWT mySettingsView;
@@ -23,8 +24,8 @@ public class SettingsController {
 	private BoardTypeEnum myBoardTypeEnum;
 	private ValidBean validBean;
 	
-	public SettingsController() {
-		mySettingsView = new SettingsViewSWT();
+	public SettingsController(Display display) {
+		mySettingsView = new SettingsViewSWT(display);
 		mySettingsView.addSelectFileListener(new SelectFileListener());
 		mySettingsView.addCreateGameListener(new CreateGameListener());
 		mySettingsView.start();

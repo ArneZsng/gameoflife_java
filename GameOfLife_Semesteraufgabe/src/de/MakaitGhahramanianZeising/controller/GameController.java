@@ -8,6 +8,9 @@ import de.MakaitGhahramanianZeising.enums.ModeEnum;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 
 public class GameController {
 	
@@ -15,15 +18,29 @@ public class GameController {
 	private Thread myGameThread;
 	private Game myGame;
 	private GameViewSWT myGameView;
+	private Display display = new Display();
 
 	public GameController() {
-		mySettingsController = new SettingsController();
+		reset();
+		initialize();
+	}
+	
+	private void reset() {
+		mySettingsController = null;
+		myGame = null;
+		myGameThread = null;
+		myGameView = null;
+	}
+	
+	private void initialize() {
+		mySettingsController = new SettingsController(display);
 		myGame = createGame(mySettingsController.getBoard(), mySettingsController.getMode(), mySettingsController.getBoardType());
 		myGameThread = new Thread(myGame);
 		myGameThread.start();
-		myGameView = new GameViewSWT(myGame);
+		myGameView = new GameViewSWT(display, myGame);
 		myGameView.addNewGameListener(new NewGameListener());
 		myGameView.addSpeedSliderListener(new SpeedSliderListener());
+		myGameView.addCloseButtonListener(new CloseButtonListener());
 		myGameView.start();
 	}
 	
@@ -46,6 +63,15 @@ public class GameController {
 		public void widgetSelected(SelectionEvent e) {
 			myGameThread.interrupt();
 			myGameView.dispose();
+			initialize();
+		}
+	}
+	
+	class CloseButtonListener implements Listener {
+		public void handleEvent(Event e) {
+			myGameThread.interrupt();
+			myGameView.dispose();
+			initialize();
 		}
 	}
 

@@ -25,7 +25,7 @@ import de.MakaitGhahramanianZeising.exceptions.GOLException;
 
 public class SettingsViewSWT {
 	private Shell shell;
-	private static Display display = new Display();
+	private Display display;
 	private Button btnSelectFile;
 	private Button btnCreateGame;
 	private Combo comboMode;
@@ -43,7 +43,8 @@ public class SettingsViewSWT {
 	private String filePath;
 
 	
-	public SettingsViewSWT() {
+	public SettingsViewSWT(Display display) {
+		this.display = display;
 		shell = new Shell();
 		shell.setText("Game of Life");
 		shell.setSize(400, 400);
@@ -182,7 +183,7 @@ public class SettingsViewSWT {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
-		display.dispose();
+		shell.dispose();
 	}
 	
 	public void dispose() {

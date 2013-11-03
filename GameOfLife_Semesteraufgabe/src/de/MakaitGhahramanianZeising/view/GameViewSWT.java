@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 
@@ -24,7 +25,7 @@ import de.MakaitGhahramanianZeising.model.Game;
 public class GameViewSWT {
 	
 	private Shell shell;
-	private static Display display = new Display();
+	private Display display;
 	private Button btnNewGame;
 	private Label lblRound;
 	private Label lblSpeedDescription;
@@ -38,7 +39,8 @@ public class GameViewSWT {
 	private int cellSize;
 	private GC gc;
 
-	public GameViewSWT(Game game) {
+	public GameViewSWT(Display display, Game game) {
+		this.display = display;
 		shell = new Shell();
 		shell.setText("Game of Life");
 		setSize(shell);
@@ -135,17 +137,12 @@ public class GameViewSWT {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
-		display.dispose();
+		shell.dispose();
 	}
 
 	public void updateView() {
 		setRound(game.getRound());
 		canvas.redraw();
-		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-		canvas.drawBackground(gc, 0, 0, 500, 500);
-		
-		// TODO Verify calling paintCells() is obsolete;
-		//paintCells();
 	}
 	
 	public void setSpeed() {
@@ -176,8 +173,13 @@ public class GameViewSWT {
 		sldSpeed.addSelectionListener(listenForSpeedSlider);
 	}
 	
+	
+	public void addCloseButtonListener(Listener listenForCloseButton) {		
+		shell.addListener(SWT.Close, listenForCloseButton);
+	}
+	
 	public void dispose() {
-		display.dispose();
+		shell.dispose();
 	}
 	
 	private class GameObserver implements Observer {
