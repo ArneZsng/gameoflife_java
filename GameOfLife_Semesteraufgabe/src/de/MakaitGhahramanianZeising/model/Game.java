@@ -12,25 +12,30 @@ public abstract class Game extends Observable implements Runnable {
 	protected HashSet<Integer> revives;
 	
 	public void run() {
-		while (true) {
-			try {
-			    Thread.sleep(msSpeed);
-			} catch(InterruptedException ex) {
-			}
+		while (!isInterrupted()) {
 			prepareNextRound();
 			if (!isGameOver()) {
 				playNextRound();
 			} else {
 				break;
 			}
+			try {
+			    Thread.sleep(msSpeed);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
 		}
+	}
+	
+	public boolean isInterrupted() {
+		return Thread.currentThread().isInterrupted();
 	}
 	
 	public void setSpeed(int speed) {
 		this.msSpeed = speed;
 	}
 	
-	public double getSpeed() {
+	public int getSpeed() {
 		return msSpeed;
 	}
 	
@@ -69,7 +74,9 @@ public abstract class Game extends Observable implements Runnable {
 				cells[i][j].updateStatus();
 			}
 		}
-		round++;
+		if (round <= 999999999) {
+			round++;
+		}
 		notifyObservers();
 	}
 	

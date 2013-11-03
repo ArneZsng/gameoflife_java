@@ -12,16 +12,17 @@ import org.eclipse.swt.events.SelectionEvent;
 public class GameController {
 	
 	private SettingsController mySettingsController;
+	private Thread myGameThread;
 	private Game myGame;
 	private GameViewSWT myGameView;
 
 	public GameController() {
 		mySettingsController = new SettingsController();
 		myGame = createGame(mySettingsController.getBoard(), mySettingsController.getMode(), mySettingsController.getBoardType());
-		Thread t1 = new Thread(myGame);
-		t1.start();
+		myGameThread = new Thread(myGame);
+		myGameThread.start();
 		myGameView = new GameViewSWT(myGame);
-		myGameView.addStartGameListener(new StartGameListener());
+		myGameView.addNewGameListener(new NewGameListener());
 		myGameView.addSpeedSliderListener(new SpeedSliderListener());
 		myGameView.start();
 	}
@@ -37,16 +38,14 @@ public class GameController {
 	class SpeedSliderListener extends SelectionAdapter {
 		public void widgetSelected(SelectionEvent e) {
 			myGame.setSpeed(myGameView.getSpeed());
-			myGameView.setNewSpeed();
+			myGameView.setSpeed();
 		}
 	}
 	
-	class StartGameListener extends SelectionAdapter {
+	class NewGameListener extends SelectionAdapter {
 		public void widgetSelected(SelectionEvent e) {
-			myGame.prepareNextRound();
-			if (!myGame.isGameOver()) {
-				myGame.playNextRound();
-			}
+			myGameThread.interrupt();
+			myGameView.dispose();
 		}
 	}
 

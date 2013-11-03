@@ -25,14 +25,14 @@ public class GameViewSWT {
 	
 	private Shell shell;
 	private static Display display = new Display();
-	private Button btnStart;
+	private Button btnNewGame;
 	private Label lblRound;
-	private Label lblSpeed;
+	private Label lblSpeedDescription;
 	private Label lbl0;
 	private Label lbl1;
 	private Slider sldSpeed;
 	private Composite compControls;
-	private Label lblCurrentSpeed;
+	private Label lblSpeed;
 	private Canvas canvas;
 	private Game game;
 	private int cellSize;
@@ -65,18 +65,24 @@ public class GameViewSWT {
 		compControls.setLayout(new GridLayout(10,false));
 		lblRound = new Label(compControls, SWT.NONE);
 		setRound(game.getRound());
-		lblSpeed = new Label(compControls, SWT.NONE);
+		GridData roundGridData = new GridData();
+		roundGridData.widthHint = 200;
+		lblRound.setLayoutData(roundGridData);
+		lblSpeedDescription = new Label(compControls, SWT.NONE);
 		lbl0 = new Label(compControls, SWT.NONE);
 		lbl0.setText("0");
 		sldSpeed = new Slider(compControls, SWT.HORIZONTAL);
-		sldSpeed.setValues(500, 0, 1000, 1, 50, 50);
+		sldSpeed.setValues(game.getSpeed(), 0, 1001, 1, 50, 50);
 		lbl1 = new Label(compControls, SWT.NONE);
 		lbl1.setText("1");
-		lblSpeed.setText("Spielgeschwindigkeit:");
-		lblCurrentSpeed = new Label(compControls, SWT.NONE);
-		lblCurrentSpeed.setText(String.valueOf(getSpeed()));
-		btnStart = new Button(compControls, SWT.NONE);
-		btnStart.setText("Start");
+		lblSpeedDescription.setText("Spielgeschwindigkeit:");
+		lblSpeed = new Label(compControls, SWT.NONE);
+		GridData speedGridData = new GridData();
+		speedGridData.widthHint = 100;
+		lblSpeed.setLayoutData(speedGridData);
+		lblSpeed.setText(String.valueOf(((double)getSpeed())/1000));
+		btnNewGame = new Button(compControls, SWT.NONE);
+		btnNewGame.setText("Neues Spiel");
 	}
 	
 	private void initCanvas() {
@@ -137,20 +143,28 @@ public class GameViewSWT {
 		canvas.redraw();
 		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		canvas.drawBackground(gc, 0, 0, 500, 500);
-		paintCells();
+		
+		// TODO Verify calling paintCells() is obsolete;
+		//paintCells();
 	}
 	
-	public void setNewSpeed() {
-		String speed = String.valueOf(getSpeed());
-		lblCurrentSpeed.setText(speed);
+	public void setSpeed() {
+		String speed = String.valueOf((double) (getSpeed())/1000);
+		lblSpeed.setText(speed);
 	}
 	
 	public void setRound(int round) {
-		lblRound.setText("Generation: "+ String.valueOf(round));
+		String newRound = "";
+		if (round <= 999999999) {
+			newRound = String.valueOf(round);
+		} else {
+			newRound = "Unzählbar!";
+		}
+		lblRound.setText("Generation: "+ newRound);
 	}
 	
-	public void addStartGameListener(SelectionAdapter listenForStartGameButton) {
-		btnStart.addSelectionListener(listenForStartGameButton);
+	public void addNewGameListener(SelectionAdapter listenForNewGameButton) {
+		btnNewGame.addSelectionListener(listenForNewGameButton);
 	}
 	
 	public int getSpeed() {
@@ -162,15 +176,21 @@ public class GameViewSWT {
 		sldSpeed.addSelectionListener(listenForSpeedSlider);
 	}
 	
+	public void dispose() {
+		display.dispose();
+	}
+	
 	private class GameObserver implements Observer {
 
 	    @Override
 	    public void update(Observable o, Object arg) {
-	    	Display.getDefault().syncExec(new Runnable() {
-	    		public void run() {
-	    			updateView();
-	    		}
-	    	});
+	    	if (!game.isInterrupted()) {
+	    		Display.getDefault().syncExec(new Runnable() {
+	    			public void run() {
+	    				updateView();
+	    			}
+	    		}); 
+	    	}
 	    }
 	}
 }
