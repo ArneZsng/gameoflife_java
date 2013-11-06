@@ -25,4 +25,14 @@ public class Cell {
 		return !(isAlive == willBeAlive);
 	}
 	
+    public boolean equals(Object obj) {
+        if (obj instanceof Cell)
+            return isAlive == ((Cell)obj).isAlive(); 
+        else
+            return false;
+    }
+    
+    public int hashCode() {
+    	return isAlive ? 1231 : 1237;
+    }
 }
