@@ -13,9 +13,13 @@ import org.junit.*;
 import org.junit.rules.*;
 
 import de.MakaitGhahramanianZeising.exceptions.GOLException;
+import de.MakaitGhahramanianZeising.model.Cell;
 import de.MakaitGhahramanianZeising.utils.FileParser;
 
 public class FileParserTest {	
+	
+	private Cell[][] cells = new Cell[3][3];
+	private FileParser fileParser;
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
@@ -131,6 +135,52 @@ public class FileParserTest {
 			String msg="Die Datei konnte nicht geöffnet werden.";
 			assertEquals(msg, e.getMessage());
 		}
+	}
+	
+	@Test 
+	public void shouldThrowErrorWhenFileIsNotSelected() throws Exception {
+		//assume 
+		String filePathString = null;
+		//when 
+		try {
+			new FileParser(filePathString);
+		} catch (GOLException e) {  
+			//then
+			String msg = "Bitte Datei auswählen.";
+			assertEquals(msg, e.getMessage());
+		}
+	}
+	
+	@Test
+	public void shouldBuildCorrectBoard() throws Exception {
+		//assume
+		tmp_file = folder.newFile("file.gol");
+		FileWriter writer = new FileWriter(tmp_file, true);
+		//given
+		writer.write("000");
+		writer.write(System.getProperty("line.separator"));
+		writer.write("110");
+		writer.write(System.getProperty("line.separator"));
+		writer.write("001");
+		writer.flush();
+		writer.close();
+		String filePathString = tmp_file.getAbsolutePath();
+		cells[0][0] = new Cell(false);
+		cells[1][0] = new Cell(false);
+		cells[2][0] = new Cell(false);
+		cells[0][1] = new Cell(true);
+		cells[1][1] = new Cell(true);
+		cells[2][1] = new Cell(false);
+		cells[0][2] = new Cell(false);
+		cells[1][2] = new Cell(false);
+		cells[2][2] = new Cell(true);
+		//when
+		try {
+			fileParser = new FileParser(filePathString);
+		} catch (Exception e) { 
+		}
+		//then
+		assertArrayEquals(fileParser.getBoard(), cells);
 	}
 		
 	
