@@ -57,42 +57,33 @@ public class FileParser {
 	
 	private boolean fileIsEmpty(Path filePath) throws IOException {
 		Scanner scanner = new Scanner(filePath);
-		try {
-			return !(scanner.hasNext());
-		} finally {
-			scanner.close();
-		}
+		boolean hasNext = scanner.hasNext();
+		scanner.close();
+		return !hasNext;
 	}
 	
 	private boolean boardDimensionsWrong(Path filePath) throws IOException {
 		Scanner scanner = new Scanner(filePath);
-		try {
-			int firstRowLength = scanner.nextLine().length();
-			{
-				while (scanner.hasNextLine()) {
-					if (!(firstRowLength == scanner.nextLine().length())) {
-						return true;
-					}
-				}
+		int firstRowLength = scanner.nextLine().length();
+		while (scanner.hasNextLine()) {
+			if (!(firstRowLength == scanner.nextLine().length())) {
+				scanner.close();
+				return true;
 			}
-			return false;
-		} finally {
-			scanner.close();
 		}
+		scanner.close();
+		return false;
 	}
 
 	private void buildBoard(Path filePath) throws Exception {
 		initializeBoard(filePath);
 		int row = 0;
 		Scanner scanner = new Scanner(filePath);
-		try {
-			while (scanner.hasNextLine()) {
-				fillBoardWithLine(scanner.nextLine(), row);
-				row++;
-			}
-		} finally {
-			scanner.close();
+		while (scanner.hasNextLine()) {
+			fillBoardWithLine(scanner.nextLine(), row);
+			row++;
 		}
+		scanner.close();
 	}
 	
 	private void initializeBoard(Path filePath) throws IOException {
@@ -103,25 +94,20 @@ public class FileParser {
 	
 	private int numberOfColumns(Path filePath) throws IOException {
 		Scanner scanner = new Scanner(filePath);
-		try {
-			return scanner.nextLine().length();
-		} finally {
-			scanner.close();
-		}
+		String nextLine = scanner.nextLine();
+		scanner.close();
+		return nextLine.length();
 	}
 	
 	private int numberOfRows(Path filePath) throws IOException{
 		Scanner scanner = new Scanner(filePath);
-		try {
-			int i = 0;
-			while (scanner.hasNextLine()) {
-				i++;
-				scanner.nextLine();
-			}
-			return i;
-		} finally {
-			scanner.close();
+		int i = 0;
+		while (scanner.hasNextLine()) {
+			i++;
+			scanner.nextLine();
 		}
+		scanner.close();
+		return i;
 	}
 	
 	private void fillBoardWithLine(String line, int row) throws GOLException{

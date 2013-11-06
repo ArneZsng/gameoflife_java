@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
 import de.MakaitGhahramanianZeising.enums.ModeEnum;
 import de.MakaitGhahramanianZeising.model.Cell;
 import de.MakaitGhahramanianZeising.model.Game;
@@ -179,4 +180,21 @@ public class GameTest {
 		assertTrue(game.cellAlive(1,1));
 	}
 
+	@Test
+	public void shouldReturnModeName() {
+		//when
+		ModeEnum mode = ModeEnum.GAMEOFLIFE;
+		//then
+		String name = "Game of Life";
+		assertTrue(name.equals(mode.getName()));
+	}
+	
+	@Test
+	public void shouldReturnBoardTypeName() {
+		//when
+		BoardTypeEnum boardType = BoardTypeEnum.WALLOFDEATH;
+		//then
+		String name = "Wall of Death";
+		assertTrue(name.equals(boardType.getName()));
+	}
 }
