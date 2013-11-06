@@ -12,6 +12,11 @@ public abstract class Game extends Observable implements Runnable {
 	protected HashSet<Integer> revives;
 	
 	public void run() {
+		try {
+		    Thread.sleep(msSpeed);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 		while (!isInterrupted()) {
 			prepareNextRound();
 			if (!isGameOver()) {
@@ -41,6 +46,14 @@ public abstract class Game extends Observable implements Runnable {
 	
 	public int getRound() {
 		return round;
+	}
+	
+	public String getRoundAsString() {
+		if (round <= 999999999) {
+			return String.valueOf(round);
+		} else {
+			return "Unzählbar!";
+		}
 	}
 	
 	public int getWidth() {

@@ -62,8 +62,10 @@ public class SettingsViewSWT {
 	private void initGameModeComposite() {
 	    compGameMode = new Composite(shell, SWT.NULL);
 		compGameMode.setLayout(new GridLayout());
+		
 		lblChooseGameMode = new Label(compGameMode, SWT.NONE);
 		lblChooseGameMode.setText("Bitte wählen Sie den Spielmodus:");
+		
 		initComboForGameMode();
 	}
 	
@@ -84,8 +86,10 @@ public class SettingsViewSWT {
 	private void initBoardTypeComposite() {
 	    compBoardType = new Composite(shell, SWT.NULL);
 		compBoardType.setLayout(new GridLayout());
+		
 		lblChooseBoardType = new Label(compBoardType, SWT.NONE);
 		lblChooseBoardType.setText("Bitte wählen Sie die Art des Spielbretts:");
+		
 		initBtnsForBoardType();
 	}
 	
@@ -107,18 +111,26 @@ public class SettingsViewSWT {
 	    compInitialBoard = new Composite(shell, SWT.NULL);
 	    compInitialBoard.setLayout(new GridLayout(2, false));
 	    compInitialBoard.setLayoutData(new GridData(GridData.FILL_BOTH));
+	    
 		lblUpload = new Label(compInitialBoard, SWT.NONE);
 		lblUpload.setText("Bitte laden Sie den Anfangszustand hoch:");
-		GridData data = new GridData();
-		data.horizontalSpan = 2;
-		lblUpload.setLayoutData(data);
+		
+		GridData gdUploadLabel = new GridData();
+		gdUploadLabel.horizontalSpan = 2;
+		lblUpload.setLayoutData(gdUploadLabel);
+		
 		lblInitialBoardFileName = new Label(compInitialBoard, SWT.NONE);
 		lblInitialBoardFileName.setText("Bitte Datei auswählen");
+		
+		initFileSelectorDialog();
+		initBtnSelectFile();
+	}
+	
+	private void initFileSelectorDialog() {
 		dlgFileSelector = new FileDialog(shell, SWT.OPEN);
 		dlgFileSelector.setText("Import initial board");
 		dlgFileSelector.setFilterExtensions(new String[] { "*.gol", "*.*" });
 		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)", "all (*.*)" });
-		initBtnSelectFile();
 	}
 	
 	public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {

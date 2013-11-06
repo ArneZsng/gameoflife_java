@@ -38,51 +38,95 @@ public class GameViewSWT {
 	private Game game;
 	private int cellSize;
 	private GC gc;
-
+	
 	public GameViewSWT(Display display, Game game) {
 		this.display = display;
 		shell = new Shell();
 		shell.setText("Game of Life");
-		setSize(shell);
 		this.game = game;
 		game.addObserver(new GameObserver());
 		init(shell);
+		shell.pack();
 	}
-	
-	private void setSize(Shell shell) {
-        Rectangle bds = shell.getDisplay().getBounds();
-        int width = bds.width;
-        int height = bds.height;
-        shell.setBounds(0,0,width,height);
+		
+	private Rectangle getShellFrameSize() {
+		Rectangle shellArea = shell.getBounds();
+		Rectangle shellClientArea = shell.getClientArea();
+		int shellFrameHeight = shellArea.height - shellClientArea.height;
+		int shellFrameWidth = shellArea.height - shellClientArea.height;
+		return new Rectangle(0, 0, shellFrameWidth, shellFrameHeight);
+	}
+	private Rectangle getMaxCanvas() {
+		int defaultMargin = 5;
+		int controlsHeight = 80;
+		Rectangle clientArea = shell.getDisplay().getClientArea();
+		Rectangle shellFrameSize = getShellFrameSize();
+		int maxCanvasHeight = clientArea.height - shellFrameSize.height - controlsHeight - 3 * defaultMargin;
+		int maxCanvasWidth = clientArea.width - shellFrameSize.width - 2 * defaultMargin;
+		return new Rectangle(0,0, maxCanvasWidth, maxCanvasHeight);
+
+	}
+
+	private int getCellPixelSize(int boardWidth, int boardHeight) {
+		Rectangle maxCanvas = getMaxCanvas();
+        int pixelWidth = maxCanvas.width / boardWidth;
+        int pixelHeight = maxCanvas.height / boardHeight;
+        if (pixelWidth <= pixelHeight) {
+        	return pixelWidth;
+        } else {
+        	return pixelHeight;
+        }
 	}
 	
 	private void init(Shell s) {
 		shell.setLayout(new GridLayout());
-		initControls();
+		initControlsComposite();
 		initCanvas();
 	}
 	
-	private void initControls() {
+	private void initControlsComposite() {
 		compControls = new Composite(shell, SWT.NULL);
 		compControls.setLayout(new GridLayout(10,false));
+		
+		GridData gdControlsComposite = new GridData();
+		gdControlsComposite.heightHint = 50;
+		compControls.setLayoutData(gdControlsComposite);
+		
+		initRoundLabel();
+		initSpeedAdjustment();
+		initNewGameButton();
+	}
+	
+	private void initRoundLabel() {
 		lblRound = new Label(compControls, SWT.NONE);
-		setRound(game.getRound());
-		GridData roundGridData = new GridData();
-		roundGridData.widthHint = 200;
-		lblRound.setLayoutData(roundGridData);
+		setRoundLabel(game.getRoundAsString());
+		GridData gdRoundLabel = new GridData();
+		gdRoundLabel.widthHint = 200;
+		lblRound.setLayoutData(gdRoundLabel);
+	}
+	
+	private void initSpeedAdjustment() {
 		lblSpeedDescription = new Label(compControls, SWT.NONE);
+		
 		lbl0 = new Label(compControls, SWT.NONE);
 		lbl0.setText("0");
+		
 		sldSpeed = new Slider(compControls, SWT.HORIZONTAL);
 		sldSpeed.setValues(game.getSpeed(), 0, 1001, 1, 50, 50);
+		
 		lbl1 = new Label(compControls, SWT.NONE);
 		lbl1.setText("1");
+		
 		lblSpeedDescription.setText("Spielgeschwindigkeit:");
 		lblSpeed = new Label(compControls, SWT.NONE);
-		GridData speedGridData = new GridData();
-		speedGridData.widthHint = 100;
-		lblSpeed.setLayoutData(speedGridData);
 		lblSpeed.setText(String.valueOf(((double)getSpeed())/1000));
+		
+		GridData gdSpeedLabel = new GridData();
+		gdSpeedLabel.widthHint = 100;
+		lblSpeed.setLayoutData(gdSpeedLabel);
+	}
+	
+	private void initNewGameButton() {
 		btnNewGame = new Button(compControls, SWT.NONE);
 		btnNewGame.setText("Neues Spiel");
 	}
@@ -90,30 +134,26 @@ public class GameViewSWT {
 	private void initCanvas() {
 		canvas = new Canvas(shell, SWT.NONE);
 		gc = new GC(canvas);
-		GridData gridData = new GridData();
-		gridData.verticalAlignment = GridData.FILL;
-		gridData.grabExcessVerticalSpace = true;
-		gridData.horizontalAlignment = GridData.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		canvas.setLayoutData(gridData);
-		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		
-		drawBoard(gc, canvas);
+        int boardWidth = game.getWidth();
+        int boardHeight = game.getHeight();
+        cellSize = getCellPixelSize(boardWidth, boardHeight);
+        
+		canvas.setLayoutData(initCanvasGridData(boardWidth, boardHeight));
+		canvas.setBackground(canvas.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		canvas.drawBackground(gc, 0, 0, boardWidth * cellSize, boardHeight * cellSize);
+		paintCells();
 	}
 	
-	private void drawBoard(GC gc, Canvas canvas) {
-		int height, width;
-		if (game.getHeight() > game.getWidth()) {
-			height = 500;
-			width = 500*(game.getWidth()/game.getHeight());
-			cellSize = 500/game.getHeight();
-		} else {
-			width = 500;
-			height = 500*(game.getHeight()/game.getWidth());
-			cellSize = 500/game.getHeight();
-		}
-		canvas.drawBackground(gc, 0, 0, width, height);
-		paintCells();
+	private GridData initCanvasGridData(int boardWidth, int boardHeight) {
+		GridData gridData = new GridData();
+		gridData.widthHint = boardWidth * cellSize;
+		gridData.heightHint = boardHeight * cellSize;
+		gridData.horizontalAlignment = GridData.CENTER;
+		gridData.verticalAlignment = GridData.CENTER;
+		gridData.grabExcessHorizontalSpace = false;
+		gridData.grabExcessVerticalSpace = false;
+		return gridData;
 	}
 	
 	private void paintCells() {
@@ -141,7 +181,7 @@ public class GameViewSWT {
 	}
 
 	public void updateView() {
-		setRound(game.getRound());
+		setRoundLabel(game.getRoundAsString());
 		canvas.redraw();
 	}
 	
@@ -150,14 +190,8 @@ public class GameViewSWT {
 		lblSpeed.setText(speed);
 	}
 	
-	public void setRound(int round) {
-		String newRound = "";
-		if (round <= 999999999) {
-			newRound = String.valueOf(round);
-		} else {
-			newRound = "Unzählbar!";
-		}
-		lblRound.setText("Generation: "+ newRound);
+	public void setRoundLabel(String round) {
+		lblRound.setText("Generation: "+ round);
 	}
 	
 	public void addNewGameListener(SelectionAdapter listenForNewGameButton) {

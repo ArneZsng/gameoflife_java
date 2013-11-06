@@ -40,6 +40,8 @@ public class GameController {
 		myGameView = new GameViewSWT(display, myGame);
 		myGameView.addNewGameListener(new NewGameListener());
 		myGameView.addSpeedSliderListener(new SpeedSliderListener());
+		
+		// TODO FIX CLOSE-BUTTON-ERROR
 		myGameView.addCloseButtonListener(new CloseButtonListener());
 		myGameView.start();
 	}
