@@ -6,7 +6,7 @@ import java.util.Observable;
 public abstract class Game extends Observable implements Runnable {
 	
 	protected Cell[][] cells;
-	private int round = 1;
+	private int round = 0;
 	private int msSpeed = 500;
 	protected HashSet<Integer> survives;
 	protected HashSet<Integer> revives;
@@ -44,8 +44,8 @@ public abstract class Game extends Observable implements Runnable {
 		return msSpeed;
 	}
 	
-	public int getRound() {
-		return round;
+	public void setRound(int round) {
+		this.round = round;
 	}
 	
 	public String getRoundAsString() {
