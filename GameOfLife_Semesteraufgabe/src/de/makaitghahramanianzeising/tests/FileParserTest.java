@@ -19,7 +19,7 @@ import de.makaitghahramanianzeising.utils.FileParser;
 public class FileParserTest {	
 
     @Rule
-    private TemporaryFolder folder = new TemporaryFolder();
+    public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void shouldThrowErrorWhenFileTypeIsNotGol() throws Exception {
