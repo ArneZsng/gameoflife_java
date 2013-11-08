@@ -52,12 +52,12 @@ public class FileParser {
 
     private boolean fileTypeIsNotGol() throws IOException {
         String filePathString = filePath.toString();
-        return (!(filePathString.substring(filePathString.length()-4).equals(".gol")));
+        return !(".gol".equals(filePathString.substring(filePathString.length()-4)));
     }
 
     private boolean fileSizeTooBig() throws IOException {
         double bytes = Files.size(filePath);
-        return (bytes >= 250000);
+        return bytes >= 250000;
     }
 
     private boolean fileIsEmpty() throws IOException {

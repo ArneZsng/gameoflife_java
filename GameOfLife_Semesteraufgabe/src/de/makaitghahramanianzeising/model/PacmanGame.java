@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class PacmanGame extends Game {
 
     public PacmanGame(Cell[][] cells, Integer[] survives, Integer[] revives) {
-        setCells(cells);
+        this.cells = cells.clone();
         this.survives = new HashSet<Integer>(Arrays.asList(survives));
         this.revives = new HashSet<Integer>(Arrays.asList(revives));
     }

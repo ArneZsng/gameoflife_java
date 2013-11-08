@@ -13,8 +13,8 @@ public enum ModeEnum {
 
     ModeEnum (String name, Integer[] survives, Integer[] revives) {
         this.name = name;
-        this.survives = survives;
-        this.revives = revives;
+        this.survives = survives.clone();
+        this.revives = revives.clone();
     }
 
     public String getName() {

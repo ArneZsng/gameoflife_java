@@ -45,7 +45,7 @@ public class GameViewSWT {
         shell.setText("Game of Life");
         this.game = game;
         game.addObserver(new GameObserver());
-        init(shell);
+        initializeShell(shell);
         shell.pack();
     }
 
@@ -78,7 +78,7 @@ public class GameViewSWT {
         }
     }
 
-    private void init(Shell s) {
+    private void initializeShell(Shell s) {
         shell.setLayout(new GridLayout());
         initControlsComposite();
         initCanvas();
@@ -174,8 +174,9 @@ public class GameViewSWT {
     public void start() {
         shell.open();
         while (!shell.isDisposed()) {
-            if (!display.readAndDispatch())
+            if (!display.readAndDispatch()) {
                 display.sleep();
+            }
         }
         shell.dispose();
     }

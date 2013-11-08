@@ -110,14 +110,6 @@ public abstract class Game extends Observable implements Runnable {
             round++;
         }
     }
-    
-    protected void setCells(Cell[][] cells) {
-        if(cells == null) { 
-            this.cells = new Cell[0][0]; 
-        } else { 
-            this.cells = Arrays.copyOf(cells, cells.length); 
-        } 
-    }
 
     public boolean isGameOver() {
         for (int i = 0; i < getWidth(); i++) {

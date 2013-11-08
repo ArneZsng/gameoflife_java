@@ -19,15 +19,14 @@ import de.makaitghahramanianzeising.utils.FileParser;
 public class FileParserTest {	
 
     @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
-    private File tmp_file;
+    private TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void shouldThrowErrorWhenFileTypeIsNotGol() throws Exception {
         //assume
-        tmp_file = folder.newFile("file.txt");
+        File tmpFile = folder.newFile("file.txt");
         //given
-        String filePathString = tmp_file.getAbsolutePath();
+        String filePathString = tmpFile.getAbsolutePath();
         //when
         try {
             FileParser fileParser = new FileParser(filePathString);
@@ -42,9 +41,9 @@ public class FileParserTest {
     @Test
     public void shouldThrowErrorWhenFileSizeTooBig() throws Exception {
         //assume
-        tmp_file = folder.newFile("file.gol");
+        File tmpFile = folder.newFile("file.gol");
         //given
-        String filePathString = tmp_file.getAbsolutePath();
+        String filePathString = tmpFile.getAbsolutePath();
         Path filePath = Paths.get(filePathString);
         byte[] bytes = new byte[260000];
         Files.write(filePath, bytes, StandardOpenOption.APPEND);
@@ -62,9 +61,9 @@ public class FileParserTest {
     @Test
     public void shouldThrowErrorWhenFileIsEmpty() throws Exception {
         //assume
-        tmp_file = folder.newFile("file.gol");
+        File tmpFile = folder.newFile("file.gol");
         //given
-        String filePathString = tmp_file.getAbsolutePath();
+        String filePathString = tmpFile.getAbsolutePath();
         //when
         try {
             FileParser fileParser = new FileParser(filePathString);
@@ -79,15 +78,15 @@ public class FileParserTest {
     @Test
     public void shouldThrowErrorWhenBoardDimensionsWrong() throws Exception {
         //assume
-        tmp_file = folder.newFile("file.gol");
+        File tmpFile = folder.newFile("file.gol");
         //given
-        FileWriter writer = new FileWriter(tmp_file, true);
+        FileWriter writer = new FileWriter(tmpFile, true);
         writer.write("01");
         writer.write(System.getProperty("line.separator"));
         writer.write("010");
         writer.flush();
         writer.close();
-        String filePathString = tmp_file.getAbsolutePath();
+        String filePathString = tmpFile.getAbsolutePath();
         //when
         try {
             FileParser fileParser = new FileParser(filePathString);
@@ -103,15 +102,15 @@ public class FileParserTest {
     @Test
     public void shouldThrowErrorWhenCharactersAreInvalid() throws Exception {
         //assume
-        tmp_file = folder.newFile("file.gol");
-        FileWriter writer = new FileWriter(tmp_file, true);
+        File tmpFile = folder.newFile("file.gol");
+        FileWriter writer = new FileWriter(tmpFile, true);
         //when
         writer.write("45");
         writer.write(System.getProperty("line.separator"));
         writer.write("44");
         writer.flush();
         writer.close();
-        String filePathString = tmp_file.getAbsolutePath();
+        String filePathString = tmpFile.getAbsolutePath();
         //then
         try {
             FileParser fileParser = new FileParser(filePathString);
@@ -125,10 +124,10 @@ public class FileParserTest {
     @Test 
     public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
         //assume 
-        tmp_file= folder.newFile("file.gol");
+        File tmpFile= folder.newFile("file.gol");
         //given
-        String filePathString=tmp_file.getAbsolutePath(); 
-        tmp_file.delete();
+        String filePathString=tmpFile.getAbsolutePath(); 
+        tmpFile.delete();
         //when 
         try {
             FileParser fileParser = new FileParser(filePathString);
@@ -158,8 +157,8 @@ public class FileParserTest {
     @Test
     public void shouldBuildCorrectBoard() throws Exception {
         //assume
-        tmp_file = folder.newFile("file.gol");
-        FileWriter writer = new FileWriter(tmp_file, true);
+        File tmpFile = folder.newFile("file.gol");
+        FileWriter writer = new FileWriter(tmpFile, true);
         //given
         writer.write("000");
         writer.write(System.getProperty("line.separator"));
@@ -168,7 +167,7 @@ public class FileParserTest {
         writer.write("001");
         writer.flush();
         writer.close();
-        String filePathString = tmp_file.getAbsolutePath();
+        String filePathString = tmpFile.getAbsolutePath();
         Cell[][] cells = new Cell[3][3];
         cells[0][0] = new Cell(false);
         cells[1][0] = new Cell(false);

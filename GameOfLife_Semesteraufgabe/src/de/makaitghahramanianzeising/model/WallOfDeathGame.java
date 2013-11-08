@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class WallOfDeathGame extends Game {
 
     public WallOfDeathGame(Cell[][] cells, Integer[] survives, Integer[] revives) {
-        setCells(cells);
+        this.cells = cells.clone();
         this.survives = new HashSet<Integer>(Arrays.asList(survives));
         this.revives = new HashSet<Integer>(Arrays.asList(revives));
     }
@@ -20,7 +20,7 @@ public class WallOfDeathGame extends Game {
                 if (!(i == 0 && j == 0)) {
                     int xCoordinate = x+i; 
                     int yCoordinate = y+j;
-                    if (cellExistsAndIsAlive(xCoordinate, yCoordinate)) {
+                    if (cellExists(xCoordinate, yCoordinate) && cells[xCoordinate][yCoordinate].isAlive()) {
                         numberOfLivingNeighbors++;
                     }
                 }
@@ -30,12 +30,11 @@ public class WallOfDeathGame extends Game {
         return numberOfLivingNeighbors;
     }
     
-    private boolean cellExistsAndIsAlive(int xCoordinate, int yCoordinate) {
+    private boolean cellExists(int xCoordinate, int yCoordinate) {
         return xCoordinate >= 0 
                 && xCoordinate < getWidth() 
                 && yCoordinate >= 0 
-                && yCoordinate < getHeight() 
-                && cells[xCoordinate][yCoordinate].isAlive();
+                && yCoordinate < getHeight();
     }
 
 }

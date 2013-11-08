@@ -192,8 +192,9 @@ public class SettingsViewSWT {
     public void start() {
         shell.open();
         while (!shell.isDisposed()) {
-            if (!display.readAndDispatch())
+            if (!display.readAndDispatch()) {
                 display.sleep();
+            }
         }
         shell.dispose();
     }
