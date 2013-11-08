@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="de.MakaitGhahramanianZeising.controller.GameController" 
-    project="MakaitGhahramanianZeising" 
-    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/controller/GameController.java" binary="false" 
+  <class id="1" language="java" name="de.makaitghahramanianzeising.controller.GameController" 
+    project="makaitghahramanianzeising" 
+    file="/makaitghahramanianzeising/src/de/makaitghahramanianzeising/controller/GameController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="134" width="202" x="1570" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -12,9 +12,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="de.MakaitGhahramanianZeising.controller.SettingsController" 
-    project="MakaitGhahramanianZeising" 
-    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/controller/SettingsController.java" binary="false" 
+  <class id="2" language="java" name="de.makaitghahramanianzeising.controller.SettingsController" 
+    project="makaitghahramanianzeising" 
+    file="/makaitghahramanianzeising/src/de/makaitghahramanianzeising/controller/SettingsController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1288" y="109"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -23,9 +23,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="de.MakaitGhahramanianZeising.view.SettingsViewSWT" 
-    project="MakaitGhahramanianZeising" 
-    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/view/SettingsViewSWT.java" binary="false" 
+  <class id="3" language="java" name="de.makaitghahramanianzeising.view.SettingsViewSWT" 
+    project="makaitghahramanianzeising" 
+    file="/makaitghahramanianzeising/src/de/makaitghahramanianzeising/view/SettingsViewSWT.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="922" y="-315"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -34,8 +34,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="de.MakaitGhahramanianZeising.view.GameViewSWT" project="MakaitGhahramanianZeising" 
-    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/view/GameViewSWT.java" binary="false" 
+  <class id="4" language="java" name="de.makaitghahramanianzeising.view.GameViewSWT" project="makaitghahramanianzeising" 
+    file="/makaitghahramanianzeising/src/de/makaitghahramanianzeising/view/GameViewSWT.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1891" y="-228"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -44,8 +44,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="de.MakaitGhahramanianZeising.utils.FileParser" project="MakaitGhahramanianZeising" 
-    file="/MakaitGhahramanianZeising/src/de/MakaitGhahramanianZeising/utils/FileParser.java" binary="false" 
+  <class id="5" language="java" name="de.makaitghahramanianzeising.utils.FileParser" project="makaitghahramanianzeising" 
+    file="/makaitghahramanianzeising/src/de/makaitghahramanianzeising/utils/FileParser.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1288" y="-117"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

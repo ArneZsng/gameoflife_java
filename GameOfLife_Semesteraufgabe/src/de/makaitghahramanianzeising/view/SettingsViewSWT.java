@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.view;
+package de.makaitghahramanianzeising.view;
 
 /**
  * @author Hendrik Makait
@@ -19,9 +19,9 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
-import de.MakaitGhahramanianZeising.enums.ModeEnum;
-import de.MakaitGhahramanianZeising.exceptions.GOLException;
+import de.makaitghahramanianzeising.enums.BoardTypeEnum;
+import de.makaitghahramanianzeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.exceptions.GOLException;
 
 public class SettingsViewSWT {
 	private Shell shell;

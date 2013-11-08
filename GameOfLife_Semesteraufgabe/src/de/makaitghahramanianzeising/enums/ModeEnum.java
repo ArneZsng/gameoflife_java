@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.enums;
+package de.makaitghahramanianzeising.enums;
 
 public enum ModeEnum {
 

@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.exceptions;
+package de.makaitghahramanianzeising.exceptions;
 
 public class GOLException extends Exception {
 

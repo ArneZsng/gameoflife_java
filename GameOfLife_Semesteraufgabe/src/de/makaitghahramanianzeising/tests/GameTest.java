@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.tests.model;
+package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
-import de.MakaitGhahramanianZeising.enums.ModeEnum;
-import de.MakaitGhahramanianZeising.model.Cell;
-import de.MakaitGhahramanianZeising.model.Game;
-import de.MakaitGhahramanianZeising.model.WallOfDeathGame;
+import de.makaitghahramanianzeising.enums.BoardTypeEnum;
+import de.makaitghahramanianzeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.model.Cell;
+import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
 public class GameTest {
 	
@@ -237,7 +237,7 @@ public class GameTest {
 		//when
 		game.setRound(1000000000);
 		//then
-		assertEquals(game.getRoundAsString(), "Unzählbar!");
+		assertEquals(game.getRoundAsString(), "Unz??hlbar!");
 	}
 	
 }

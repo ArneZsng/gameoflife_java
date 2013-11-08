@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.view;
+package de.makaitghahramanianzeising.view;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 
-import de.MakaitGhahramanianZeising.model.Game;
+import de.makaitghahramanianzeising.model.Game;
 
 public class GameViewSWT {
 	

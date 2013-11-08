@@ -1,13 +1,13 @@
-package de.MakaitGhahramanianZeising.tests.model;
+package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import de.MakaitGhahramanianZeising.enums.ModeEnum;
-import de.MakaitGhahramanianZeising.model.Game;
-import de.MakaitGhahramanianZeising.model.Cell;
-import de.MakaitGhahramanianZeising.model.WallOfDeathGame;
+import de.makaitghahramanianzeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.model.Cell;
+import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
 public class WallOfDeathGameTest {
 

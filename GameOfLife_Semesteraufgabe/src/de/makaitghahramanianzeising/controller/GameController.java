@@ -1,10 +1,10 @@
-package de.MakaitGhahramanianZeising.controller;
+package de.makaitghahramanianzeising.controller;
 
-import de.MakaitGhahramanianZeising.model.*;
-import de.MakaitGhahramanianZeising.view.*;
-import de.MakaitGhahramanianZeising.controller.SettingsController;
-import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
-import de.MakaitGhahramanianZeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.controller.SettingsController;
+import de.makaitghahramanianzeising.enums.BoardTypeEnum;
+import de.makaitghahramanianzeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.model.*;
+import de.makaitghahramanianzeising.view.*;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

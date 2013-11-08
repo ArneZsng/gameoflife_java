@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.view;
+package de.makaitghahramanianzeising.view;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;

@@ -1,11 +1,11 @@
-package de.MakaitGhahramanianZeising.tests.model;
+package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.MakaitGhahramanianZeising.model.Cell;
+import de.makaitghahramanianzeising.model.Cell;
 
 public class CellTest {
 	

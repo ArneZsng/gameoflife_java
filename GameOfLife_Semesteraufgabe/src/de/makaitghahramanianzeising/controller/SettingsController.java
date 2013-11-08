@@ -1,17 +1,17 @@
-package de.MakaitGhahramanianZeising.controller;
+package de.makaitghahramanianzeising.controller;
 
 /**
  * @author Hendrik Makait
  *
  */
 
-import de.MakaitGhahramanianZeising.enums.BoardTypeEnum;
-import de.MakaitGhahramanianZeising.enums.ModeEnum;
-import de.MakaitGhahramanianZeising.model.Cell;
-import de.MakaitGhahramanianZeising.utils.FileParser;
-import de.MakaitGhahramanianZeising.utils.ValidBean;
-import de.MakaitGhahramanianZeising.view.ErrorMessageBox;
-import de.MakaitGhahramanianZeising.view.SettingsViewSWT;
+import de.makaitghahramanianzeising.enums.BoardTypeEnum;
+import de.makaitghahramanianzeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.model.Cell;
+import de.makaitghahramanianzeising.utils.FileParser;
+import de.makaitghahramanianzeising.utils.ValidBean;
+import de.makaitghahramanianzeising.view.ErrorMessageBox;
+import de.makaitghahramanianzeising.view.SettingsViewSWT;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -73,6 +73,7 @@ public class SettingsController {
 			myModeEnum = mySettingsView.getSelectedMode();
 			myBoardTypeEnum = mySettingsView.getSelectedBoardType();
 			myFileParser = new FileParser(mySettingsView.getFilePath());
+			myFileParser.parse();
 			validBean = new ValidBean(true, null);
 		} catch (Exception e) {
 			validBean = new ValidBean(false, e);

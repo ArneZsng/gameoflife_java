@@ -1,12 +1,12 @@
-package de.MakaitGhahramanianZeising.tests.utils;
+package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.MakaitGhahramanianZeising.exceptions.GOLException;
-import de.MakaitGhahramanianZeising.utils.ValidBean;
+import de.makaitghahramanianzeising.exceptions.GOLException;
+import de.makaitghahramanianzeising.utils.ValidBean;
 
 public class ValidBeanTest {
 	

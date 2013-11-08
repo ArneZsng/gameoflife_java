@@ -1,4 +1,4 @@
-package de.MakaitGhahramanianZeising.tests.utils;
+package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.*;
 
@@ -12,15 +12,15 @@ import java.nio.file.StandardOpenOption;
 import org.junit.*;
 import org.junit.rules.*;
 
-import de.MakaitGhahramanianZeising.exceptions.GOLException;
-import de.MakaitGhahramanianZeising.model.Cell;
-import de.MakaitGhahramanianZeising.utils.FileParser;
+import de.makaitghahramanianzeising.exceptions.GOLException;
+import de.makaitghahramanianzeising.model.Cell;
+import de.makaitghahramanianzeising.utils.FileParser;
 
 public class FileParserTest {	
 	
 	private Cell[][] cells = new Cell[3][3];
 	private FileParser fileParser;
-
+	
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
 	private File tmp_file;
@@ -32,8 +32,9 @@ public class FileParserTest {
 		//given
 		String filePathString = tmp_file.getAbsolutePath();
 		//when
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) {
 			//then
 			String msg = "Datei muss vom Typ .gol sein.";
@@ -51,8 +52,9 @@ public class FileParserTest {
 		byte[] bytes = new byte[260000];
 		Files.write(filePath, bytes, StandardOpenOption.APPEND);
 		//when
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) {
 			//then
 			String msg="Dateigröße darf maximal 250kb betragen.";
@@ -67,8 +69,9 @@ public class FileParserTest {
 		//given
 		String filePathString = tmp_file.getAbsolutePath();
 		//when
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) { 
 			//then
 			String msg="Datei darf nicht leer sein.";
@@ -89,8 +92,9 @@ public class FileParserTest {
 		writer.close();
 		String filePathString = tmp_file.getAbsolutePath();
 		//when
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) {  
 			//then
 			String msg="Das Spielbrett muss in jeder Zeile gleich viele Zellen haben.";
@@ -112,8 +116,9 @@ public class FileParserTest {
 		writer.close();
 		String filePathString = tmp_file.getAbsolutePath();
 		//then
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) {  
 			String msg="Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.";
 			assertEquals(msg, e.getMessage());
@@ -128,8 +133,9 @@ public class FileParserTest {
 		String filePathString=tmp_file.getAbsolutePath(); 
 		tmp_file.delete();
 		//when 
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) {  
 			//then
 			String msg="Die Datei konnte nicht geöffnet werden.";
@@ -142,8 +148,9 @@ public class FileParserTest {
 		//assume 
 		String filePathString = null;
 		//when 
-		try {
-			new FileParser(filePathString);
+        try {
+            fileParser = new FileParser(filePathString);
+            fileParser.parse();
 		} catch (GOLException e) {  
 			//then
 			String msg = "Bitte Datei auswählen.";
@@ -177,6 +184,7 @@ public class FileParserTest {
 		//when
 		try {
 			fileParser = new FileParser(filePathString);
+			fileParser.parse();
 		} catch (Exception e) { 
 		}
 		//then
