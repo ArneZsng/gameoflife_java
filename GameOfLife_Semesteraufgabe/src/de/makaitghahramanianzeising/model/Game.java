@@ -1,13 +1,12 @@
 package de.makaitghahramanianzeising.model;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Observable;
 import java.util.Set;
 
 public abstract class Game extends Observable implements Runnable {
 
-    protected Cell[][] cells;
+    protected Cell[][] board;
     private int round = 0;
     private int msSpeed = 500;
     protected Set<Integer> survives = new HashSet<Integer>();
@@ -54,29 +53,29 @@ public abstract class Game extends Observable implements Runnable {
         if (round <= 999999999) {
             return String.valueOf(round);
         } else {
-            return "Unz??hlbar!";
+            return "Unzählbar!";
         }
     }
 
     public int getWidth() {
-        return cells.length;
+        return board.length;
     }
 
     public int getHeight() {
-        return cells[0].length;
+        return board[0].length;
     }
 
-    public Cell[][] getCells() {
-        return cells;
+    public Cell[][] getBoard() {
+        return board;
     }
 
     public void prepareNextRound() {
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
                 if (cellAlive(i,j)) {
-                    cells[i][j].willBeAlive(cellSurvives(numberOfLivingNeighbors(i,j)));
+                    board[i][j].willBeAlive(cellSurvives(numberOfLivingNeighbors(i,j)));
                 } else {
-                    cells[i][j].willBeAlive(cellRevives(numberOfLivingNeighbors(i,j)));
+                    board[i][j].willBeAlive(cellRevives(numberOfLivingNeighbors(i,j)));
                 }
             }
         }
@@ -86,7 +85,7 @@ public abstract class Game extends Observable implements Runnable {
         setChanged();
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
-                cells[i][j].updateStatus();
+                board[i][j].updateStatus();
             }
         }
         increaseRound();
@@ -94,7 +93,7 @@ public abstract class Game extends Observable implements Runnable {
     }
 
     public boolean cellAlive(int x, int y) {
-        return cells[x][y].isAlive();
+        return board[x][y].isAlive();
     }
 
     private boolean cellSurvives(int livingNeighbors) {
@@ -114,7 +113,7 @@ public abstract class Game extends Observable implements Runnable {
     public boolean isGameOver() {
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
-                if (cells[i][j].willEvolve()) {
+                if (board[i][j].willEvolve()) {
                     return false;
                 }
             }

@@ -23,9 +23,9 @@ public class ValidBeanTest {
     @Test
     public void shouldThrowError() {
         //when
-        validBean = new ValidBean(false, new GOLException("Dies ist eine Fehlermeldung."));
-        //then
         String message = "Dies ist eine Fehlermeldung.";
+        validBean = new ValidBean(false, new GOLException(message));
+        //then
         try {
             throw validBean.getExceptionOnInvalid();
         } catch (Exception e) {

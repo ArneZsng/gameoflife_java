@@ -11,57 +11,57 @@ import de.makaitghahramanianzeising.model.Game;
 import de.makaitghahramanianzeising.utils.CellSizeCalculator;
 
 public class BoardCanvas extends Canvas {
-	
-	final private int cellSize;
-	final private Game game;
 
-	public BoardCanvas(Shell shell, Game game) {
-		super(shell, SWT.NONE);
-		this.game = game;
-		int boardWidth = game.getWidth();
+    private final int cellSize;
+    private final Game game;
+
+    public BoardCanvas(Shell shell, Game game) {
+        super(shell, SWT.NONE);
+        this.game = game;
+        int boardWidth = game.getWidth();
         int boardHeight = game.getHeight();
-		cellSize = new CellSizeCalculator(shell).calculate(boardWidth, boardHeight);
-		GC gc = new GC(this);
-                
-		setLayoutData(initCanvasGridData(boardWidth, boardHeight));
-		setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
-		drawBackground(gc, 0, 0, boardWidth * cellSize, boardHeight * cellSize);
-		paintCells();
-	}
-	
-	private GridData initCanvasGridData(int boardWidth, int boardHeight) {
-		GridData gridData = new GridData();
-		gridData.widthHint = boardWidth * cellSize;
-		gridData.heightHint = boardHeight * cellSize;
-		gridData.horizontalAlignment = GridData.CENTER;
-		gridData.verticalAlignment = GridData.CENTER;
-		gridData.grabExcessHorizontalSpace = false;
-		gridData.grabExcessVerticalSpace = false;
-		return gridData;
-	}
-	
-	private void paintCells() {
-	    addPaintListener(new PaintBoardListener() {});
-	}
-	
-	class PaintBoardListener implements PaintListener {
-		public void paintControl(PaintEvent event) {
-    		event.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
-    		paintBoard(event);
-    	}
-		
-		private void paintBoard(PaintEvent event) {
-    		for (int xCoordinate = 0; xCoordinate < game.getWidth(); xCoordinate++) {
-				for (int yCoordinate = 0; yCoordinate < game.getHeight(); yCoordinate++) {
-					paintCell(event, xCoordinate, yCoordinate);
-				}
-			}
-		}
-		
-		private void paintCell(PaintEvent event, int xCoordinate, int yCoordinate) {
-			if (game.cellAlive(xCoordinate, yCoordinate)) {
-				event.gc.fillRectangle(xCoordinate*cellSize, yCoordinate*cellSize, cellSize, cellSize);
-			}
-		}
-	}
+        cellSize = new CellSizeCalculator(shell).calculate(boardWidth, boardHeight);
+        GC gc = new GC(this);
+
+        setLayoutData(initCanvasGridData(boardWidth, boardHeight));
+        setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+        drawBackground(gc, 0, 0, boardWidth * cellSize, boardHeight * cellSize);
+        paintCells();
+    }
+
+    private GridData initCanvasGridData(int boardWidth, int boardHeight) {
+        GridData gridData = new GridData();
+        gridData.widthHint = boardWidth * cellSize;
+        gridData.heightHint = boardHeight * cellSize;
+        gridData.horizontalAlignment = GridData.CENTER;
+        gridData.verticalAlignment = GridData.CENTER;
+        gridData.grabExcessHorizontalSpace = false;
+        gridData.grabExcessVerticalSpace = false;
+        return gridData;
+    }
+
+    private void paintCells() {
+        addPaintListener(new PaintBoardListener() {});
+    }
+
+    class PaintBoardListener implements PaintListener {
+        public void paintControl(PaintEvent event) {
+            event.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+            paintBoard(event);
+        }
+
+        private void paintBoard(PaintEvent event) {
+            for (int xCoordinate = 0; xCoordinate < game.getWidth(); xCoordinate++) {
+                for (int yCoordinate = 0; yCoordinate < game.getHeight(); yCoordinate++) {
+                    paintCell(event, xCoordinate, yCoordinate);
+                }
+            }
+        }
+
+        private void paintCell(PaintEvent event, int xCoordinate, int yCoordinate) {
+            if (game.cellAlive(xCoordinate, yCoordinate)) {
+                event.gc.fillRectangle(xCoordinate*cellSize, yCoordinate*cellSize, cellSize, cellSize);
+            }
+        }
+    }
 }

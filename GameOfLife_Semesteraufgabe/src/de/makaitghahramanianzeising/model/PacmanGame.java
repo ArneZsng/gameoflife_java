@@ -5,8 +5,8 @@ import java.util.HashSet;
 
 public class PacmanGame extends Game {
 
-    public PacmanGame(Cell[][] cells, Integer[] survives, Integer[] revives) {
-        this.cells = cells.clone();
+    public PacmanGame(Cell[][] board, Integer[] survives, Integer[] revives) {
+        this.board = board.clone();
         this.survives = new HashSet<Integer>(Arrays.asList(survives));
         this.revives = new HashSet<Integer>(Arrays.asList(revives));
     }
@@ -22,7 +22,7 @@ public class PacmanGame extends Game {
                 if (!(i == 0 && j == 0)) {
                     int xCoordinate = (x+i) % getWidth(); 
                     int yCoordinate = (y+j) % getHeight();
-                    if (cells[xCoordinate][yCoordinate].isAlive()) {
+                    if (board[xCoordinate][yCoordinate].isAlive()) {
                         numberOfLivingNeighbors++;
                     }
                 }

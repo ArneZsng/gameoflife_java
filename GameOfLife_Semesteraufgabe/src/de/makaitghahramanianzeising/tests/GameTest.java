@@ -15,21 +15,21 @@ import de.makaitghahramanianzeising.model.WallOfDeathGame;
 public class GameTest {
 
     private Game game;
-    private Cell[][] cells = new Cell[3][3];
 
     @Test
     public void shouldBeGameOver() {
         //assume
-        cells[0][0] = new Cell(false);
-        cells[0][1] = new Cell(false);
-        cells[0][2] = new Cell(false);
-        cells[1][0] = new Cell(true);
-        cells[1][1] = new Cell(true);
-        cells[1][2] = new Cell(true);
-        cells[2][0] = new Cell(true);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);
-        game = new WallOfDeathGame(cells, new Integer[] {4}, new Integer[] {4});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(false);
+        board[0][1] = new Cell(false);
+        board[0][2] = new Cell(false);
+        board[1][0] = new Cell(true);
+        board[1][1] = new Cell(true);
+        board[1][2] = new Cell(true);
+        board[2][0] = new Cell(true);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);
+        game = new WallOfDeathGame(board, new Integer[] {4}, new Integer[] {4});
         //given
         game.run();
         //then
@@ -39,16 +39,17 @@ public class GameTest {
     @Test
     public void shouldNotBeGameOver() {
         //assume
-        cells[0][0] = new Cell(false);
-        cells[0][1] = new Cell(false);
-        cells[0][2] = new Cell(false);
-        cells[1][0] = new Cell(false);
-        cells[1][1] = new Cell(true);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);
-        game = new WallOfDeathGame(cells, new Integer[] {1}, new Integer[] {1});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(false);
+        board[0][1] = new Cell(false);
+        board[0][2] = new Cell(false);
+        board[1][0] = new Cell(false);
+        board[1][1] = new Cell(true);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);
+        game = new WallOfDeathGame(board, new Integer[] {1}, new Integer[] {1});
         //given
         game.prepareNextRound();
         //then
@@ -58,16 +59,17 @@ public class GameTest {
     @Test
     public void shouldDieDueToOverpopulation() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(true);
-        cells[0][2] = new Cell(true);
-        cells[1][0] = new Cell(true);
-        cells[1][1] = new Cell(true);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);
-        game = new WallOfDeathGame(cells, new Integer[] {2}, new Integer[] {3});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(true);
+        board[0][2] = new Cell(true);
+        board[1][0] = new Cell(true);
+        board[1][1] = new Cell(true);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);
+        game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
@@ -79,16 +81,17 @@ public class GameTest {
     @Test
     public void shouldDieDueToUnderpopulation() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(false);
-        cells[0][2] = new Cell(false);
-        cells[1][0] = new Cell(false);
-        cells[1][1] = new Cell(true);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);		
-        game = new WallOfDeathGame(cells, new Integer[] {2}, new Integer[] {3});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(false);
+        board[0][2] = new Cell(false);
+        board[1][0] = new Cell(false);
+        board[1][1] = new Cell(true);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);		
+        game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
@@ -100,16 +103,17 @@ public class GameTest {
     @Test
     public void shouldStayDeadDueToUnderpopulation() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(true);
-        cells[0][2] = new Cell(false);
-        cells[1][0] = new Cell(false);
-        cells[1][1] = new Cell(false);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);		
-        game = new WallOfDeathGame(cells, new Integer[] {2}, new Integer[] {3});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(true);
+        board[0][2] = new Cell(false);
+        board[1][0] = new Cell(false);
+        board[1][1] = new Cell(false);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);		
+        game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
@@ -121,16 +125,17 @@ public class GameTest {
     @Test
     public void shouldStayDeadDueToOverpopulation() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(true);
-        cells[0][2] = new Cell(true);
-        cells[1][0] = new Cell(true);
-        cells[1][1] = new Cell(false);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);		
-        game = new WallOfDeathGame(cells, new Integer[] {2}, new Integer[] {3});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(true);
+        board[0][2] = new Cell(true);
+        board[1][0] = new Cell(true);
+        board[1][1] = new Cell(false);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);		
+        game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
@@ -142,16 +147,17 @@ public class GameTest {
     @Test
     public void shouldStayAlive() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(true);
-        cells[0][2] = new Cell(false);
-        cells[1][0] = new Cell(false);
-        cells[1][1] = new Cell(true);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);		
-        game = new WallOfDeathGame(cells, new Integer[] {2}, new Integer[] {3});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(true);
+        board[0][2] = new Cell(false);
+        board[1][0] = new Cell(false);
+        board[1][1] = new Cell(true);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);		
+        game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
@@ -163,16 +169,17 @@ public class GameTest {
     @Test
     public void shouldRevive() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(true);
-        cells[0][2] = new Cell(true);
-        cells[1][0] = new Cell(false);
-        cells[1][1] = new Cell(false);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);
-        game = new WallOfDeathGame(cells, new Integer[] {2}, new Integer[] {3});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(true);
+        board[0][2] = new Cell(true);
+        board[1][0] = new Cell(false);
+        board[1][1] = new Cell(false);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);
+        game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
@@ -202,7 +209,8 @@ public class GameTest {
     @Test
     public void shouldSetAndReturnSpeed() {
         //given
-        game = new WallOfDeathGame(cells, new Integer[] {}, new Integer[] {});
+        Cell[][] board = new Cell[1][1];
+        game = new WallOfDeathGame(board, new Integer[] {}, new Integer[] {});
         //when
         game.setSpeed(500);
         //then
@@ -212,16 +220,17 @@ public class GameTest {
     @Test
     public void shouldReturnRound() {
         //assume
-        cells[0][0] = new Cell(true);
-        cells[0][1] = new Cell(false);
-        cells[0][2] = new Cell(false);
-        cells[1][0] = new Cell(false);
-        cells[1][1] = new Cell(false);
-        cells[1][2] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[2][1] = new Cell(false);
-        cells[2][2] = new Cell(false);
-        game = new WallOfDeathGame(cells, new Integer[] {1}, new Integer[] {1});
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(true);
+        board[0][1] = new Cell(false);
+        board[0][2] = new Cell(false);
+        board[1][0] = new Cell(false);
+        board[1][1] = new Cell(false);
+        board[1][2] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[2][1] = new Cell(false);
+        board[2][2] = new Cell(false);
+        game = new WallOfDeathGame(board, new Integer[] {1}, new Integer[] {1});
         //given
         game.prepareNextRound();
         //when
@@ -232,12 +241,13 @@ public class GameTest {
 
     @Test
     public void shouldReturnUncountable() {
-        //given		
-        game = new WallOfDeathGame(cells, new Integer[] {}, new Integer[] {});
+        //given
+        Cell[][] board = new Cell[1][1];
+        game = new WallOfDeathGame(board, new Integer[] {}, new Integer[] {});
         //when
         game.setRound(1000000000);
         //then
-        assertEquals(game.getRoundAsString(), "Unz??hlbar!");
+        assertEquals(game.getRoundAsString(), "Unzählbar!");
     }
 
 }

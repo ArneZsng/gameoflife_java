@@ -24,8 +24,8 @@ import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.exceptions.GOLException;
 
 public class SettingsViewSWT {
-	final private Shell shell;
-	final private Display display;
+	private final Shell shell;
+	private final Display display;
 	private Button btnSelectFile;
 	private Button btnCreateGame;
 	private Combo comboMode;
@@ -61,7 +61,7 @@ public class SettingsViewSWT {
 		compGameMode.setLayout(new GridLayout());
 		
 		Label lblGameMode = new Label(compGameMode, SWT.NONE);
-		lblGameMode.setText("Bitte w??hlen Sie den Spielmodus:");
+		lblGameMode.setText("Bitte wählen Sie den Spielmodus:");
 		
 		initComboForGameMode();
 	}
@@ -85,7 +85,7 @@ public class SettingsViewSWT {
 		compBoardType.setLayout(new GridLayout());
 		
 		Label lblBoardType = new Label(compBoardType, SWT.NONE);
-		lblBoardType.setText("Bitte w??hlen Sie die Art des Spielbretts:");
+		lblBoardType.setText("Bitte wählen Sie die Art des Spielbretts:");
 		
 		initBtnsForBoardType();
 	}
@@ -117,7 +117,7 @@ public class SettingsViewSWT {
 		lblUpload.setLayoutData(gdUploadLabel);
 		
 		lblBoardFileName = new Label(compInitialBoard, SWT.NONE);
-		lblBoardFileName.setText("Bitte Datei ausw??hlen");
+		lblBoardFileName.setText("Bitte Datei auswählen");
 		
 		initFileSelectorDialog();
 		initBtnSelectFile();
@@ -148,7 +148,7 @@ public class SettingsViewSWT {
 	
 	private void initBtnSelectFile() {
 		btnSelectFile = new Button(compInitialBoard, SWT.NONE);
-		btnSelectFile.setText("Datei ausw??hlen");
+		btnSelectFile.setText("Datei auswählen");
 		btnSelectFile.setLayoutData(new GridData(GridData.END, GridData.CENTER, true, false));
 	}
 	
@@ -162,7 +162,7 @@ public class SettingsViewSWT {
 	public ModeEnum getSelectedMode() throws GOLException {
 		int i = comboMode.getSelectionIndex();
 		if (i == -1) {
-			throw new GOLException("Bitte Spielmodus ausw??hlen.");
+			throw new GOLException("Bitte Spielmodus auswählen.");
 		} else {
 			return availableModes[i];
 		}
@@ -171,7 +171,7 @@ public class SettingsViewSWT {
 	public BoardTypeEnum getSelectedBoardType() throws GOLException {
 		int i = comboBoard.getSelectionIndex();
 		if (i == -1) {
-			throw new GOLException("Bitte Art des Spielbretts ausw??hlen.");
+			throw new GOLException("Bitte Art des Spielbretts auswählen.");
 		} else {
 			return availableBoardTypes[i];
 		}
