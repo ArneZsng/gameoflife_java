@@ -10,12 +10,10 @@ import de.makaitghahramanianzeising.utils.ValidBean;
 
 public class ValidBeanTest {
 
-    private ValidBean validBean;
-
     @Test
     public void shouldBeValid() {
         //when
-        validBean = new ValidBean(true, null);
+        ValidBean validBean = new ValidBean(true, null);
         //then
         assertTrue(validBean.isValid());
     }
@@ -24,7 +22,7 @@ public class ValidBeanTest {
     public void shouldThrowError() {
         //when
         String message = "Dies ist eine Fehlermeldung.";
-        validBean = new ValidBean(false, new GOLException(message));
+        ValidBean validBean = new ValidBean(false, new GOLException(message));
         //then
         try {
             throw validBean.getExceptionOnInvalid();

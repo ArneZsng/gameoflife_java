@@ -31,9 +31,8 @@ public class FileParserTest {
 
     @Test
     public void shouldThrowErrorWhenFileTypeIsNotGol() throws IOException {
-        //assume
-        File tmpFile = folder.newFile("file.txt");
         //given
+        File tmpFile = folder.newFile("file.txt");
         String filePathString = tmpFile.getAbsolutePath();
         //when
         try {
@@ -48,9 +47,8 @@ public class FileParserTest {
 
     @Test
     public void shouldThrowErrorWhenFileSizeTooBig() throws IOException {
-        //assume
-        File tmpFile = folder.newFile(FILENAME);
         //given
+        File tmpFile = folder.newFile(FILENAME);
         String filePathString = tmpFile.getAbsolutePath();
         Path filePath = Paths.get(filePathString);
         byte[] bytes = new byte[260000];
@@ -68,9 +66,8 @@ public class FileParserTest {
 
     @Test
     public void shouldThrowErrorWhenFileIsEmpty() throws IOException {
-        //assume
-        File tmpFile = folder.newFile(FILENAME);
         //given
+        File tmpFile = folder.newFile(FILENAME);
         String filePathString = tmpFile.getAbsolutePath();
         //when
         try {
@@ -85,11 +82,10 @@ public class FileParserTest {
 
     @Test
     public void shouldThrowErrorWhenBoardDimensionsWrong() throws IOException {
-        //assume
+        //given
         File tmpFile = folder.newFile(FILENAME);
         OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(tmpFile, true), Charset.forName(ENCODING).newEncoder());
-        //given
         try {
             writer.getEncoding();
             writer.write("01");
@@ -113,7 +109,7 @@ public class FileParserTest {
 
     @Test
     public void shouldThrowErrorWhenCharactersAreInvalid() throws IOException {
-        //assume
+        //given
         File tmpFile = folder.newFile(FILENAME);
         OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(tmpFile, true), Charset.forName(ENCODING).newEncoder());
@@ -138,9 +134,8 @@ public class FileParserTest {
 
     @Test
     public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
-        //assume
-        File tmpFile = folder.newFile(FILENAME);
         //given
+        File tmpFile = folder.newFile(FILENAME);
         String filePathString = tmpFile.getAbsolutePath();
         tmpFile.delete();
         //when
@@ -171,10 +166,20 @@ public class FileParserTest {
     @Test
     public void shouldBuildCorrectBoard() throws Exception {
         //assume
+        Cell[][] board = new Cell[3][3];
+        board[0][0] = new Cell(false);
+        board[1][0] = new Cell(false);
+        board[2][0] = new Cell(false);
+        board[0][1] = new Cell(true);
+        board[1][1] = new Cell(true);
+        board[2][1] = new Cell(false);
+        board[0][2] = new Cell(false);
+        board[1][2] = new Cell(false);
+        board[2][2] = new Cell(true);
+        //given
         File tmpFile = folder.newFile(FILENAME);
         FileOutputStream fileOutputStream  = new FileOutputStream(tmpFile, true);
         OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, Charset.forName(ENCODING).newEncoder());
-        //given
         try {
             writer.getEncoding();
             writer.write("000");
@@ -191,16 +196,6 @@ public class FileParserTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //then
-        Cell[][] board = new Cell[3][3];
-        board[0][0] = new Cell(false);
-        board[1][0] = new Cell(false);
-        board[2][0] = new Cell(false);
-        board[0][1] = new Cell(true);
-        board[1][1] = new Cell(true);
-        board[2][1] = new Cell(false);
-        board[0][2] = new Cell(false);
-        board[1][2] = new Cell(false);
-        board[2][2] = new Cell(true);
         assertArrayEquals(fileParser.getBoard(), board);
     }
 }

@@ -20,7 +20,7 @@ public class BoardCanvas extends Canvas {
         this.game = game;
         int boardWidth = game.getBoardWidth();
         int boardHeight = game.getBoardHeight();
-        cellSize = new CellSizeCalculator(shell).calculate(boardWidth, boardHeight);
+        cellSize = new CellSizeCalculator(shell).getPixelSize(boardWidth, boardHeight);
         GC gc = new GC(this);
 
         setLayoutData(initCanvasGridData(boardWidth, boardHeight));

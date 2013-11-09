@@ -30,7 +30,7 @@ public class GameTest {
         board[2][1] = new Cell(false);
         board[2][2] = new Cell(false);
         game = new WallOfDeathGame(board, new Integer[] {4}, new Integer[] {4});
-        //given
+        //when
         game.run();
         //then
         assertTrue(game.isGameOver());
@@ -50,7 +50,7 @@ public class GameTest {
         board[2][1] = new Cell(false);
         board[2][2] = new Cell(false);
         game = new WallOfDeathGame(board, new Integer[] {1}, new Integer[] {1});
-        //given
+        //when
         game.prepareNextRound();
         //then
         assertFalse(game.isGameOver());
@@ -201,8 +201,8 @@ public class GameTest {
     public void shouldReturnBoardTypeName() {
         //when
         BoardTypeEnum boardType = BoardTypeEnum.WALLOFDEATH;
-        //then
         String name = "Wall of Death";
+        //then
         assertTrue(name.equals(boardType.getName()));
     }
 
@@ -237,17 +237,6 @@ public class GameTest {
         game.playNextRound();
         //then
         assertEquals("1", game.getRoundAsString());
-    }
-
-    @Test
-    public void shouldReturnUncountable() {
-        //given
-        Cell[][] board = new Cell[1][1];
-        game = new WallOfDeathGame(board, new Integer[] {}, new Integer[] {});
-        //when
-        game.setRound(1000000000);
-        //then
-        assertEquals(game.getRoundAsString(), "Unzählbar!");
     }
 
 }

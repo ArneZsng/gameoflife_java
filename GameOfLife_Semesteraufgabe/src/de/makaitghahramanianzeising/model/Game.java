@@ -6,6 +6,8 @@ import java.util.Set;
 
 public abstract class Game extends Observable implements Runnable {
 
+    private static int MAXROUND = 999999999;
+    
     protected Cell[][] board;
     protected Set<Integer> survives = new HashSet<Integer>();
     protected Set<Integer> revives = new HashSet<Integer>();
@@ -34,15 +36,11 @@ public abstract class Game extends Observable implements Runnable {
     }
 
     public String getRoundAsString() {
-        if (round <= 999999999) {
+        if (round <= MAXROUND) {
             return String.valueOf(round);
         } else {
             return "Unzählbar!";
         }
-    }
-    
-    public void setRound(int round) {
-        this.round = round;
     }
 
     public int getBoardWidth() {
@@ -110,7 +108,7 @@ public abstract class Game extends Observable implements Runnable {
     }
 
     private void increaseRound() {
-        if (round <= 999999999) {
+        if (round <= MAXROUND) {
             round++;
         }
     }
