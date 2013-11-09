@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Listener;
  * Creates a game according to the settings specified by the user.
  * Opens the settings controller first and asks for game settings.
  * Creates a new game accordingly. Returns to the settings when game
- * is resetted.
+ * is reset.
  */
 
 public class GameController {
