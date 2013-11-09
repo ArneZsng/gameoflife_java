@@ -42,7 +42,7 @@ public class SettingsViewSWT {
 	
 	public SettingsViewSWT(Display display) {
 		this.display = display;
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		shell.setText("Game of Life");
 		shell.setSize(400, 400);
 		init();
@@ -126,8 +126,8 @@ public class SettingsViewSWT {
 	private void initFileSelectorDialog() {
 		dlgFileSelector = new FileDialog(shell, SWT.OPEN);
 		dlgFileSelector.setText("Import initial board");
-		dlgFileSelector.setFilterExtensions(new String[] { "*.gol", "*.*" });
-		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)", "all (*.*)" });
+		dlgFileSelector.setFilterExtensions(new String[] { "*.gol"});
+		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)"});
 	}
 	
 	public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {
