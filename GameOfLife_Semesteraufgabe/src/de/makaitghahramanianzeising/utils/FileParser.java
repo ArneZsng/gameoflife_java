@@ -32,7 +32,7 @@ public class FileParser {
             buildBoard();
         } catch (IOException ioE) {
             throw new GOLException("Die Datei konnte nicht geöffnet werden.");
-        }	
+        }
     }
 
     private void checkFile() throws GOLException, IOException {
@@ -52,7 +52,7 @@ public class FileParser {
 
     private boolean fileTypeIsNotGol() throws IOException {
         String filePathString = filePath.toString();
-        return !(".gol".equals(filePathString.substring(filePathString.length()-4)));
+        return !(".gol".equals(filePathString.substring(filePathString.length() - 4)));
     }
 
     private boolean fileSizeTooBig() throws IOException {
@@ -104,7 +104,7 @@ public class FileParser {
         return nextLine.length();
     }
 
-    private int numberOfRows() throws IOException{
+    private int numberOfRows() throws IOException {
         Scanner scanner = new Scanner(filePath);
         int i = 0;
         while (scanner.hasNextLine()) {
@@ -115,7 +115,7 @@ public class FileParser {
         return i;
     }
 
-    private void fillBoardWithLine(String line, int row) throws GOLException{
+    private void fillBoardWithLine(String line, int row) throws GOLException {
         for (int column = 0; column < line.length(); column++) {
             if (line.charAt(column) == '0') {
                 board[column][row] = new Cell(false);

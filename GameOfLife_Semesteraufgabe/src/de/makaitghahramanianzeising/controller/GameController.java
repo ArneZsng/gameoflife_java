@@ -1,6 +1,5 @@
 package de.makaitghahramanianzeising.controller;
 
-import de.makaitghahramanianzeising.controller.SettingsController;
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
 import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.*;
@@ -23,12 +22,11 @@ public class GameController {
     private Display display = new Display();
 
     public GameController() {
-        reset();
         initialize();
     }
 
     private void reset() {
-        mySettingsController = null;
+        mySettingsController.reset();
         myGame = null;
         myGameThread = null;
         myGameView = null;
@@ -57,7 +55,7 @@ public class GameController {
 
     private void initGameViewListeners() {
         myGameControls.addNewGameListener(new NewGameListener());
-        myGameControls.addSpeedSliderListener(new SpeedSliderListener());		
+        myGameControls.addSpeedSliderListener(new SpeedSliderListener());
         myGameView.addCloseButtonListener(new CloseButtonListener());
     }
 
@@ -88,7 +86,7 @@ public class GameController {
         public void handleEvent(Event e) {
             myGameThread.interrupt();
             myGameView.dispose();
-            initialize();
+            reset();
         }
     }
 

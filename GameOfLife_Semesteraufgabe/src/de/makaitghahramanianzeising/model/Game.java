@@ -15,7 +15,7 @@ public abstract class Game extends Observable implements Runnable {
     public void run() {
         try {
             Thread.sleep(msSpeed);
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
         while (!isInterrupted()) {
@@ -27,7 +27,7 @@ public abstract class Game extends Observable implements Runnable {
             }
             try {
                 Thread.sleep(msSpeed);
-            } catch(InterruptedException ex) {
+            } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
         }
@@ -72,10 +72,10 @@ public abstract class Game extends Observable implements Runnable {
     public void prepareNextRound() {
         for (int i = 0; i < getWidth(); i++) {
             for (int j = 0; j < getHeight(); j++) {
-                if (cellAlive(i,j)) {
-                    board[i][j].willBeAlive(cellSurvives(numberOfLivingNeighbors(i,j)));
+                if (cellAlive(i, j)) {
+                    board[i][j].willBeAlive(cellSurvives(numberOfLivingNeighbors(i, j)));
                 } else {
-                    board[i][j].willBeAlive(cellRevives(numberOfLivingNeighbors(i,j)));
+                    board[i][j].willBeAlive(cellRevives(numberOfLivingNeighbors(i, j)));
                 }
             }
         }
@@ -103,7 +103,7 @@ public abstract class Game extends Observable implements Runnable {
     private boolean cellRevives(int livingNeighbors) {
         return revives.contains(livingNeighbors);
     }
-    
+
     private void increaseRound() {
         if (round <= 999999999) {
             round++;

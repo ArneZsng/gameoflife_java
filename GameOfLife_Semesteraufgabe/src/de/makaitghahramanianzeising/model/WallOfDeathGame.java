@@ -18,8 +18,8 @@ public class WallOfDeathGame extends Game {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (!(i == 0 && j == 0)) {
-                    int xCoordinate = x+i; 
-                    int yCoordinate = y+j;
+                    int xCoordinate = x + i;
+                    int yCoordinate = y + j;
                     if (cellExists(xCoordinate, yCoordinate) && board[xCoordinate][yCoordinate].isAlive()) {
                         numberOfLivingNeighbors++;
                     }
@@ -29,11 +29,11 @@ public class WallOfDeathGame extends Game {
 
         return numberOfLivingNeighbors;
     }
-    
+
     private boolean cellExists(int xCoordinate, int yCoordinate) {
-        return xCoordinate >= 0 
-                && xCoordinate < getWidth() 
-                && yCoordinate >= 0 
+        return xCoordinate >= 0
+                && xCoordinate < getWidth()
+                && yCoordinate >= 0
                 && yCoordinate < getHeight();
     }
 

@@ -28,7 +28,7 @@ public class Cell {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Cell) {
-            return isAlive == ((Cell)obj).isAlive(); 
+            return isAlive == ((Cell) obj).isAlive();
         } else {
             return false;
         }

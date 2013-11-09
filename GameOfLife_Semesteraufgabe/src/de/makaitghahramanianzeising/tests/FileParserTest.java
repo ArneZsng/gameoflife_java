@@ -42,7 +42,7 @@ public class FileParserTest {
         } catch (GOLException e) {
             //then
             String msg = "Datei muss vom Typ .gol sein.";
-            assertEquals(msg,e.getMessage());
+            assertEquals(msg, e.getMessage());
         }
     }
 
@@ -61,8 +61,8 @@ public class FileParserTest {
             fileParser.parse();
         } catch (GOLException e) {
             //then
-            String msg="Dateigröße darf maximal 250kb betragen.";
-            assertEquals(msg,e.getMessage());
+            String msg = "Dateigröße darf maximal 250kb betragen.";
+            assertEquals(msg, e.getMessage());
         }
     }
 
@@ -76,9 +76,9 @@ public class FileParserTest {
         try {
             FileParser fileParser = new FileParser(filePathString);
             fileParser.parse();
-        } catch (GOLException e) { 
+        } catch (GOLException e) {
             //then
-            String msg="Datei darf nicht leer sein.";
+            String msg = "Datei darf nicht leer sein.";
             assertEquals(msg, e.getMessage());
         }
     }
@@ -88,10 +88,10 @@ public class FileParserTest {
         //assume
         File tmpFile = folder.newFile(FILENAME);
         OutputStreamWriter writer = new OutputStreamWriter(
-                new FileOutputStream(tmpFile, true),Charset.forName(ENCODING).newEncoder());
+                new FileOutputStream(tmpFile, true), Charset.forName(ENCODING).newEncoder());
         //given
-        try{
-            writer.getEncoding(); 
+        try {
+            writer.getEncoding();
             writer.write("01");
             writer.write(System.getProperty(LINESEPARATOR));
             writer.write("010");
@@ -104,9 +104,9 @@ public class FileParserTest {
         try {
             FileParser fileParser = new FileParser(filePathString);
             fileParser.parse();
-        } catch (GOLException e) {  
+        } catch (GOLException e) {
             //then
-            String msg="Das Spielbrett muss in jeder Zeile gleich viele Zellen haben.";
+            String msg = "Das Spielbrett muss in jeder Zeile gleich viele Zellen haben.";
             assertEquals(msg, e.getMessage());
         }
     }
@@ -116,7 +116,7 @@ public class FileParserTest {
         //assume
         File tmpFile = folder.newFile(FILENAME);
         OutputStreamWriter writer = new OutputStreamWriter(
-                new FileOutputStream(tmpFile, true),Charset.forName(ENCODING).newEncoder());
+                new FileOutputStream(tmpFile, true), Charset.forName(ENCODING).newEncoder());
         //when
         try {
             writer.getEncoding();
@@ -130,42 +130,42 @@ public class FileParserTest {
         try {
             FileParser fileParser = new FileParser(filePathString);
             fileParser.parse();
-        } catch (GOLException e) {  
-            String msg="Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.";
+        } catch (GOLException e) {
+            String msg = "Die Datei darf nur aus 0'en und 1'sen bestehen und muss als UTF-16 encodiert sein.";
             assertEquals(msg, e.getMessage());
         }
     }
 
-
-    @Test 
-    public void shouldThrowErrorWhenFileCannotBeOpened() throws IOException {
-        //assume 
-        File tmpFile= folder.newFile(FILENAME);
+    @Test
+    public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
+        //assume
+        File tmpFile = folder.newFile(FILENAME);
         //given
-        String filePathString=tmpFile.getAbsolutePath(); 
+        String filePathString = tmpFile.getAbsolutePath();
         tmpFile.delete();
-        //when 
+        //when
         try {
             FileParser fileParser = new FileParser(filePathString);
             fileParser.parse();
-        } catch (GOLException e) {  
+        } catch (GOLException e) {
             //then
-            String msg="Die Datei konnte nicht geöffnet werden.";
+            String msg = "Die Datei konnte nicht geöffnet werden.";
             assertEquals(msg, e.getMessage());
         }
     }
 
-    @Test 
-    public void shouldThrowErrorWhenFileIsNotSelected() throws IOException {
-        //when 
+    @Test
+    public void shouldThrowErrorWhenFileIsNotSelected() throws Exception {
+        //when
         try {
             FileParser fileParser = new FileParser(null);
             fileParser.parse();
-        } catch (GOLException e) {  
+        } catch (GOLException e) {
             //then
             String msg = "Bitte Datei auswählen.";
             assertEquals(msg, e.getMessage());
-        }}
+        }
+    }
 
 
     @Test
@@ -176,14 +176,14 @@ public class FileParserTest {
         OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, Charset.forName(ENCODING).newEncoder());
         //given
         try {
-            writer.getEncoding(); 
+            writer.getEncoding();
             writer.write("000");
             writer.write(System.getProperty(LINESEPARATOR));
             writer.write("110");
             writer.write(System.getProperty(LINESEPARATOR));
             writer.write("001");
             writer.flush();
-        } finally{
+        } finally {
             writer.close();
         }
         String filePathString = tmpFile.getAbsolutePath();

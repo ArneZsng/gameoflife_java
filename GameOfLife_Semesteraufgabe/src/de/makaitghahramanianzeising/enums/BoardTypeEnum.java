@@ -6,7 +6,7 @@ public enum BoardTypeEnum {
 
     private final String name;
 
-    BoardTypeEnum (String name) {
+    BoardTypeEnum(String name) {
         this.name = name;
     }
 
