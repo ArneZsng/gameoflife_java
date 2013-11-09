@@ -1,5 +1,7 @@
 package de.makaitghahramanianzeising.view.components;
 
+import de.makaitghahramanianzeising.model.Game;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
@@ -9,8 +11,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
-
-import de.makaitghahramanianzeising.model.Game;
 
 public class GameControls extends Composite {
     private static int controlsHeight = 50;
@@ -23,6 +23,7 @@ public class GameControls extends Composite {
     public GameControls(Shell shell, Game game) {
         super(shell, SWT.NULL);
         this.game = game;
+        initControls();
     }
     
     public void initControls() {
@@ -41,10 +42,6 @@ public class GameControls extends Composite {
         GridData gdRoundLabel = new GridData();
         gdRoundLabel.widthHint = 200;
         lblRound.setLayoutData(gdRoundLabel);
-    }
-
-    public void setRoundLabel(String round) {
-        lblRound.setText("Generation: " + round);
     }
 
     private void initSpeedAdjustment() {
@@ -73,13 +70,17 @@ public class GameControls extends Composite {
         btnNewGame.setText("Neues Spiel");
     }
 
+    public int getSpeed() {
+        return sldSpeed.getSelection();
+    }
+
     public void setSpeed() {
         String speed = String.valueOf((double) (getSpeed()) / 1000);
         lblSpeed.setText(speed);
     }
-
-    public int getSpeed() {
-        return sldSpeed.getSelection();
+    
+    public void setRoundLabel(String round) {
+        lblRound.setText("Generation: " + round);
     }
 
     public void addNewGameListener(SelectionAdapter listenForNewGameButton) {
