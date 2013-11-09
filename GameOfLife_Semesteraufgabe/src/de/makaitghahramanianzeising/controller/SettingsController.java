@@ -18,66 +18,71 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 
 public class SettingsController {
-    private SettingsViewSWT mySettingsView;
-    private FileParser myFileParser;
-    private ModeEnum myModeEnum;
-    private BoardTypeEnum myBoardTypeEnum;
-    private ValidBean validBean;
-
-    public SettingsController(Display display) {
-        mySettingsView = new SettingsViewSWT(display);
-        mySettingsView.addSelectFileListener(new SelectFileListener());
-        mySettingsView.addCreateGameListener(new CreateGameListener());
-        mySettingsView.start();
-    }
-
-    public Cell[][] getBoard() {
-        return myFileParser.getBoard();
-    }
-
-    public ModeEnum getMode() {
-        return myModeEnum;
-    }
-
-    public BoardTypeEnum getBoardType() {
-        return myBoardTypeEnum;
-    }
-
-    class SelectFileListener extends SelectionAdapter {
-        public void widgetSelected(SelectionEvent e) {
-            mySettingsView.selectFile();
-        }
-    }
-
-    class CreateGameListener extends SelectionAdapter {
-        public void widgetSelected(SelectionEvent e) {
-            saveSettings();
-            if (! validBean.isValid()) {
-                throwErrorMessage(validBean);
-            } else {
-                mySettingsView.dispose();
-            }
-        }
-    }
-
-    private void throwErrorMessage(ValidBean validBean) {
-        try {
-            throw validBean.getExceptionOnInvalid();
-        } catch (Exception e) {
-            new ErrorMessageBox(mySettingsView.getShell(), e.getMessage());
-        }
-    }
-
-    private void saveSettings() {
-        try {
-            myModeEnum = mySettingsView.getSelectedMode();
-            myBoardTypeEnum = mySettingsView.getSelectedBoardType();
-            myFileParser = new FileParser(mySettingsView.getFilePath());
-            myFileParser.parse();
-            validBean = new ValidBean(true, null);
-        } catch (Exception e) {
-            validBean = new ValidBean(false, e);
-        }
-    }
+	private SettingsViewSWT mySettingsView;
+	private FileParser myFileParser;
+	private ModeEnum myModeEnum;
+	private BoardTypeEnum myBoardTypeEnum;
+	private ValidBean validBean;
+	
+	public SettingsController(Display display) {
+		validBean = new ValidBean(false, null);
+		mySettingsView = new SettingsViewSWT(display);
+		mySettingsView.addSelectFileListener(new SelectFileListener());
+		mySettingsView.addCreateGameListener(new CreateGameListener());
+		mySettingsView.start();
+	}
+	
+	public Cell[][] getBoard() {
+		return myFileParser.getBoard();
+	}
+	
+	public ModeEnum getMode() {
+		return myModeEnum;
+	}
+	
+	public BoardTypeEnum getBoardType() {
+		return myBoardTypeEnum;
+	}
+	
+	public boolean isValid() {
+		return validBean.isValid();
+	}
+	
+	class SelectFileListener extends SelectionAdapter {
+		public void widgetSelected(SelectionEvent e) {
+			mySettingsView.selectFile();
+		}
+	}
+	
+	class CreateGameListener extends SelectionAdapter {
+		public void widgetSelected(SelectionEvent e) {
+			saveSettings();
+			if (! isValid()) {
+				throwErrorMessage(validBean);
+			} else {
+				mySettingsView.dispose();
+			}
+		}
+	}
+		
+	private void throwErrorMessage(ValidBean validBean) {
+		try {
+			throw validBean.getExceptionOnInvalid();
+		} catch (Exception e) {
+			new ErrorMessageBox(mySettingsView.getShell(), e.getMessage());
+		}
+	}
+	
+	private void saveSettings() {
+		try {
+			myModeEnum = mySettingsView.getSelectedMode();
+			myBoardTypeEnum = mySettingsView.getSelectedBoardType();
+			myFileParser = new FileParser(mySettingsView.getFilePath());
+			myFileParser.parse();
+			validBean = new ValidBean(true, null);
+		} catch (Exception e) {
+			validBean = new ValidBean(false, e);
+		}
+	}
 
 }
