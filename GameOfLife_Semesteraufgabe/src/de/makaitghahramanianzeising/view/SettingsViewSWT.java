@@ -42,7 +42,7 @@ public class SettingsViewSWT {
 	
 	public SettingsViewSWT(Display display) {
 		this.display = display;
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		shell.setText("Game of Life");
 		shell.setSize(400, 400);
 		init();

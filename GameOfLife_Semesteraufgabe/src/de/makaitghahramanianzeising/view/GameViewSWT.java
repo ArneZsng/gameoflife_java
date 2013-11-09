@@ -25,7 +25,7 @@ final public class GameViewSWT {
 	
 	public GameViewSWT(Display display, Game game) {
 		this.display = display;
-		shell = new Shell();
+		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 		shell.setText("Game of Life");
 		this.game = game;
 		game.addObserver(new GameObserver());
