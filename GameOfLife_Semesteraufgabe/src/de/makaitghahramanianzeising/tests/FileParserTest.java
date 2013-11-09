@@ -2,8 +2,13 @@ package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +84,18 @@ public class FileParserTest {
     public void shouldThrowErrorWhenBoardDimensionsWrong() throws Exception {
         //assume
         File tmpFile = folder.newFile("file.gol");
+        OutputStreamWriter writer = new OutputStreamWriter(
+                new FileOutputStream(tmpFile, true),Charset.forName("UTF-8").newEncoder());
         //given
-        FileWriter writer = new FileWriter(tmpFile, true);
-        writer.write("01");
-        writer.write(System.getProperty("line.separator"));
-        writer.write("010");
-        writer.flush();
-        writer.close();
+        try{
+            writer.getEncoding(); 
+            writer.write("01");
+            writer.write(System.getProperty("line.separator"));
+            writer.write("010");
+            writer.flush();
+        } finally {
+            writer.close();
+        }
         String filePathString = tmpFile.getAbsolutePath();
         //when
         try {
@@ -98,18 +108,22 @@ public class FileParserTest {
         }
     }
 
-
     @Test
     public void shouldThrowErrorWhenCharactersAreInvalid() throws Exception {
         //assume
         File tmpFile = folder.newFile("file.gol");
-        FileWriter writer = new FileWriter(tmpFile, true);
+        OutputStreamWriter writer = new OutputStreamWriter(
+                new FileOutputStream(tmpFile, true),Charset.forName("UTF-8").newEncoder());
         //when
-        writer.write("45");
-        writer.write(System.getProperty("line.separator"));
-        writer.write("44");
-        writer.flush();
-        writer.close();
+        try {
+            writer.getEncoding();
+            writer.write("45");
+            writer.write(System.getProperty("line.separator"));
+            writer.write("44");
+            writer.flush();
+        } finally {
+            writer.close();
+        }
         String filePathString = tmpFile.getAbsolutePath();
         //then
         try {
@@ -120,6 +134,7 @@ public class FileParserTest {
             assertEquals(msg, e.getMessage());
         }
     }
+
 
     @Test 
     public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
@@ -141,53 +156,56 @@ public class FileParserTest {
 
     @Test 
     public void shouldThrowErrorWhenFileIsNotSelected() throws Exception {
-        //assume 
-        String filePathString = null;
         //when 
         try {
-            FileParser fileParser = new FileParser(filePathString);
+            FileParser fileParser = new FileParser(null);
             fileParser.parse();
         } catch (GOLException e) {  
             //then
             String msg = "Bitte Datei auswählen.";
             assertEquals(msg, e.getMessage());
-        }
-    }
+        }}
+
 
     @Test
     public void shouldBuildCorrectBoard() throws Exception {
         //assume
         File tmpFile = folder.newFile("file.gol");
-        FileWriter writer = new FileWriter(tmpFile, true);
+        OutputStreamWriter writer = new OutputStreamWriter(
+                new FileOutputStream(tmpFile, true),Charset.forName("UTF-8").newEncoder());
         //given
-        writer.write("000");
-        writer.write(System.getProperty("line.separator"));
-        writer.write("110");
-        writer.write(System.getProperty("line.separator"));
-        writer.write("001");
-        writer.flush();
-        writer.close();
+        try {
+            writer.getEncoding(); 
+            writer.write("000");
+            writer.write(System.getProperty("line.separator"));
+            writer.write("110");
+            writer.write(System.getProperty("line.separator"));
+            writer.write("001");
+            writer.flush();
+        } finally{
+            writer.close();
+        }
         String filePathString = tmpFile.getAbsolutePath();
-        Cell[][] cells = new Cell[3][3];
-        cells[0][0] = new Cell(false);
-        cells[1][0] = new Cell(false);
-        cells[2][0] = new Cell(false);
-        cells[0][1] = new Cell(true);
-        cells[1][1] = new Cell(true);
-        cells[2][1] = new Cell(false);
-        cells[0][2] = new Cell(false);
-        cells[1][2] = new Cell(false);
-        cells[2][2] = new Cell(true);
         //when
         try {
             FileParser fileParser = new FileParser(filePathString);
             fileParser.parse();
-            //then
+            //then  
+            Cell[][] cells = new Cell[3][3];
+            cells[0][0] = new Cell(false);
+            cells[1][0] = new Cell(false);
+            cells[2][0] = new Cell(false);
+            cells[0][1] = new Cell(true);
+            cells[1][1] = new Cell(true);
+            cells[2][1] = new Cell(false);
+            cells[0][2] = new Cell(false);
+            cells[1][2] = new Cell(false);
+            cells[2][2] = new Cell(true);
             assertArrayEquals(fileParser.getBoard(), cells);
-        } catch (Exception e) { 
+        } catch (Exception e){
         }
     }
-
-
 }
+
+
 
