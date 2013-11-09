@@ -126,8 +126,8 @@ public class SettingsViewSWT {
 	private void initFileSelectorDialog() {
 		dlgFileSelector = new FileDialog(shell, SWT.OPEN);
 		dlgFileSelector.setText("Import initial board");
-		dlgFileSelector.setFilterExtensions(new String[] { "*.gol", "*.*" });
-		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)", "all (*.*)" });
+		dlgFileSelector.setFilterExtensions(new String[] { "*.gol"});
+		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)"});
 	}
 	
 	public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {
