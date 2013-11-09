@@ -32,9 +32,9 @@ public class WallOfDeathGame extends Game {
 
     private boolean cellExists(int xCoordinate, int yCoordinate) {
         return xCoordinate >= 0
-                && xCoordinate < getWidth()
+                && xCoordinate < getBoardWidth()
                 && yCoordinate >= 0
-                && yCoordinate < getHeight();
+                && yCoordinate < getBoardHeight();
     }
 
 }

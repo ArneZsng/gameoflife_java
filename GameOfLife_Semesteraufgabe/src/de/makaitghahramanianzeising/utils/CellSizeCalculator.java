@@ -11,6 +11,19 @@ public class CellSizeCalculator {
         this.shell = shell;
     }
 
+    public int calculate(int boardWidth, int boardHeight) {
+        Dimension maxCanvas = getMaxCanvas();
+        int pixelWidth = maxCanvas.getWidth() / boardWidth;
+        int pixelHeight = maxCanvas.getHeight() / boardHeight;
+        int pixelSize;
+        if (pixelWidth <= pixelHeight) {
+            pixelSize = pixelWidth;
+        } else {
+            pixelSize = pixelHeight;
+        }
+        return pixelSize;
+    }
+    
     private Dimension getShellFrameSize() {
         Rectangle shellArea = shell.getBounds();
         Rectangle shellClientArea = shell.getClientArea();
@@ -18,6 +31,7 @@ public class CellSizeCalculator {
         int shellFrameWidth = shellArea.width - shellClientArea.width;
         return new Dimension(shellFrameWidth, shellFrameHeight);
     }
+    
     private Dimension getMaxCanvas() {
         //TODO controlsHeight!
         int defaultMargin = 5;
@@ -26,28 +40,12 @@ public class CellSizeCalculator {
         int maxCanvasHeight = clientArea.height - shellFrameSize.getHeight() - 50 - 3 * defaultMargin;
         int maxCanvasWidth = clientArea.width - shellFrameSize.getWidth() - 2 * defaultMargin;
         return new Dimension(maxCanvasWidth, maxCanvasHeight);
-
-    }
-
-    public int calculate(int boardWidth, int boardHeight) {
-        Dimension maxCanvas = getMaxCanvas();
-        int pixelWidth = maxCanvas.getWidth() / boardWidth;
-        int pixelHeight = maxCanvas.getHeight() / boardHeight;
-        int pixelSize;
-
-        if (pixelWidth <= pixelHeight) {
-            pixelSize = pixelWidth;
-        } else {
-            pixelSize = pixelHeight;
-        }
-
-        return pixelSize;
     }
 
     private class Dimension {
         private final int width;
         private final int height;
-
+        
         public Dimension(int width, int height) {
             this.width = width;
             this.height = height;
