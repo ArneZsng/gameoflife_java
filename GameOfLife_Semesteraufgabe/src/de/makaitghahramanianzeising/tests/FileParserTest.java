@@ -2,8 +2,12 @@ package de.makaitghahramanianzeising.tests;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -78,9 +82,11 @@ public class FileParserTest {
     @Test
     public void shouldThrowErrorWhenBoardDimensionsWrong() throws Exception {
         //assume
-        File tmpFile = folder.newFile("file.gol");
+    	 File tmpFile = folder.newFile("file.gol");
+         OutputStreamWriter writer = new OutputStreamWriter(
+         		new FileOutputStream(tmpFile, true),Charset.forName("UTF-8").newEncoder());
         //given
-        FileWriter writer = new FileWriter(tmpFile, true);
+        writer.getEncoding(); 
         writer.write("01");
         writer.write(System.getProperty("line.separator"));
         writer.write("010");
@@ -103,8 +109,10 @@ public class FileParserTest {
     public void shouldThrowErrorWhenCharactersAreInvalid() throws Exception {
         //assume
         File tmpFile = folder.newFile("file.gol");
-        FileWriter writer = new FileWriter(tmpFile, true);
+        OutputStreamWriter writer = new OutputStreamWriter(
+        		new FileOutputStream(tmpFile, true),Charset.forName("UTF-8").newEncoder());
         //when
+        writer.getEncoding();
         writer.write("45");
         writer.write(System.getProperty("line.separator"));
         writer.write("44");
@@ -141,11 +149,9 @@ public class FileParserTest {
 
     @Test 
     public void shouldThrowErrorWhenFileIsNotSelected() throws Exception {
-        //assume 
-        String filePathString = null;
         //when 
         try {
-            FileParser fileParser = new FileParser(filePathString);
+            FileParser fileParser = new FileParser(null);
             fileParser.parse();
         } catch (GOLException e) {  
             //then
@@ -157,9 +163,11 @@ public class FileParserTest {
     @Test
     public void shouldBuildCorrectBoard() throws Exception {
         //assume
-        File tmpFile = folder.newFile("file.gol");
-        FileWriter writer = new FileWriter(tmpFile, true);
+    	 File tmpFile = folder.newFile("file.gol");
+         OutputStreamWriter writer = new OutputStreamWriter(
+         		new FileOutputStream(tmpFile, true),Charset.forName("UTF-8").newEncoder());
         //given
+        writer.getEncoding(); 
         writer.write("000");
         writer.write(System.getProperty("line.separator"));
         writer.write("110");
