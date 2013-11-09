@@ -8,6 +8,10 @@ import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
+/**
+ * Tests the border behavior of a wall of death game.
+ */
+
 public class WallOfDeathGameTest {
 
     @Test

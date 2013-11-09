@@ -13,6 +13,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Renders the game view to display the current
+ * status of the game and allowing user interaction. 
+ */
+
 public final class GameViewSWT {
 
     private final Shell shell;

@@ -8,6 +8,10 @@ import org.junit.Test;
 import de.makaitghahramanianzeising.exceptions.GOLException;
 import de.makaitghahramanianzeising.utils.ValidBean;
 
+/**
+ * Tests the basic functionality of a valid bean.
+ */
+
 public class ValidBeanTest {
 
     @Test

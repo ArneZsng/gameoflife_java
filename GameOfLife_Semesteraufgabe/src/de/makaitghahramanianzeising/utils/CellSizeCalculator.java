@@ -3,6 +3,11 @@ package de.makaitghahramanianzeising.utils;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Calculates the size of the representation of a cell
+ * in pixels for the view. 
+ */
+
 public class CellSizeCalculator {
 
     private final Shell shell;

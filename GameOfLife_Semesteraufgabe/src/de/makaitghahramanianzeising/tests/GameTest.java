@@ -12,6 +12,10 @@ import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.Game;
 import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
+/**
+ * Tests the game in an integration setting.
+ */
+
 public class GameTest {
 
     private Game game;

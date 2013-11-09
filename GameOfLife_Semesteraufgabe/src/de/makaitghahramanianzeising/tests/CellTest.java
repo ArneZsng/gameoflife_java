@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import de.makaitghahramanianzeising.model.Cell;
 
+/**
+ * Tests the cells functionality.
+ */
+
 public class CellTest {
 
     @Test

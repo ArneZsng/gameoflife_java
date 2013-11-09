@@ -19,6 +19,11 @@ import de.makaitghahramanianzeising.exceptions.GOLException;
 import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.utils.FileParser;
 
+/**
+ * Tests if the file parser parses files correctly.
+ * Also tests for common exceptions.
+ */
+
 public class FileParserTest {
 
     private static final String ENCODING = "UTF-8";

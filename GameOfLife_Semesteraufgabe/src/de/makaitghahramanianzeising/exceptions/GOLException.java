@@ -1,5 +1,10 @@
 package de.makaitghahramanianzeising.exceptions;
 
+/**
+ * Custom exception for Game of Life that is raised for
+ * game specific exceptions.
+ */
+
 public class GOLException extends Exception {
 
     /**

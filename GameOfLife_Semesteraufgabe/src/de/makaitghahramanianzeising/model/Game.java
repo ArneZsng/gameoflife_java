@@ -4,6 +4,13 @@ import java.util.HashSet;
 import java.util.Observable;
 import java.util.Set;
 
+/**
+ * Abstract implementation of a game that can return its current board
+ * configuration, counts the number of rounds, prepares and plays the 
+ * next round. It also pauses for the amount of time that is specified 
+ * by the user.
+ */
+
 public abstract class Game extends Observable implements Runnable {
 
     private static int MAXROUND = 999999999;

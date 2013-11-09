@@ -8,6 +8,10 @@ import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.PacmanGame;
 
+/**
+ * Tests the border behavior of a pacman game. 
+ */
+
 public class PacmanGameTest {
 
     @Test

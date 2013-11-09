@@ -11,6 +11,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Renders the board canvas for displaying living
+ * and death cells in the game view. 
+ */
+
 public class BoardCanvas extends Canvas {
 
     private final int cellSize;

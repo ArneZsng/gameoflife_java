@@ -12,6 +12,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 
+/**
+ * Renders the game controls for displaying the
+ * user's input options on the game view. 
+ */
+
 public class GameControls extends Composite {
     private static int controlsHeight = 50;
     private Button btnNewGame;
