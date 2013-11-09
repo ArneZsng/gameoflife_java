@@ -124,7 +124,6 @@ public class SettingsSWT {
         lblUpload.setLayoutData(gdUploadLabel);
 
         GridData gdBoardFileLabel = new GridData(SWT.FILL, SWT.CENTER, true, false);
-        gdUploadLabel.horizontalSpan = 2;
         lblBoardFileName = new Label(compInitialBoard, SWT.NONE);
         lblBoardFileName.setText("Bitte Datei auswählen");
         lblBoardFileName.setLayoutData(gdBoardFileLabel);
