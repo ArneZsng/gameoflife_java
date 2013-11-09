@@ -1,4 +1,8 @@
 package de.makaitghahramanianzeising.view.components;
+
+import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.utils.CellSizeCalculator;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
@@ -6,9 +10,6 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Shell;
-
-import de.makaitghahramanianzeising.model.Game;
-import de.makaitghahramanianzeising.utils.CellSizeCalculator;
 
 public class BoardCanvas extends Canvas {
 

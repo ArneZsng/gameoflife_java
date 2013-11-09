@@ -31,14 +31,10 @@ public class SettingsController {
         mySettingsView.addCreateGameListener(new CreateGameListener());
         mySettingsView.start();
     }
-
+    
     public void reset() {
         validBean = new ValidBean(false, null);
         mySettingsView.start();
-    }
-
-    public Cell[][] getBoard() {
-        return myFileParser.getBoard();
     }
 
     public ModeEnum getMode() {
@@ -48,28 +44,15 @@ public class SettingsController {
     public BoardTypeEnum getBoardType() {
         return myBoardTypeEnum;
     }
+    
+    public Cell[][] getBoard() {
+        return myFileParser.getBoard();
+    }
 
     public boolean isValid() {
         return validBean.isValid();
     }
-
-    class SelectFileListener extends SelectionAdapter {
-        public void widgetSelected(SelectionEvent e) {
-            mySettingsView.selectFile();
-        }
-    }
-
-    class CreateGameListener extends SelectionAdapter {
-        public void widgetSelected(SelectionEvent e) {
-            saveSettings();
-            if (!isValid()) {
-                throwErrorMessage(validBean);
-            } else {
-               mySettingsView.dispose();
-            }
-        }
-    }
-
+    
     private void throwErrorMessage(ValidBean validBean) {
         try {
             throw validBean.getExceptionOnInvalid();
@@ -90,4 +73,20 @@ public class SettingsController {
         }
     }
 
+    class SelectFileListener extends SelectionAdapter {
+        public void widgetSelected(SelectionEvent e) {
+            mySettingsView.selectFile();
+        }
+    }
+
+    class CreateGameListener extends SelectionAdapter {
+        public void widgetSelected(SelectionEvent e) {
+            saveSettings();
+            if (!isValid()) {
+                throwErrorMessage(validBean);
+            } else {
+               mySettingsView.dispose();
+            }
+        }
+    }
 }

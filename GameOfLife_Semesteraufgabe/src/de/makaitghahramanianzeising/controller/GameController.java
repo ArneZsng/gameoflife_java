@@ -25,13 +25,6 @@ public class GameController {
         initialize();
     }
 
-    private void reset() {
-        mySettingsController.reset();
-        myGame = null;
-        myGameThread = null;
-        myGameView = null;
-    }
-
     private void initialize() {
         mySettingsController = new SettingsController(display);
         if (mySettingsController.isValid()) {
@@ -57,6 +50,13 @@ public class GameController {
         myGameControls.addNewGameListener(new NewGameListener());
         myGameControls.addSpeedSliderListener(new SpeedSliderListener());
         myGameView.addCloseButtonListener(new CloseButtonListener());
+    }
+
+    private void reset() {
+        mySettingsController.reset();
+        myGame = null;
+        myGameThread = null;
+        myGameView = null;
     }
 
     private Game createGame(Cell[][] board, ModeEnum modeEnum, BoardTypeEnum boardTypeEnum) {

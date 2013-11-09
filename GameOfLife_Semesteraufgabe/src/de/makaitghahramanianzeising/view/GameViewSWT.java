@@ -1,5 +1,9 @@
 package de.makaitghahramanianzeising.view;
 
+import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.view.components.BoardCanvas;
+import de.makaitghahramanianzeising.view.components.GameControls;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,25 +13,21 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-import de.makaitghahramanianzeising.model.Game;
-import de.makaitghahramanianzeising.view.components.BoardCanvas;
-import de.makaitghahramanianzeising.view.components.GameControls;
-
 public final class GameViewSWT {
 
     private final Shell shell;
     private final Display display;
+    private final Game game;
     private GameControls controls;
     private BoardCanvas canvas;
-    private final Game game;
 
     public GameViewSWT(Display display, Game game) {
         this.display = display;
+        this.game = game;
         shell = new Shell();
         shell.setText("Game of Life");
-        this.game = game;
-        game.addObserver(new GameObserver());
         init();
+        game.addObserver(new GameObserver());
         shell.pack();
     }
 
@@ -40,11 +40,7 @@ public final class GameViewSWT {
     public GameControls getControls() {
         return controls;
     }
-
-    public void addCloseButtonListener(Listener listenForCloseButton) {
-        shell.addListener(SWT.Close, listenForCloseButton);
-    }
-
+    
     public void start() {
         shell.open();
         while (!shell.isDisposed()) {
@@ -55,13 +51,17 @@ public final class GameViewSWT {
         shell.dispose();
     }
 
+    public void dispose() {
+        shell.dispose();
+    }
+
     public void updateView() {
         controls.setRoundLabel(game.getRoundAsString());
         canvas.redraw();
     }
 
-    public void dispose() {
-        shell.dispose();
+    public void addCloseButtonListener(Listener listenForCloseButton) {
+        shell.addListener(SWT.Close, listenForCloseButton);
     }
 
     private class GameObserver implements Observer {

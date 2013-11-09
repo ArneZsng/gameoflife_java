@@ -7,6 +7,10 @@ package de.makaitghahramanianzeising.view;
 
 import java.util.EnumSet;
 
+import de.makaitghahramanianzeising.enums.BoardTypeEnum;
+import de.makaitghahramanianzeising.enums.ModeEnum;
+import de.makaitghahramanianzeising.exceptions.GOLException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
@@ -18,10 +22,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-
-import de.makaitghahramanianzeising.enums.BoardTypeEnum;
-import de.makaitghahramanianzeising.enums.ModeEnum;
-import de.makaitghahramanianzeising.exceptions.GOLException;
 
 public class SettingsViewSWT {
     private final Shell shell;
@@ -130,22 +130,6 @@ public class SettingsViewSWT {
 		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)"});
 	}
 
-	public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {
-		btnSelectFile.addSelectionListener(listenForSelectFileButton);
-	}
-
-	public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
-		btnCreateGame.addSelectionListener(listenForCreateGameButton);
-	}
-
-	public void selectFile() {
-		filePath = dlgFileSelector.open();
-		if (filePath != null) {
-			final String name = dlgFileSelector.getFileName();
-			lblBoardFileName.setText(name);
-		}
-	}
-
 	private void initBtnSelectFile() {
 		btnSelectFile = new Button(compInitialBoard, SWT.NONE);
 		btnSelectFile.setText("Datei auswählen");
@@ -159,28 +143,10 @@ public class SettingsViewSWT {
 				true, false));
 	}
 
-	public ModeEnum getSelectedMode() throws GOLException {
-		int i = comboMode.getSelectionIndex();
-		if (i == -1) {
-			throw new GOLException("Bitte Spielmodus auswählen.");
-		} else {
-			return availableModes[i];
-		}
-	}
-
-	public BoardTypeEnum getSelectedBoardType() throws GOLException {
-		int i = comboBoard.getSelectionIndex();
-		if (i == -1) {
-			throw new GOLException("Bitte Art des Spielbretts auswählen.");
-		} else {
-			return availableBoardTypes[i];
-		}
-	}
 
 	public String getFilePath() {
 		return filePath;
 	}
-
 
 	public Shell getShell() {
 		return shell;
@@ -198,5 +164,39 @@ public class SettingsViewSWT {
 
 	public void dispose() {
 		shell.dispose();
+	}
+
+	public void selectFile() {
+		filePath = dlgFileSelector.open();
+		if (filePath != null) {
+			final String name = dlgFileSelector.getFileName();
+			lblBoardFileName.setText(name);
+		}
+	}
+	
+	public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {
+		btnSelectFile.addSelectionListener(listenForSelectFileButton);
+	}
+
+	public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
+		btnCreateGame.addSelectionListener(listenForCreateGameButton);
+	}
+	
+	public ModeEnum getSelectedMode() throws GOLException {
+		int i = comboMode.getSelectionIndex();
+		if (i == -1) {
+			throw new GOLException("Bitte Spielmodus auswählen.");
+		} else {
+			return availableModes[i];
+		}
+	}
+
+	public BoardTypeEnum getSelectedBoardType() throws GOLException {
+		int i = comboBoard.getSelectionIndex();
+		if (i == -1) {
+			throw new GOLException("Bitte Art des Spielbretts auswählen.");
+		} else {
+			return availableBoardTypes[i];
+		}
 	}
 }
