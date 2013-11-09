@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,7 +30,6 @@ public class FileParserTest {
     private static final String ENCODING = "UTF-8";
     private static final String FILENAME = "file.gol";
     private static final String LINESEPARATOR = "line.separator";
-
 
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
@@ -89,8 +89,9 @@ public class FileParserTest {
     public void shouldThrowErrorWhenBoardDimensionsWrong() throws IOException {
         //given
         File tmpFile = folder.newFile(FILENAME);
-        OutputStreamWriter writer = new OutputStreamWriter(
-                new FileOutputStream(tmpFile, true), Charset.forName(ENCODING).newEncoder());
+        FileOutputStream fileOutputStream = new FileOutputStream(tmpFile, true);
+        CharsetEncoder charsetEncoder = Charset.forName(ENCODING).newEncoder();
+        OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, charsetEncoder);
         try {
             writer.getEncoding();
             writer.write("01");
@@ -116,8 +117,9 @@ public class FileParserTest {
     public void shouldThrowErrorWhenCharactersAreInvalid() throws IOException {
         //given
         File tmpFile = folder.newFile(FILENAME);
-        OutputStreamWriter writer = new OutputStreamWriter(
-                new FileOutputStream(tmpFile, true), Charset.forName(ENCODING).newEncoder());
+        FileOutputStream fileOutputStream = new FileOutputStream(tmpFile, true);
+        CharsetEncoder charsetEncoder = Charset.forName(ENCODING).newEncoder();
+        OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, charsetEncoder);
         //when
         try {
             writer.getEncoding();
@@ -183,8 +185,9 @@ public class FileParserTest {
         board[2][2] = new Cell(true);
         //given
         File tmpFile = folder.newFile(FILENAME);
-        FileOutputStream fileOutputStream  = new FileOutputStream(tmpFile, true);
-        OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, Charset.forName(ENCODING).newEncoder());
+        FileOutputStream fileOutputStream = new FileOutputStream(tmpFile, true);
+        CharsetEncoder charsetEncoder = Charset.forName(ENCODING).newEncoder();
+        OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, charsetEncoder);
         try {
             writer.getEncoding();
             writer.write("000");
