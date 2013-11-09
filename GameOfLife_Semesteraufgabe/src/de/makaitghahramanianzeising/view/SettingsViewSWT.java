@@ -23,6 +23,13 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Renders the settings view to allow the user
+ * configure the game prior to start. Allows
+ * selecting the game mode, the board type
+ * and the initial configuration of the board.
+ */
+
 public class SettingsViewSWT {
     private final Shell shell;
     private final Display display;

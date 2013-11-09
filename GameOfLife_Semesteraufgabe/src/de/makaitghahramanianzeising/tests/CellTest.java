@@ -7,11 +7,15 @@ import org.junit.Test;
 
 import de.makaitghahramanianzeising.model.Cell;
 
+/**
+ * Tests the cells functionality.
+ */
+
 public class CellTest {
 
     @Test
     public void shouldBeEqual() {
-        //assume
+        //when
         Cell cell1 = new Cell(true);
         Cell cell2 = new Cell(true);
         //then
@@ -20,7 +24,7 @@ public class CellTest {
 
     @Test
     public void shouldNotBeEqual() {
-        //assume
+        //when
         Cell cell1 = new Cell(true);
         Cell cell2 = new Cell(false);
         //then
@@ -29,7 +33,7 @@ public class CellTest {
 
     @Test
     public void shouldNotBeEqualWithInt() {
-        //assume
+        //when
         Cell cell1 = new Cell(true);
         //then
         assertFalse(cell1.equals(1));
@@ -37,7 +41,7 @@ public class CellTest {
 
     @Test
     public void shoudHaveEqualHash() {
-        //assume
+        //when
         Cell cell1 = new Cell(true);
         Cell cell2 = new Cell(true);
         //then
@@ -46,7 +50,7 @@ public class CellTest {
 
     @Test
     public void shoudNotHaveEqualHash() {
-        //assume
+        //when
         Cell cell1 = new Cell(true);
         Cell cell2 = new Cell(false);
         //then

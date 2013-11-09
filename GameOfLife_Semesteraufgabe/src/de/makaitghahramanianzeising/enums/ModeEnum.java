@@ -1,5 +1,9 @@
 package de.makaitghahramanianzeising.enums;
 
+/**
+ * Modes that the user can select from.
+ */
+
 public enum ModeEnum {
 
     GAMEOFLIFE("Game of Life", new Integer[] {2, 3}, new Integer[] {3}),

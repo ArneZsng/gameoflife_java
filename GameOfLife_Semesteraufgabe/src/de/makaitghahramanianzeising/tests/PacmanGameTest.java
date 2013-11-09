@@ -8,12 +8,16 @@ import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.PacmanGame;
 
+/**
+ * Tests the border behavior of a pacman game. 
+ */
+
 public class PacmanGameTest {
     private final Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
     private final Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
     @Test
     public void shouldCountAllLivingNeighbors() {
-        //assume
+        //when
         Cell[][] board = new Cell[3][3];
         board[0][0] = new Cell(true);
         board[0][1] = new Cell(true);
@@ -34,7 +38,7 @@ public class PacmanGameTest {
 
     @Test
     public void shouldCountAllLivingNeighborsForSingleColumn() {
-        //assume
+        //when
         Cell[][] board = new Cell[1][3];
         board[0][0] = new Cell(true);
         board[0][1] = new Cell(true);
@@ -46,7 +50,7 @@ public class PacmanGameTest {
 
     @Test
     public void shouldCountAllLivingNeighborsForSingleRow() {
-        //assume
+        //when
         Cell[][] board = new Cell[3][1];
         board[0][0] = new Cell(true);
         board[1][0] = new Cell(true);
@@ -58,7 +62,7 @@ public class PacmanGameTest {
 
     @Test
     public void shouldCountAllLivingNeighborsForDoubleColumn() {
-        //assume
+        //when
         Cell[][] board = new Cell[2][3];
         board[0][0] = new Cell(true);
         board[0][1] = new Cell(true);
@@ -73,7 +77,7 @@ public class PacmanGameTest {
 
     @Test
     public void shouldCountAllLivingNeighborsForDoubleRow() {
-        //assume
+        //when
         Cell[][] board = new Cell[3][2];
         board[0][0] = new Cell(true);
         board[0][1] = new Cell(true);

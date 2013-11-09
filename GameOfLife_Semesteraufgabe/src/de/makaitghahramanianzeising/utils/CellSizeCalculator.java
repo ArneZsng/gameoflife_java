@@ -4,6 +4,10 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
 import de.makaitghahramanianzeising.view.components.GameControls;
+/**
+ * Calculates the size of the representation of a cell
+ * in pixels for the view. 
+ */
 
 public class CellSizeCalculator {
 
@@ -13,7 +17,7 @@ public class CellSizeCalculator {
         this.shell = shell;
     }
 
-    public int calculate(int boardWidth, int boardHeight) {
+    public int getPixelSize(int boardWidth, int boardHeight) {
         Dimension maxCanvas = getMaxCanvas();
         int pixelWidth = maxCanvas.getWidth() / boardWidth;
         int pixelHeight = maxCanvas.getHeight() / boardHeight;

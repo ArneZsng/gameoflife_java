@@ -3,6 +3,12 @@ package de.makaitghahramanianzeising.model;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * Returns a wall of death game where the cells neighbors are 
+ * direct neighbors only. The board is surrounded by death 
+ * cells.
+ */
+
 public class WallOfDeathGame extends Game {
 
     public WallOfDeathGame(Cell[][] board, Integer[] survives, Integer[] revives) {

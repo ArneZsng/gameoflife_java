@@ -11,6 +11,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Renders the board canvas for displaying living
+ * and death cells in the game view. 
+ */
+
 public class BoardCanvas extends Canvas {
 
     private final int cellSize;
@@ -21,7 +26,7 @@ public class BoardCanvas extends Canvas {
         this.game = game;
         int boardWidth = game.getBoardWidth();
         int boardHeight = game.getBoardHeight();
-        cellSize = new CellSizeCalculator(shell).calculate(boardWidth, boardHeight);
+        cellSize = new CellSizeCalculator(shell).getPixelSize(boardWidth, boardHeight);
         GC gc = new GC(this);
 
         setLayoutData(initCanvasGridData(boardWidth, boardHeight));

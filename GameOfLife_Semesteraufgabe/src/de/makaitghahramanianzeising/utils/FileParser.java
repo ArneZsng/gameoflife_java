@@ -9,6 +9,12 @@ import java.util.Scanner;
 import de.makaitghahramanianzeising.exceptions.GOLException;
 import de.makaitghahramanianzeising.model.Cell;
 
+/**
+ * Parses a .gol file and creates a board according
+ * to the input. Validates the file for certain
+ * restrictions.
+ */
+
 public class FileParser {
 	
     private static final int MAX_FILE_SIZE = 250000;

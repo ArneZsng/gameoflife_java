@@ -1,6 +1,7 @@
 package de.makaitghahramanianzeising.controller;
 
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
+
 import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.*;
 import de.makaitghahramanianzeising.view.GameViewSWT;
@@ -11,6 +12,13 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+
+/**
+ * Creates a game according to the settings specified by the user.
+ * Opens the settings controller first and asks for game settings.
+ * Creates a new game accordingly. Returns to the settings when game
+ * is reset.
+ */
 
 public class GameController {
 

@@ -1,5 +1,10 @@
 package de.makaitghahramanianzeising.model;
 
+/**
+ * Returns a cell that is aware of its current
+ * and its future status.
+ */
+
 public class Cell {
 
     private boolean isAlive;

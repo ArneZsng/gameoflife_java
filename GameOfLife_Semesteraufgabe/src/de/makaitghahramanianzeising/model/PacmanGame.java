@@ -3,6 +3,15 @@ package de.makaitghahramanianzeising.model;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * Returns a pacman game where the cells neighbors are 
+ * direct neighbors as well as those on the other side 
+ * of the universe. For example: For a cell in the upper
+ * left corner, neighbors are direct neighbors as well as
+ * the cells in the bottom left, the upper right and the one
+ * in the bottom right corner. 
+ */
+
 public class PacmanGame extends Game {
 
     public PacmanGame(Cell[][] board, Integer[] survives, Integer[] revives) {

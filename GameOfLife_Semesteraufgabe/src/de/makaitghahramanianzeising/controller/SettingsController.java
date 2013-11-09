@@ -17,6 +17,12 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 
+/**
+ * Creates a settings view and asks the user for the game
+ * settings. Validates the user's input. Throws a popup
+ * with an error message if the input is not valid.
+ */
+
 public class SettingsController {
     private SettingsViewSWT mySettingsView;
     private FileParser myFileParser;

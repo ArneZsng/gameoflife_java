@@ -8,11 +8,15 @@ import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
+/**
+ * Tests the border behavior of a wall of death game.
+ */
+
 public class WallOfDeathGameTest {
 
     @Test
     public void shouldCountAllLivingNeighbors() {
-        //assume
+        //when
         Cell[][] board = new Cell[3][3];
         board[0][0] = new Cell(true);
         board[0][1] = new Cell(true);
