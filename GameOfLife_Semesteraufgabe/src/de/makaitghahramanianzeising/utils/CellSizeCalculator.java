@@ -3,6 +3,8 @@ package de.makaitghahramanianzeising.utils;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
+import de.makaitghahramanianzeising.view.components.GameControls;
+
 public class CellSizeCalculator {
 
     private final Shell shell;
@@ -23,7 +25,7 @@ public class CellSizeCalculator {
         }
         return pixelSize;
     }
-    
+
     private Dimension getShellFrameSize() {
         Rectangle shellArea = shell.getBounds();
         Rectangle shellClientArea = shell.getClientArea();
@@ -31,13 +33,13 @@ public class CellSizeCalculator {
         int shellFrameWidth = shellArea.width - shellClientArea.width;
         return new Dimension(shellFrameWidth, shellFrameHeight);
     }
-    
+
     private Dimension getMaxCanvas() {
-        //TODO controlsHeight!
+    //TODO defaultMargin
         int defaultMargin = 5;
         Rectangle clientArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
         Dimension shellFrameSize = getShellFrameSize();
-        int maxCanvasHeight = clientArea.height - shellFrameSize.getHeight() - 50 - 3 * defaultMargin;
+        int maxCanvasHeight = clientArea.height - shellFrameSize.getHeight() - GameControls.CONTROLS_HEIGHT - 3 * defaultMargin;
         int maxCanvasWidth = clientArea.width - shellFrameSize.getWidth() - 2 * defaultMargin;
         return new Dimension(maxCanvasWidth, maxCanvasHeight);
     }
@@ -45,7 +47,7 @@ public class CellSizeCalculator {
     private class Dimension {
         private final int width;
         private final int height;
-        
+
         public Dimension(int width, int height) {
             this.width = width;
             this.height = height;

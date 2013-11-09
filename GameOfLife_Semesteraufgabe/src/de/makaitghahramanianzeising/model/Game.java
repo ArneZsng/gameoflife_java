@@ -28,7 +28,7 @@ public abstract class Game extends Observable implements Runnable {
     public int getSpeed() {
         return msSpeed;
     }
-    
+
     public void setSpeed(int speed) {
         this.msSpeed = speed;
     }
@@ -40,7 +40,7 @@ public abstract class Game extends Observable implements Runnable {
             return "Unzählbar!";
         }
     }
-    
+
     public void setRound(int round) {
         this.round = round;
     }
@@ -56,11 +56,11 @@ public abstract class Game extends Observable implements Runnable {
     public Cell[][] getBoard() {
         return board;
     }
-    
+
     public boolean cellAlive(int x, int y) {
         return board[x][y].isAlive();
     }
-    
+
     public boolean isInterrupted() {
         return Thread.currentThread().isInterrupted();
     }
@@ -87,7 +87,7 @@ public abstract class Game extends Observable implements Runnable {
         increaseRound();
         notifyObservers();
     }
-    
+
     public boolean isGameOver() {
         for (int i = 0; i < getBoardWidth(); i++) {
             for (int j = 0; j < getBoardHeight(); j++) {
@@ -98,7 +98,7 @@ public abstract class Game extends Observable implements Runnable {
         }
         return true;
     }
-    
+
     public abstract int numberOfLivingNeighbors(int x, int y);
 
     private boolean cellSurvives(int livingNeighbors) {
@@ -114,7 +114,7 @@ public abstract class Game extends Observable implements Runnable {
             round++;
         }
     }
-    
+
     private void sleep() {
         try {
             Thread.sleep(msSpeed);

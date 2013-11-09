@@ -33,7 +33,10 @@ public class GameController {
     }
 
     private void initGame() {
-        myGame = createGame(mySettingsController.getBoard(), mySettingsController.getMode(), mySettingsController.getBoardType());
+    	Cell[][] board = mySettingsController.getBoard();
+    	ModeEnum mode = mySettingsController.getMode();
+    	BoardTypeEnum boardType = mySettingsController.getBoardType();
+        myGame = createGame(board, mode, boardType);
         myGameThread = new Thread(myGame);
         myGameThread.start();
         initGameView();
@@ -59,11 +62,13 @@ public class GameController {
         myGameView = null;
     }
 
-    private Game createGame(Cell[][] board, ModeEnum modeEnum, BoardTypeEnum boardTypeEnum) {
-        if (boardTypeEnum == BoardTypeEnum.WALLOFDEATH) {
-            return new WallOfDeathGame(board, modeEnum.getSurvives(), modeEnum.getRevives());
+    private Game createGame(Cell[][] board, ModeEnum mode, BoardTypeEnum boardType) {
+        Integer[] survives = mode.getSurvives();
+        Integer[] revives = mode.getRevives();
+        if (boardType == BoardTypeEnum.WALLOFDEATH) {
+            return new WallOfDeathGame(board, survives, revives);
         } else {
-            return new PacmanGame(board, modeEnum.getSurvives(), modeEnum.getRevives());
+            return new PacmanGame(board, survives, revives);
         }
     }
 
