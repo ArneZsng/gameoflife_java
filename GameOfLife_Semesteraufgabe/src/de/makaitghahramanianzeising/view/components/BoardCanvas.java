@@ -1,6 +1,6 @@
 package de.makaitghahramanianzeising.view.components;
 
-import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.model.AbstractGame;
 import de.makaitghahramanianzeising.utils.CellSizeCalculator;
 
 import org.eclipse.swt.SWT;
@@ -13,15 +13,15 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Renders the board canvas for displaying living
- * and death cells in the game view. 
+ * and death cells in the game view.
  */
 
 public class BoardCanvas extends Canvas {
 
     private final int cellSize;
-    private final Game game;
+    private final AbstractGame game;
 
-    public BoardCanvas(Shell shell, Game game) {
+    public BoardCanvas(Shell shell, AbstractGame game) {
         super(shell, SWT.NONE);
         this.game = game;
         int boardWidth = game.getBoardWidth();

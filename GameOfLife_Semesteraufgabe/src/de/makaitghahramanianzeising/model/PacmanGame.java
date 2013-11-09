@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 /**
- * Returns a pacman game where the cells neighbors are 
- * direct neighbors as well as those on the other side 
+ * Returns a pacman game where the cells neighbors are
+ * direct neighbors as well as those on the other side
  * of the universe. For example: For a cell in the upper
  * left corner, neighbors are direct neighbors as well as
  * the cells in the bottom left, the upper right and the one
- * in the bottom right corner. 
+ * in the bottom right corner.
  */
 
-public class PacmanGame extends Game {
+public class PacmanGame extends AbstractGame {
 
     public PacmanGame(Cell[][] board, Integer[] survives, Integer[] revives) {
         this.board = board.clone();
@@ -23,14 +23,14 @@ public class PacmanGame extends Game {
     @Override
     public int numberOfLivingNeighbors(int x, int y) {
         int numberOfLivingNeighbors = 0;
-        x = ensurePositiveCoordinate(x, getBoardWidth());
-        y = ensurePositiveCoordinate(y, getBoardHeight());
+        int xPositive = ensurePositiveCoordinate(x, getBoardWidth());
+        int yPositive = ensurePositiveCoordinate(y, getBoardHeight());
 
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (!(i == 0 && j == 0)) {
-                    int xCoordinate = (x + i) % getBoardWidth();
-                    int yCoordinate = (y + j) % getBoardHeight();
+                    int xCoordinate = (xPositive + i) % getBoardWidth();
+                    int yCoordinate = (yPositive + j) % getBoardHeight();
                     if (board[xCoordinate][yCoordinate].isAlive()) {
                         numberOfLivingNeighbors++;
                     }
@@ -42,10 +42,11 @@ public class PacmanGame extends Game {
     }
 
     private int ensurePositiveCoordinate(int i, int dimension) {
-        if (i == 0) {
-            i += dimension;
+        int iPositive = i;
+    	if (iPositive == 0) {
+            iPositive += dimension;
         }
-        return i;
+        return iPositive;
     }
 
 }

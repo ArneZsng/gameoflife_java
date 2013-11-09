@@ -1,8 +1,8 @@
 eclipse.preferences.version=1
-encoding//src/de/makaitghahramanianzeising/model/Game.java=UTF-8
+encoding//src/de/makaitghahramanianzeising/model/AbstractGame.java=UTF-8
 encoding//src/de/makaitghahramanianzeising/tests/FileParserTest.java=UTF-8
 encoding//src/de/makaitghahramanianzeising/tests/GameTest.java=UTF-8
 encoding//src/de/makaitghahramanianzeising/utils/FileParser.java=UTF-8
-encoding//src/de/makaitghahramanianzeising/view/GameViewSWT.java=UTF-8
-encoding//src/de/makaitghahramanianzeising/view/SettingsViewSWT.java=UTF-8
+encoding//src/de/makaitghahramanianzeising/view/GameSWT.java=UTF-8
+encoding//src/de/makaitghahramanianzeising/view/SettingsSWT.java=UTF-8
 encoding/Readme.txt=UTF-8

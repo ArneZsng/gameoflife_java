@@ -9,10 +9,11 @@ import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.PacmanGame;
 
 /**
- * Tests the border behavior of a pacman game. 
+ * Tests the border behavior of a pacman game.
  */
 
 public class PacmanGameTest {
+	
     private final Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
     private final Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
     @Test

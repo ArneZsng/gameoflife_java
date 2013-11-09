@@ -3,8 +3,11 @@ package de.makaitghahramanianzeising.controller;
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
 
 import de.makaitghahramanianzeising.enums.ModeEnum;
-import de.makaitghahramanianzeising.model.*;
-import de.makaitghahramanianzeising.view.GameViewSWT;
+import de.makaitghahramanianzeising.model.Cell;
+import de.makaitghahramanianzeising.model.AbstractGame;
+import de.makaitghahramanianzeising.model.PacmanGame;
+import de.makaitghahramanianzeising.model.WallOfDeathGame;
+import de.makaitghahramanianzeising.view.GameSWT;
 import de.makaitghahramanianzeising.view.components.GameControls;
 
 import org.eclipse.swt.events.SelectionAdapter;
@@ -20,30 +23,30 @@ import org.eclipse.swt.widgets.Listener;
  * is reset.
  */
 
-public class GameController {
+public class Game {
 
-    private SettingsController mySettingsController;
+    private Settings mySettingsController;
     private Thread myGameThread;
-    private Game myGame;
-    private GameViewSWT myGameView;
+    private AbstractGame myGame;
+    private GameSWT myGameSWT;
     private GameControls myGameControls;
     private Display display = new Display();
 
-    public GameController() {
-        initialize();
+    public Game() {
+        init();
     }
 
-    private void initialize() {
-        mySettingsController = new SettingsController(display);
+    private void init() {
+        mySettingsController = new Settings(display);
         if (mySettingsController.isValid()) {
             initGame();
         }
     }
 
     private void initGame() {
-    	Cell[][] board = mySettingsController.getBoard();
-    	ModeEnum mode = mySettingsController.getMode();
-    	BoardTypeEnum boardType = mySettingsController.getBoardType();
+        Cell[][] board = mySettingsController.getBoard();
+        ModeEnum mode = mySettingsController.getMode();
+        BoardTypeEnum boardType = mySettingsController.getBoardType();
         myGame = createGame(board, mode, boardType);
         myGameThread = new Thread(myGame);
         myGameThread.start();
@@ -51,26 +54,26 @@ public class GameController {
     }
 
     private void initGameView() {
-        myGameView = new GameViewSWT(display, myGame);
-        myGameControls = myGameView.getControls();
+        myGameSWT = new GameSWT(display, myGame);
+        myGameControls = myGameSWT.getControls();
         initGameViewListeners();
-        myGameView.start();
+        myGameSWT.start();
     }
 
     private void initGameViewListeners() {
         myGameControls.addNewGameListener(new NewGameListener());
         myGameControls.addSpeedSliderListener(new SpeedSliderListener());
-        myGameView.addCloseButtonListener(new CloseButtonListener());
+        myGameSWT.addCloseButtonListener(new CloseButtonListener());
     }
 
     private void reset() {
         mySettingsController.reset();
         myGame = null;
         myGameThread = null;
-        myGameView = null;
+        myGameSWT = null;
     }
 
-    private Game createGame(Cell[][] board, ModeEnum mode, BoardTypeEnum boardType) {
+    private AbstractGame createGame(Cell[][] board, ModeEnum mode, BoardTypeEnum boardType) {
         Integer[] survives = mode.getSurvives();
         Integer[] revives = mode.getRevives();
         if (boardType == BoardTypeEnum.WALLOFDEATH) {
@@ -90,15 +93,15 @@ public class GameController {
     class NewGameListener extends SelectionAdapter {
         public void widgetSelected(SelectionEvent e) {
             myGameThread.interrupt();
-            myGameView.dispose();
-            initialize();
+            myGameSWT.dispose();
+            init();
         }
     }
 
     class CloseButtonListener implements Listener {
         public void handleEvent(Event e) {
             myGameThread.interrupt();
-            myGameView.dispose();
+            myGameSWT.dispose();
             reset();
         }
     }

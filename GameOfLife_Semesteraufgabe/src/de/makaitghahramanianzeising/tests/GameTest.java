@@ -9,7 +9,7 @@ import org.junit.Test;
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
 import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
-import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.model.AbstractGame;
 import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
 /**
@@ -18,7 +18,7 @@ import de.makaitghahramanianzeising.model.WallOfDeathGame;
 
 public class GameTest {
 
-    private Game game;
+    private AbstractGame game;
 
     @Test
     public void shouldBeGameOver() {

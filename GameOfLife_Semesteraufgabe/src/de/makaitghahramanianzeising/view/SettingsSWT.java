@@ -30,7 +30,8 @@ import org.eclipse.swt.widgets.Shell;
  * and the initial configuration of the board.
  */
 
-public class SettingsViewSWT {
+public class SettingsSWT {
+	
     private final Shell shell;
     private final Display display;
     private Button btnSelectFile;
@@ -47,7 +48,7 @@ public class SettingsViewSWT {
     private String filePath;
 
 
-    public SettingsViewSWT(Display display) {
+    public SettingsSWT(Display display) {
         this.display = display;
         shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
         shell.setText("Game of Life");
@@ -146,8 +147,7 @@ public class SettingsViewSWT {
     private void initBtnCreateGame() {
         btnCreateGame = new Button(shell, SWT.NONE);
         btnCreateGame.setText("Spiel erstellen");
-        btnCreateGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-                true, false));
+        btnCreateGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
     }
 
 
@@ -157,6 +157,24 @@ public class SettingsViewSWT {
 
     public Shell getShell() {
         return shell;
+    }
+    
+    public ModeEnum getSelectedMode() throws GOLException {
+        int i = comboMode.getSelectionIndex();
+        if (i == -1) {
+            throw new GOLException("Bitte Spielmodus auswählen.");
+        } else {
+            return availableModes[i];
+        }
+    }
+
+    public BoardTypeEnum getSelectedBoardType() throws GOLException {
+        int i = comboBoard.getSelectionIndex();
+        if (i == -1) {
+            throw new GOLException("Bitte Art des Spielbretts auswählen.");
+        } else {
+            return availableBoardTypes[i];
+        }
     }
 
     public void start() {
@@ -187,23 +205,5 @@ public class SettingsViewSWT {
 
     public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
         btnCreateGame.addSelectionListener(listenForCreateGameButton);
-    }
-
-    public ModeEnum getSelectedMode() throws GOLException {
-        int i = comboMode.getSelectionIndex();
-        if (i == -1) {
-            throw new GOLException("Bitte Spielmodus auswählen.");
-        } else {
-            return availableModes[i];
-        }
-    }
-
-    public BoardTypeEnum getSelectedBoardType() throws GOLException {
-        int i = comboBoard.getSelectionIndex();
-        if (i == -1) {
-            throw new GOLException("Bitte Art des Spielbretts auswählen.");
-        } else {
-            return availableBoardTypes[i];
-        }
     }
 }

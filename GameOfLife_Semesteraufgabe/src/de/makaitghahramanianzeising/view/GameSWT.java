@@ -1,6 +1,6 @@
 package de.makaitghahramanianzeising.view;
 
-import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.model.AbstractGame;
 import de.makaitghahramanianzeising.view.components.BoardCanvas;
 import de.makaitghahramanianzeising.view.components.GameControls;
 
@@ -15,18 +15,18 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Renders the game view to display the current
- * status of the game and allowing user interaction. 
+ * status of the game and allowing user interaction.
  */
 
-public final class GameViewSWT {
+public final class GameSWT {
 
     private final Shell shell;
     private final Display display;
-    private final Game game;
+    private final AbstractGame game;
     private GameControls controls;
     private BoardCanvas canvas;
 
-    public GameViewSWT(Display display, Game game) {
+    public GameSWT(Display display, AbstractGame game) {
         this.display = display;
         this.game = game;
         shell = new Shell();
@@ -39,6 +39,7 @@ public final class GameViewSWT {
     private void init() {
         shell.setLayout(new GridLayout());
         controls = new GameControls(shell, game);
+        controls.initControls();
         canvas = new BoardCanvas(shell, game);
     }
 

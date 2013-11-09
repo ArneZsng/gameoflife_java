@@ -1,6 +1,6 @@
 package de.makaitghahramanianzeising.view.components;
 
-import de.makaitghahramanianzeising.model.Game;
+import de.makaitghahramanianzeising.model.AbstractGame;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -14,21 +14,22 @@ import org.eclipse.swt.widgets.Slider;
 
 /**
  * Renders the game controls for displaying the
- * user's input options on the game view. 
+ * user's input options on the game view.
  */
 
 public class GameControls extends Composite {
-    public static final int CONTROLS_HEIGHT = 50;
+    
+	public static final int CONTROLS_HEIGHT = 50;
+    
+    private final AbstractGame game;
     private Button btnNewGame;
-    private Game game;
     private Label lblRound;
     private Label lblSpeed;
     private Slider sldSpeed;
 
-    public GameControls(Shell shell, Game game) {
+    public GameControls(Shell shell, AbstractGame game) {
         super(shell, SWT.NULL);
         this.game = game;
-        initControls();
     }
 
     public void initControls() {

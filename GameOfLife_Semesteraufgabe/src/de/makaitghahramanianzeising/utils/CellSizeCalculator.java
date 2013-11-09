@@ -1,12 +1,13 @@
 package de.makaitghahramanianzeising.utils;
 
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Shell;
 
 import de.makaitghahramanianzeising.view.components.GameControls;
 /**
  * Calculates the size of the representation of a cell
- * in pixels for the view. 
+ * in pixels for the view.
  */
 
 public class CellSizeCalculator {
@@ -39,12 +40,13 @@ public class CellSizeCalculator {
     }
 
     private Dimension getMaxCanvas() {
-    //TODO defaultMargin
-        int defaultMargin = 5;
+        GridLayout defaultGrid = new GridLayout();
+        int defaultMarginHeight = defaultGrid.marginHeight;
+        int defaultMarginWidth = defaultGrid.marginWidth;
         Rectangle clientArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
         Dimension shellFrameSize = getShellFrameSize();
-        int maxCanvasHeight = clientArea.height - shellFrameSize.getHeight() - GameControls.CONTROLS_HEIGHT - 3 * defaultMargin;
-        int maxCanvasWidth = clientArea.width - shellFrameSize.getWidth() - 2 * defaultMargin;
+        int maxCanvasHeight = clientArea.height - shellFrameSize.getHeight() - GameControls.CONTROLS_HEIGHT - 3 * defaultMarginHeight;
+        int maxCanvasWidth = clientArea.width - shellFrameSize.getWidth() - 2 * defaultMarginWidth;
         return new Dimension(maxCanvasWidth, maxCanvasHeight);
     }
 

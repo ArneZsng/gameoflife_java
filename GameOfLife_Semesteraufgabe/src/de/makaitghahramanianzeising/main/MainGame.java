@@ -1,6 +1,6 @@
 package de.makaitghahramanianzeising.main;
 
-import de.makaitghahramanianzeising.controller.GameController;
+import de.makaitghahramanianzeising.controller.Game;
 
 /**
  * Main method to initialize the game.
@@ -9,7 +9,7 @@ import de.makaitghahramanianzeising.controller.GameController;
 public class MainGame {
 
     public static void main(String[] args) {
-        new GameController();
+        new Game();
     }
 
 }

@@ -1,6 +1,7 @@
 package de.makaitghahramanianzeising.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,8 +13,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import org.junit.*;
-import org.junit.rules.*;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import de.makaitghahramanianzeising.exceptions.GOLException;
 import de.makaitghahramanianzeising.model.Cell;

@@ -11,7 +11,7 @@ import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.utils.FileParser;
 import de.makaitghahramanianzeising.utils.ValidBean;
 import de.makaitghahramanianzeising.view.ErrorMessageBox;
-import de.makaitghahramanianzeising.view.SettingsViewSWT;
+import de.makaitghahramanianzeising.view.SettingsSWT;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -23,24 +23,25 @@ import org.eclipse.swt.widgets.Display;
  * with an error message if the input is not valid.
  */
 
-public class SettingsController {
-    private SettingsViewSWT mySettingsView;
+public class Settings {
+    
+	private SettingsSWT mySettingsSWT;
     private FileParser myFileParser;
     private ModeEnum myModeEnum;
     private BoardTypeEnum myBoardTypeEnum;
     private ValidBean validBean;
 
-    public SettingsController(Display display) {
+    public Settings(Display display) {
         validBean = new ValidBean(false, null);
-        mySettingsView = new SettingsViewSWT(display);
-        mySettingsView.addSelectFileListener(new SelectFileListener());
-        mySettingsView.addCreateGameListener(new CreateGameListener());
-        mySettingsView.start();
+        mySettingsSWT = new SettingsSWT(display);
+        mySettingsSWT.addSelectFileListener(new SelectFileListener());
+        mySettingsSWT.addCreateGameListener(new CreateGameListener());
+        mySettingsSWT.start();
     }
 
     public void reset() {
         validBean = new ValidBean(false, null);
-        mySettingsView.start();
+        mySettingsSWT.start();
     }
 
     public ModeEnum getMode() {
@@ -63,15 +64,15 @@ public class SettingsController {
         try {
             throw validBean.getExceptionOnInvalid();
         } catch (Exception e) {
-            new ErrorMessageBox(mySettingsView.getShell(), e.getMessage());
+            new ErrorMessageBox(mySettingsSWT.getShell(), e.getMessage());
         }
     }
 
     private void saveSettings() {
         try {
-            myModeEnum = mySettingsView.getSelectedMode();
-            myBoardTypeEnum = mySettingsView.getSelectedBoardType();
-            myFileParser = new FileParser(mySettingsView.getFilePath());
+            myModeEnum = mySettingsSWT.getSelectedMode();
+            myBoardTypeEnum = mySettingsSWT.getSelectedBoardType();
+            myFileParser = new FileParser(mySettingsSWT.getFilePath());
             myFileParser.parse();
             validBean = new ValidBean(true, null);
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class SettingsController {
 
     class SelectFileListener extends SelectionAdapter {
         public void widgetSelected(SelectionEvent e) {
-            mySettingsView.selectFile();
+            mySettingsSWT.selectFile();
         }
     }
 
@@ -91,7 +92,7 @@ public class SettingsController {
             if (!isValid()) {
                 throwErrorMessage(validBean);
             } else {
-               mySettingsView.dispose();
+               mySettingsSWT.dispose();
             }
         }
     }
