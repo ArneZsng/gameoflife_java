@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -29,7 +30,7 @@ public class FileParserTest {
     public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
-    public void shouldThrowErrorWhenFileTypeIsNotGol() throws Exception {
+    public void shouldThrowErrorWhenFileTypeIsNotGol() throws IOException {
         //assume
         File tmpFile = folder.newFile("file.txt");
         //given
@@ -46,7 +47,7 @@ public class FileParserTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenFileSizeTooBig() throws Exception {
+    public void shouldThrowErrorWhenFileSizeTooBig() throws IOException {
         //assume
         File tmpFile = folder.newFile(FILENAME);
         //given
@@ -66,7 +67,7 @@ public class FileParserTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenFileIsEmpty() throws Exception {
+    public void shouldThrowErrorWhenFileIsEmpty() throws IOException {
         //assume
         File tmpFile = folder.newFile(FILENAME);
         //given
@@ -83,7 +84,7 @@ public class FileParserTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenBoardDimensionsWrong() throws Exception {
+    public void shouldThrowErrorWhenBoardDimensionsWrong() throws IOException {
         //assume
         File tmpFile = folder.newFile(FILENAME);
         OutputStreamWriter writer = new OutputStreamWriter(
@@ -111,7 +112,7 @@ public class FileParserTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenCharactersAreInvalid() throws Exception {
+    public void shouldThrowErrorWhenCharactersAreInvalid() throws IOException {
         //assume
         File tmpFile = folder.newFile(FILENAME);
         OutputStreamWriter writer = new OutputStreamWriter(
@@ -137,7 +138,7 @@ public class FileParserTest {
 
 
     @Test 
-    public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
+    public void shouldThrowErrorWhenFileCannotBeOpened() throws IOException {
         //assume 
         File tmpFile= folder.newFile(FILENAME);
         //given
@@ -155,7 +156,7 @@ public class FileParserTest {
     }
 
     @Test 
-    public void shouldThrowErrorWhenFileIsNotSelected() throws Exception {
+    public void shouldThrowErrorWhenFileIsNotSelected() throws IOException {
         //when 
         try {
             FileParser fileParser = new FileParser(null);

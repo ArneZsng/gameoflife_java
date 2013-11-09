@@ -23,6 +23,9 @@ public class GameControls extends Composite {
     public GameControls(Shell shell, Game game) {
         super(shell, SWT.NULL);
         this.game = game;
+    }
+    
+    public void initControls() {
         setLayout(new GridLayout(10,false));
         GridData gdControlsComposite = new GridData();
         gdControlsComposite.heightHint = controlsHeight;

@@ -21,50 +21,6 @@ public final class GameViewSWT {
     private GameControls controls;
     private BoardCanvas canvas;
     private final Game game;
-
-
-    public GameViewSWT(Display display, Game game) {
-        this.display = display;
-        shell = new Shell();
-        shell.setText("Game of Life");
-        this.game = game;
-        game.addObserver(new GameObserver());
-        init();
-        shell.pack();
-    }
-
-    private void init() {
-        shell.setLayout(new GridLayout());
-        controls = new GameControls(shell, game);
-        canvas = new BoardCanvas(shell, game);
-    }
-
-    public GameControls getControls() {
-        return controls;
-    }
-
-    public void addCloseButtonListener(Listener listenForCloseButton) {		
-        shell.addListener(SWT.Close, listenForCloseButton);
-    }
-
-    public void start() {
-        shell.open();
-        while (!shell.isDisposed()) {
-            if (!display.readAndDispatch()) {
-                display.sleep();
-            }
-        }
-        shell.dispose();
-    }
-
-    public void updateView() {
-        controls.setRoundLabel(game.getRoundAsString());
-        canvas.redraw();
-    }
-
-    public void dispose() {
-        shell.dispose();
-    }
 	
 	public GameViewSWT(Display display, Game game) {
 		this.display = display;
@@ -79,7 +35,8 @@ public final class GameViewSWT {
 	private void init() {
 		shell.setLayout(new GridLayout());
 		controls = new GameControls(shell, game);
-		canvas = new BoardCanvas(shell, game);
+		controls.initControls();
+		new BoardCanvas(shell, game);
 	}
 	
 	public GameControls getControls() {

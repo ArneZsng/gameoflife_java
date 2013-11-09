@@ -41,7 +41,7 @@ public class BoardCanvas extends Canvas {
     }
 
     private void paintCells() {
-        addPaintListener(new PaintBoardListener() {});
+        addPaintListener(new PaintBoardListener());
     }
 
     class PaintBoardListener implements PaintListener {
