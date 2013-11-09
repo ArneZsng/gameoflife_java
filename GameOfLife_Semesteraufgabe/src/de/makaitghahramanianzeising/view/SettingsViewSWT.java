@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Shell;
  * Renders the settings view to allow the user
  * configure the game prior to start. Allows
  * selecting the game mode, the board type
- * and the initial layout of the board.
+ * and the initial configuration of the board.
  */
 
 public class SettingsViewSWT {
