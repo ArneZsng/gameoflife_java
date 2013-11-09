@@ -24,8 +24,8 @@ import org.eclipse.swt.widgets.Display;
  */
 
 public class Settings {
-    
-	private SettingsSWT mySettingsSWT;
+
+    private SettingsSWT mySettingsSWT;
     private FileParser myFileParser;
     private ModeEnum myModeEnum;
     private BoardTypeEnum myBoardTypeEnum;
@@ -92,7 +92,7 @@ public class Settings {
             if (!isValid()) {
                 throwErrorMessage(validBean);
             } else {
-               mySettingsSWT.dispose();
+                mySettingsSWT.dispose();
             }
         }
     }

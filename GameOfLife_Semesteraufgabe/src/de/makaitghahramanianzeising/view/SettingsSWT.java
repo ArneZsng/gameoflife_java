@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Shell;
  */
 
 public class SettingsSWT {
-	
+
     private final Shell shell;
     private final Display display;
     private Button btnSelectFile;
@@ -83,7 +83,7 @@ public class SettingsSWT {
         for (ModeEnum mode : modes) {
             modesString[i] = mode.getName();
             i++;
-            }
+        }
         comboMode.setItems(modesString);
         comboMode.select(0);
     }
@@ -107,7 +107,7 @@ public class SettingsSWT {
         for (BoardTypeEnum board : boardTypes) {
             boardsString[i] = board.getName();
             i++;
-            }
+        }
         comboBoard.setItems(boardsString);
         comboBoard.select(0);
     }
@@ -158,7 +158,7 @@ public class SettingsSWT {
     public Shell getShell() {
         return shell;
     }
-    
+
     public ModeEnum getSelectedMode() throws GOLException {
         int i = comboMode.getSelectionIndex();
         if (i == -1) {

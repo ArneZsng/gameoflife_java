@@ -43,7 +43,7 @@ public class PacmanGame extends AbstractGame {
 
     private int ensurePositiveCoordinate(int i, int dimension) {
         int iPositive = i;
-    	if (iPositive == 0) {
+        if (iPositive == 0) {
             iPositive += dimension;
         }
         return iPositive;

@@ -18,9 +18,9 @@ import org.eclipse.swt.widgets.Slider;
  */
 
 public class GameControls extends Composite {
-    
-	public static final int CONTROLS_HEIGHT = 50;
-    
+
+    public static final int CONTROLS_HEIGHT = 50;
+
     private final AbstractGame game;
     private Button btnNewGame;
     private Label lblRound;
