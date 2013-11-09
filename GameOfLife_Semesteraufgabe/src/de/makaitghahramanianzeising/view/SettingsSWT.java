@@ -116,16 +116,18 @@ public class SettingsSWT {
         compInitialBoard = new Composite(shell, SWT.NULL);
         compInitialBoard.setLayout(new GridLayout(2, false));
         compInitialBoard.setLayoutData(new GridData(GridData.FILL_BOTH));
-
-        Label lblUpload = new Label(compInitialBoard, SWT.NONE);
-        lblUpload.setText("Bitte laden Sie den Anfangszustand hoch:");
-
+        
         GridData gdUploadLabel = new GridData();
         gdUploadLabel.horizontalSpan = 2;
+        Label lblUpload = new Label(compInitialBoard, SWT.NONE);
+        lblUpload.setText("Bitte laden Sie den Anfangszustand hoch:");
         lblUpload.setLayoutData(gdUploadLabel);
 
+        GridData gdBoardFileLabel = new GridData(SWT.FILL, SWT.CENTER, true, false);
+        gdUploadLabel.horizontalSpan = 2;
         lblBoardFileName = new Label(compInitialBoard, SWT.NONE);
         lblBoardFileName.setText("Bitte Datei auswählen");
+        lblBoardFileName.setLayoutData(gdBoardFileLabel);
 
         initFileSelectorDialog();
         initBtnSelectFile();
@@ -139,9 +141,11 @@ public class SettingsSWT {
     }
 
     private void initBtnSelectFile() {
+        GridData gdSelectFileButton = new GridData(GridData.END, GridData.CENTER, true, false);
+        gdSelectFileButton.horizontalSpan = 2;
         btnSelectFile = new Button(compInitialBoard, SWT.NONE);
         btnSelectFile.setText("Datei auswählen");
-        btnSelectFile.setLayoutData(new GridData(GridData.END, GridData.CENTER, true, false));
+        btnSelectFile.setLayoutData(gdSelectFileButton);
     }
 
     private void initBtnCreateGame() {
@@ -194,7 +198,10 @@ public class SettingsSWT {
     public void selectFile() {
         filePath = dlgFileSelector.open();
         if (filePath != null) {
-            final String name = dlgFileSelector.getFileName();
+            String name = dlgFileSelector.getFileName();
+            if (name.length() > 50) {
+                name = name.substring(0, 47) + "...";
+            }
             lblBoardFileName.setText(name);
         }
     }
