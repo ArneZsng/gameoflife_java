@@ -142,7 +142,7 @@ public class FileParserTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenFileCannotBeOpened() throws Exception {
+    public void shouldThrowErrorWhenFileCannotBeOpened() throws IOException {
         //given
         File tmpFile = folder.newFile(FILENAME);
         String filePathString = tmpFile.getAbsolutePath();
@@ -159,7 +159,7 @@ public class FileParserTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenFileIsNotSelected() throws Exception {
+    public void shouldThrowErrorWhenFileIsNotSelected() {
         //when
         try {
             FileParser fileParser = new FileParser(null);
@@ -173,7 +173,7 @@ public class FileParserTest {
 
 
     @Test
-    public void shouldBuildCorrectBoard() throws Exception {
+    public void shouldBuildCorrectBoard() throws IOException, GOLException {
         //assume
         Cell[][] board = new Cell[3][3];
         board[0][0] = new Cell(false);

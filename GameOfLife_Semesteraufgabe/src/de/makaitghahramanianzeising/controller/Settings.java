@@ -100,7 +100,7 @@ public class Settings {
             if (!isValid()) {
                 throwErrorMessage(validBean);
             } else {
-               mySettingsSWT.dispose();
+                mySettingsSWT.dispose();
             }
         }
     }
