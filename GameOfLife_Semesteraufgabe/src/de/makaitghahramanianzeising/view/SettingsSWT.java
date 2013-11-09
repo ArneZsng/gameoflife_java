@@ -5,6 +5,7 @@ package de.makaitghahramanianzeising.view;
  *
  */
 
+import java.io.File;
 import java.util.EnumSet;
 
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
@@ -38,8 +39,7 @@ public class SettingsSWT {
     private Button btnCreateGame;
     private Combo comboMode;
     private Combo comboBoard;
-    private Composite compBoardType;
-    private Composite compGameMode;
+    private Composite compOptions;
     private Composite compInitialBoard;
     private Label lblBoardFileName;
     private FileDialog dlgFileSelector;
@@ -57,31 +57,31 @@ public class SettingsSWT {
     }
 
     private void init() {
-        shell.setLayout(new GridLayout());
-        initGameModeComposite();
+    	GridLayout shellGrid = new GridLayout();
+    	shellGrid.marginHeight = 10;
+        shell.setLayout(shellGrid);
+        compOptions = new Composite(shell, SWT.NULL);
+        compOptions.setLayout(shellGrid);
+        initGameMode();
         initBoardTypeComposite();
         initInitialBoardComposite();
         initBtnCreateGame();
     }
 
-    private void initGameModeComposite() {
-        compGameMode = new Composite(shell, SWT.NULL);
-        compGameMode.setLayout(new GridLayout());
-
-        Label lblGameMode = new Label(compGameMode, SWT.NONE);
+    private void initGameMode() {
+        Label lblGameMode = new Label(compOptions, SWT.NONE);
         lblGameMode.setText("Bitte wählen Sie den Spielmodus:");
-
         initComboForGameMode();
     }
 
     private void initComboForGameMode() {
         EnumSet<ModeEnum> modes =  EnumSet.allOf(ModeEnum.class);
-        comboMode = new Combo(compGameMode, SWT.READ_ONLY);
+        comboMode = new Combo(compOptions, SWT.READ_ONLY);
         availableModes = modes.toArray(new ModeEnum[modes.size()]);
         String[] modesString = new String[modes.size()];
         int i = 0;
         for (ModeEnum mode : modes) {
-            modesString[i] = mode.getName();
+            modesString[i] = mode.getLabel();
             i++;
             }
         comboMode.setItems(modesString);
@@ -89,10 +89,7 @@ public class SettingsSWT {
     }
 
     private void initBoardTypeComposite() {
-        compBoardType = new Composite(shell, SWT.NULL);
-        compBoardType.setLayout(new GridLayout());
-
-        Label lblBoardType = new Label(compBoardType, SWT.NONE);
+        Label lblBoardType = new Label(compOptions, SWT.NONE);
         lblBoardType.setText("Bitte wählen Sie die Art des Spielbretts:");
 
         initBtnsForBoardType();
@@ -100,12 +97,12 @@ public class SettingsSWT {
 
     private void initBtnsForBoardType() {
         EnumSet<BoardTypeEnum> boardTypes =  EnumSet.allOf(BoardTypeEnum.class);
-        comboBoard = new Combo(compBoardType, SWT.READ_ONLY);
+        comboBoard = new Combo(compOptions, SWT.READ_ONLY);
         availableBoardTypes = boardTypes.toArray(new BoardTypeEnum[boardTypes.size()]);
         String[] boardsString = new String[boardTypes.size()];
         int i = 0;
         for (BoardTypeEnum board : boardTypes) {
-            boardsString[i] = board.getName();
+            boardsString[i] = board.getLabel();
             i++;
             }
         comboBoard.setItems(boardsString);
@@ -151,7 +148,7 @@ public class SettingsSWT {
     }
 
 
-    public String getFilePath() {
+    public String getFile() {
         return filePath;
     }
 
@@ -175,6 +172,14 @@ public class SettingsSWT {
         } else {
             return availableBoardTypes[i];
         }
+    }
+    
+    public void reloadSettings(String filePath, ModeEnum myMode, BoardTypeEnum myBoardType) {
+        this.filePath = filePath;
+        String fileName = new File(filePath).getName();
+        lblBoardFileName.setText(fileName);	
+        reloadMode(myMode);
+        reloadBoardType(myBoardType);
     }
 
     public void start() {
@@ -205,5 +210,27 @@ public class SettingsSWT {
 
     public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
         btnCreateGame.addSelectionListener(listenForCreateGameButton);
+    }
+    
+    private void reloadBoardType(BoardTypeEnum myBoardType) {
+        String[] boardTypes = comboBoard.getItems();
+        String label = myBoardType.getLabel();
+        for (int index = 0; index < boardTypes.length; index++) {
+            if (label.equals(boardTypes[index])) {
+                comboBoard.select(index);
+                break;
+    		}
+    	}
+    }
+    
+    private void reloadMode(ModeEnum myMode) {
+        String[] modes = comboMode.getItems();
+        String label = myMode.getLabel();
+        for (int index = 0; index < modes.length; index++) {
+            if (label.equals(modes[index])) {
+                comboMode.select(index);
+                break;
+    		}
+    	}
     }
 }

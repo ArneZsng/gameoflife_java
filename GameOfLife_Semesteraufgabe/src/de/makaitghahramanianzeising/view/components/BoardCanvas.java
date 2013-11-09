@@ -2,6 +2,7 @@ package de.makaitghahramanianzeising.view.components;
 
 import de.makaitghahramanianzeising.model.AbstractGame;
 import de.makaitghahramanianzeising.utils.CellSizeCalculator;
+import de.makaitghahramanianzeising.view.ErrorMessageBox;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
@@ -27,12 +28,17 @@ public class BoardCanvas extends Canvas {
         int boardWidth = game.getBoardWidth();
         int boardHeight = game.getBoardHeight();
         cellSize = new CellSizeCalculator(shell).getPixelSize(boardWidth, boardHeight);
-        GC gc = new GC(this);
+        if (cellSize >= 2) {
+            GC gc = new GC(this);
 
-        setLayoutData(initCanvasGridData(boardWidth, boardHeight));
-        setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
-        drawBackground(gc, 0, 0, boardWidth * cellSize, boardHeight * cellSize);
-        paintCells();
+            setLayoutData(initCanvasGridData(boardWidth, boardHeight));
+            setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+            drawBackground(gc, 0, 0, boardWidth * cellSize, boardHeight * cellSize);
+            paintCells();
+        } else {
+        	new ErrorMessageBox(shell, "Die Auflösung reicht leider nicht aus, um das Spielfeld anzuzeigen.");
+        	shell.dispose();
+        }
     }
 
     private GridData initCanvasGridData(int boardWidth, int boardHeight) {

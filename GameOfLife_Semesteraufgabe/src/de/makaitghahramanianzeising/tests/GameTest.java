@@ -281,7 +281,7 @@ public class GameTest {
         ModeEnum mode = ModeEnum.GAMEOFLIFE;
         //then
         String name = "Game of Life";
-        assertTrue(name.equals(mode.getName()));
+        assertTrue(name.equals(mode.getLabel()));
     }
 
     @Test
@@ -290,7 +290,7 @@ public class GameTest {
         BoardTypeEnum boardType = BoardTypeEnum.WALLOFDEATH;
         String name = "Wall of Death";
         //then
-        assertTrue(name.equals(boardType.getName()));
+        assertTrue(name.equals(boardType.getLabel()));
     }
 
     @Test

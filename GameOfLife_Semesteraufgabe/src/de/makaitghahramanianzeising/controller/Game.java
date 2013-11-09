@@ -1,7 +1,6 @@
 package de.makaitghahramanianzeising.controller;
 
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
-
 import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
 import de.makaitghahramanianzeising.model.AbstractGame;
@@ -33,11 +32,11 @@ public class Game {
     private Display display = new Display();
 
     public Game() {
+        mySettingsController = new Settings(display);
         init();
     }
 
     private void init() {
-        mySettingsController = new Settings(display);
         if (mySettingsController.isValid()) {
             initGame();
         }
@@ -55,9 +54,13 @@ public class Game {
 
     private void initGameView() {
         myGameSWT = new GameSWT(display, myGame);
-        myGameControls = myGameSWT.getControls();
-        initGameViewListeners();
-        myGameSWT.start();
+        if (!myGameSWT.isDisposed()) {
+            myGameControls = myGameSWT.getControls();
+            initGameViewListeners();
+            myGameSWT.start();
+        } else {
+        	reloadSettings();
+        }
     }
 
     private void initGameViewListeners() {
@@ -66,11 +69,12 @@ public class Game {
         myGameSWT.addCloseButtonListener(new CloseButtonListener());
     }
 
-    private void reset() {
-        mySettingsController.reset();
+    public void reloadSettings() {
+        mySettingsController.reloadSettings();
         myGame = null;
         myGameThread = null;
         myGameSWT = null;
+        init();
     }
 
     private AbstractGame createGame(Cell[][] board, ModeEnum mode, BoardTypeEnum boardType) {
@@ -94,7 +98,7 @@ public class Game {
         public void widgetSelected(SelectionEvent e) {
             myGameThread.interrupt();
             myGameSWT.dispose();
-            init();
+            reloadSettings();
         }
     }
 
@@ -102,7 +106,7 @@ public class Game {
         public void handleEvent(Event e) {
             myGameThread.interrupt();
             myGameSWT.dispose();
-            reset();
+            reloadSettings();
         }
     }
 

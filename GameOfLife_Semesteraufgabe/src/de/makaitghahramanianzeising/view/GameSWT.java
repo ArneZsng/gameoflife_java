@@ -1,5 +1,6 @@
 package de.makaitghahramanianzeising.view;
 
+import de.makaitghahramanianzeising.exceptions.GOLException;
 import de.makaitghahramanianzeising.model.AbstractGame;
 import de.makaitghahramanianzeising.view.components.BoardCanvas;
 import de.makaitghahramanianzeising.view.components.GameControls;
@@ -32,8 +33,10 @@ public final class GameSWT {
         shell = new Shell();
         shell.setText("Game of Life");
         init();
-        game.addObserver(new GameObserver());
-        shell.pack();
+        if (!shell.isDisposed()) {
+            game.addObserver(new GameObserver());
+            shell.pack();	
+        }
     }
 
     private void init() {
@@ -57,6 +60,10 @@ public final class GameSWT {
         shell.dispose();
     }
 
+    public boolean isDisposed() {
+    	return shell.isDisposed();
+    }
+    
     public void dispose() {
         shell.dispose();
     }

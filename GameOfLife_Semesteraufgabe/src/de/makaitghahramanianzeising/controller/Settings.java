@@ -25,13 +25,16 @@ import org.eclipse.swt.widgets.Display;
 
 public class Settings {
     
+	private Display display;
 	private SettingsSWT mySettingsSWT;
     private FileParser myFileParser;
-    private ModeEnum myModeEnum;
-    private BoardTypeEnum myBoardTypeEnum;
+    private ModeEnum myMode;
+    private BoardTypeEnum myBoardType;
+    private String myBoardFile;
     private ValidBean validBean;
 
     public Settings(Display display) {
+    	this.display = display;
         validBean = new ValidBean(false, null);
         mySettingsSWT = new SettingsSWT(display);
         mySettingsSWT.addSelectFileListener(new SelectFileListener());
@@ -39,23 +42,27 @@ public class Settings {
         mySettingsSWT.start();
     }
 
-    public void reset() {
-        validBean = new ValidBean(false, null);
-        mySettingsSWT.start();
-    }
-
     public ModeEnum getMode() {
-        return myModeEnum;
+        return myMode;
     }
 
     public BoardTypeEnum getBoardType() {
-        return myBoardTypeEnum;
+        return myBoardType;
     }
 
     public Cell[][] getBoard() {
         return myFileParser.getBoard();
     }
 
+    public void reloadSettings() {
+        validBean = new ValidBean(false, null);
+        mySettingsSWT = new SettingsSWT(display);
+        mySettingsSWT.reloadSettings(myBoardFile, myMode, myBoardType);
+        mySettingsSWT.addSelectFileListener(new SelectFileListener());
+        mySettingsSWT.addCreateGameListener(new CreateGameListener());
+        mySettingsSWT.start();
+    }
+    
     public boolean isValid() {
         return validBean.isValid();
     }
@@ -70,9 +77,10 @@ public class Settings {
 
     private void saveSettings() {
         try {
-            myModeEnum = mySettingsSWT.getSelectedMode();
-            myBoardTypeEnum = mySettingsSWT.getSelectedBoardType();
-            myFileParser = new FileParser(mySettingsSWT.getFilePath());
+            myMode = mySettingsSWT.getSelectedMode();
+            myBoardType = mySettingsSWT.getSelectedBoardType();
+            myBoardFile = mySettingsSWT.getFile();
+            myFileParser = new FileParser(myBoardFile);
             myFileParser.parse();
             validBean = new ValidBean(true, null);
         } catch (Exception e) {
