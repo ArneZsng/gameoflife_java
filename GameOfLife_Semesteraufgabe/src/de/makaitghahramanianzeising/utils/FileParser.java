@@ -25,7 +25,7 @@ public class FileParser {
     public Cell[][] getBoard() {
         return board;
     }
-
+    
     public void parse() throws GOLException {
         try {
             checkFile();
@@ -56,8 +56,7 @@ public class FileParser {
     }
 
     private boolean fileSizeTooBig() throws IOException {
-        double bytes = Files.size(filePath);
-        return bytes >= 250000;
+        return Files.size(filePath) >= 250000;
     }
 
     private boolean fileIsEmpty() throws IOException {

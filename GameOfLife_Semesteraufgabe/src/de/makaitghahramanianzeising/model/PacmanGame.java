@@ -14,14 +14,14 @@ public class PacmanGame extends Game {
     @Override
     public int numberOfLivingNeighbors(int x, int y) {
         int numberOfLivingNeighbors = 0;
-        x = ensurePositiveCoordinate(x, getWidth());
-        y = ensurePositiveCoordinate(y, getHeight());
+        x = ensurePositiveCoordinate(x, getBoardWidth());
+        y = ensurePositiveCoordinate(y, getBoardHeight());
 
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (!(i == 0 && j == 0)) {
-                    int xCoordinate = (x + i) % getWidth();
-                    int yCoordinate = (y + j) % getHeight();
+                    int xCoordinate = (x + i) % getBoardWidth();
+                    int yCoordinate = (y + j) % getBoardHeight();
                     if (board[xCoordinate][yCoordinate].isAlive()) {
                         numberOfLivingNeighbors++;
                     }

@@ -18,8 +18,8 @@ public class BoardCanvas extends Canvas {
     public BoardCanvas(Shell shell, Game game) {
         super(shell, SWT.NONE);
         this.game = game;
-        int boardWidth = game.getWidth();
-        int boardHeight = game.getHeight();
+        int boardWidth = game.getBoardWidth();
+        int boardHeight = game.getBoardHeight();
         cellSize = new CellSizeCalculator(shell).calculate(boardWidth, boardHeight);
         GC gc = new GC(this);
 
@@ -51,8 +51,8 @@ public class BoardCanvas extends Canvas {
         }
 
         private void paintBoard(PaintEvent event) {
-            for (int xCoordinate = 0; xCoordinate < game.getWidth(); xCoordinate++) {
-                for (int yCoordinate = 0; yCoordinate < game.getHeight(); yCoordinate++) {
+            for (int xCoordinate = 0; xCoordinate < game.getBoardWidth(); xCoordinate++) {
+                for (int yCoordinate = 0; yCoordinate < game.getBoardHeight(); yCoordinate++) {
                     paintCell(event, xCoordinate, yCoordinate);
                 }
             }
