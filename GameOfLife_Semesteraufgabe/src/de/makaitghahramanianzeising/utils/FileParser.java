@@ -16,7 +16,8 @@ import de.makaitghahramanianzeising.model.Cell;
  */
 
 public class FileParser {
-
+	
+    private static final int MAX_FILE_SIZE = 250000;
     private Cell[][] board;
     private final Path filePath;
 
@@ -31,7 +32,7 @@ public class FileParser {
     public Cell[][] getBoard() {
         return board;
     }
-    
+
     public void parse() throws GOLException {
         try {
             checkFile();
@@ -62,7 +63,7 @@ public class FileParser {
     }
 
     private boolean fileSizeTooBig() throws IOException {
-        return Files.size(filePath) >= 250000;
+        return Files.size(filePath) >= MAX_FILE_SIZE;
     }
 
     private boolean fileIsEmpty() throws IOException {

@@ -23,10 +23,13 @@ import de.makaitghahramanianzeising.utils.FileParser;
  */
 
 public class PacmanGameTest {
-
+    
     private static final String ENCODING = "UTF-8";
     private static final String FILENAME = "file.gol";
     private static final String LINESEPARATOR = "line.separator";
+    
+    private final Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
+    private final Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
     
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
@@ -40,11 +43,11 @@ public class PacmanGameTest {
         OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream, charsetEncoder);
         try {
             writer.getEncoding();
-            writer.write("000");
+            writer.write("110");
+            writer.write(System.getProperty(LINESEPARATOR));
+            writer.write("110");
             writer.write(System.getProperty(LINESEPARATOR));
             writer.write("111");
-            writer.write(System.getProperty(LINESEPARATOR));
-            writer.write("100");
             writer.flush();
         } finally {
             writer.close();
@@ -53,8 +56,6 @@ public class PacmanGameTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //when
-        Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
-        Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
         PacmanGame game = new PacmanGame(fileParser.getBoard(), survives, revives);
         //then
         assertEquals(6, game.numberOfLivingNeighbors(1, 1));
@@ -85,8 +86,6 @@ public class PacmanGameTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //when
-        Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
-        Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
         PacmanGame game = new PacmanGame(fileParser.getBoard(), survives, revives);
         //then
         assertEquals(5, game.numberOfLivingNeighbors(0, 0));
@@ -110,8 +109,6 @@ public class PacmanGameTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //when
-        Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
-        Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
         PacmanGame game = new PacmanGame(fileParser.getBoard(), survives, revives);
         //then
         assertEquals(5, game.numberOfLivingNeighbors(0, 0));
@@ -139,8 +136,6 @@ public class PacmanGameTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //when
-        Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
-        Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
         PacmanGame game = new PacmanGame(fileParser.getBoard(), survives, revives);
         //then
         assertEquals(3, game.numberOfLivingNeighbors(0, 0));
@@ -166,8 +161,6 @@ public class PacmanGameTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //when
-        Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
-        Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
         PacmanGame game = new PacmanGame(fileParser.getBoard(), survives, revives);
         //then
         assertEquals(6, game.numberOfLivingNeighbors(0, 0));

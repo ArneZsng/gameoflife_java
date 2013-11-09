@@ -13,7 +13,7 @@ import java.util.Set;
 
 public abstract class Game extends Observable implements Runnable {
 
-    private static int MAXROUND = 999999999;
+    private static int MAX_ROUND = 999999999;
     
     protected Cell[][] board;
     protected Set<Integer> survives = new HashSet<Integer>();
@@ -37,17 +37,21 @@ public abstract class Game extends Observable implements Runnable {
     public int getSpeed() {
         return msSpeed;
     }
-    
+
     public void setSpeed(int speed) {
         this.msSpeed = speed;
     }
 
     public String getRoundAsString() {
-        if (round <= MAXROUND) {
+        if (round <= MAX_ROUND) {
             return String.valueOf(round);
         } else {
             return "Unzählbar!";
         }
+    }
+
+    public void setRound(int round) {
+        this.round = round;
     }
 
     public int getBoardWidth() {
@@ -61,11 +65,11 @@ public abstract class Game extends Observable implements Runnable {
     public Cell[][] getBoard() {
         return board;
     }
-    
+
     public boolean cellAlive(int x, int y) {
         return board[x][y].isAlive();
     }
-    
+
     public boolean isInterrupted() {
         return Thread.currentThread().isInterrupted();
     }
@@ -92,7 +96,7 @@ public abstract class Game extends Observable implements Runnable {
         increaseRound();
         notifyObservers();
     }
-    
+
     public boolean isGameOver() {
         for (int i = 0; i < getBoardWidth(); i++) {
             for (int j = 0; j < getBoardHeight(); j++) {
@@ -103,7 +107,7 @@ public abstract class Game extends Observable implements Runnable {
         }
         return true;
     }
-    
+
     public abstract int numberOfLivingNeighbors(int x, int y);
 
     private boolean cellSurvives(int livingNeighbors) {
@@ -115,11 +119,11 @@ public abstract class Game extends Observable implements Runnable {
     }
 
     private void increaseRound() {
-        if (round <= MAXROUND) {
+        if (round <= MAX_ROUND) {
             round++;
         }
     }
-    
+
     private void sleep() {
         try {
             Thread.sleep(msSpeed);

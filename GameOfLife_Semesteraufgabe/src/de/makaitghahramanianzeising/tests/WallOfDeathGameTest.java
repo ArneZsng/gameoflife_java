@@ -28,6 +28,9 @@ public class WallOfDeathGameTest {
     private static final String FILENAME = "file.gol";
     private static final String LINESEPARATOR = "line.separator";
     
+    private final Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
+    private final Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
+    
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
     
@@ -53,8 +56,6 @@ public class WallOfDeathGameTest {
         FileParser fileParser = new FileParser(filePathString);
         fileParser.parse();
         //when
-        Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
-        Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
         WallOfDeathGame game = new WallOfDeathGame(fileParser.getBoard(), survives, revives);
         //then
         assertEquals(8, game.numberOfLivingNeighbors(1, 1));

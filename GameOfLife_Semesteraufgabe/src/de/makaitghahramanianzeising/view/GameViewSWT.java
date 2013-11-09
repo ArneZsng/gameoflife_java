@@ -45,7 +45,7 @@ public final class GameViewSWT {
     public GameControls getControls() {
         return controls;
     }
-    
+
     public void start() {
         shell.open();
         while (!shell.isDisposed()) {

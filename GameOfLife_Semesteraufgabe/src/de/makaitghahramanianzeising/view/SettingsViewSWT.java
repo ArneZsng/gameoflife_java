@@ -32,178 +32,178 @@ import org.eclipse.swt.widgets.Shell;
 
 public class SettingsViewSWT {
     private final Shell shell;
-	private final Display display;
-	private Button btnSelectFile;
-	private Button btnCreateGame;
-	private Combo comboMode;
-	private Combo comboBoard;
-	private Composite compBoardType;
-	private Composite compGameMode;
-	private Composite compInitialBoard;
-	private Label lblBoardFileName;
-	private FileDialog dlgFileSelector;
-	private ModeEnum[] availableModes;
-	private BoardTypeEnum[] availableBoardTypes;
-	private String filePath;
+    private final Display display;
+    private Button btnSelectFile;
+    private Button btnCreateGame;
+    private Combo comboMode;
+    private Combo comboBoard;
+    private Composite compBoardType;
+    private Composite compGameMode;
+    private Composite compInitialBoard;
+    private Label lblBoardFileName;
+    private FileDialog dlgFileSelector;
+    private ModeEnum[] availableModes;
+    private BoardTypeEnum[] availableBoardTypes;
+    private String filePath;
 
 
-	public SettingsViewSWT(Display display) {
-		this.display = display;
-		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
-		shell.setText("Game of Life");
-		shell.setSize(400, 400);
-		init();
-	}
+    public SettingsViewSWT(Display display) {
+        this.display = display;
+        shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
+        shell.setText("Game of Life");
+        shell.setSize(400, 400);
+        init();
+    }
 
-	private void init() {
-		shell.setLayout(new GridLayout());
-		initGameModeComposite();
-		initBoardTypeComposite();
-		initInitialBoardComposite();
-		initBtnCreateGame();
-	}
+    private void init() {
+        shell.setLayout(new GridLayout());
+        initGameModeComposite();
+        initBoardTypeComposite();
+        initInitialBoardComposite();
+        initBtnCreateGame();
+    }
 
-	private void initGameModeComposite() {
-	    compGameMode = new Composite(shell, SWT.NULL);
-		compGameMode.setLayout(new GridLayout());
+    private void initGameModeComposite() {
+        compGameMode = new Composite(shell, SWT.NULL);
+        compGameMode.setLayout(new GridLayout());
 
-		Label lblGameMode = new Label(compGameMode, SWT.NONE);
-		lblGameMode.setText("Bitte wählen Sie den Spielmodus:");
+        Label lblGameMode = new Label(compGameMode, SWT.NONE);
+        lblGameMode.setText("Bitte wählen Sie den Spielmodus:");
 
-		initComboForGameMode();
-	}
+        initComboForGameMode();
+    }
 
-	private void initComboForGameMode() {
-		EnumSet<ModeEnum> modes =  EnumSet.allOf(ModeEnum.class);
-		comboMode = new Combo(compGameMode, SWT.READ_ONLY);
-		availableModes = modes.toArray(new ModeEnum[modes.size()]);
-		String[] modesString = new String[modes.size()];
-		int i = 0;
-		for (ModeEnum mode : modes) {
-			modesString[i] = mode.getName();
-			i++;
-		}
-		comboMode.setItems(modesString);
-		comboMode.select(0);
-	}
+    private void initComboForGameMode() {
+        EnumSet<ModeEnum> modes =  EnumSet.allOf(ModeEnum.class);
+        comboMode = new Combo(compGameMode, SWT.READ_ONLY);
+        availableModes = modes.toArray(new ModeEnum[modes.size()]);
+        String[] modesString = new String[modes.size()];
+        int i = 0;
+        for (ModeEnum mode : modes) {
+            modesString[i] = mode.getName();
+            i++;
+            }
+        comboMode.setItems(modesString);
+        comboMode.select(0);
+    }
 
-	private void initBoardTypeComposite() {
-	    compBoardType = new Composite(shell, SWT.NULL);
-		compBoardType.setLayout(new GridLayout());
+    private void initBoardTypeComposite() {
+        compBoardType = new Composite(shell, SWT.NULL);
+        compBoardType.setLayout(new GridLayout());
 
-		Label lblBoardType = new Label(compBoardType, SWT.NONE);
-		lblBoardType.setText("Bitte wählen Sie die Art des Spielbretts:");
+        Label lblBoardType = new Label(compBoardType, SWT.NONE);
+        lblBoardType.setText("Bitte wählen Sie die Art des Spielbretts:");
 
-		initBtnsForBoardType();
-	}
+        initBtnsForBoardType();
+    }
 
-	private void initBtnsForBoardType() {
-		EnumSet<BoardTypeEnum> boardTypes =  EnumSet.allOf(BoardTypeEnum.class);
-		comboBoard = new Combo(compBoardType, SWT.READ_ONLY);
-		availableBoardTypes = boardTypes.toArray(new BoardTypeEnum[boardTypes.size()]);
-		String[] boardsString = new String[boardTypes.size()];
-		int i = 0;
-		for (BoardTypeEnum board : boardTypes) {
-			boardsString[i] = board.getName();
-			i++;
-		}
-		comboBoard.setItems(boardsString);
-		comboBoard.select(0);
-	}
+    private void initBtnsForBoardType() {
+        EnumSet<BoardTypeEnum> boardTypes =  EnumSet.allOf(BoardTypeEnum.class);
+        comboBoard = new Combo(compBoardType, SWT.READ_ONLY);
+        availableBoardTypes = boardTypes.toArray(new BoardTypeEnum[boardTypes.size()]);
+        String[] boardsString = new String[boardTypes.size()];
+        int i = 0;
+        for (BoardTypeEnum board : boardTypes) {
+            boardsString[i] = board.getName();
+            i++;
+            }
+        comboBoard.setItems(boardsString);
+        comboBoard.select(0);
+    }
 
-	private void initInitialBoardComposite() {
-	    compInitialBoard = new Composite(shell, SWT.NULL);
-	    compInitialBoard.setLayout(new GridLayout(2, false));
-	    compInitialBoard.setLayoutData(new GridData(GridData.FILL_BOTH));
+    private void initInitialBoardComposite() {
+        compInitialBoard = new Composite(shell, SWT.NULL);
+        compInitialBoard.setLayout(new GridLayout(2, false));
+        compInitialBoard.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		Label lblUpload = new Label(compInitialBoard, SWT.NONE);
-		lblUpload.setText("Bitte laden Sie den Anfangszustand hoch:");
+        Label lblUpload = new Label(compInitialBoard, SWT.NONE);
+        lblUpload.setText("Bitte laden Sie den Anfangszustand hoch:");
 
-		GridData gdUploadLabel = new GridData();
-		gdUploadLabel.horizontalSpan = 2;
-		lblUpload.setLayoutData(gdUploadLabel);
+        GridData gdUploadLabel = new GridData();
+        gdUploadLabel.horizontalSpan = 2;
+        lblUpload.setLayoutData(gdUploadLabel);
 
-		lblBoardFileName = new Label(compInitialBoard, SWT.NONE);
-		lblBoardFileName.setText("Bitte Datei auswählen");
+        lblBoardFileName = new Label(compInitialBoard, SWT.NONE);
+        lblBoardFileName.setText("Bitte Datei auswählen");
 
-		initFileSelectorDialog();
-		initBtnSelectFile();
-	}
+        initFileSelectorDialog();
+        initBtnSelectFile();
+    }
 
-	private void initFileSelectorDialog() {
-		dlgFileSelector = new FileDialog(shell, SWT.OPEN);
-		dlgFileSelector.setText("Import initial board");
-		dlgFileSelector.setFilterExtensions(new String[] {"*.gol"});
-		dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)"});
-	}
+    private void initFileSelectorDialog() {
+        dlgFileSelector = new FileDialog(shell, SWT.OPEN);
+        dlgFileSelector.setText("Import initial board");
+        dlgFileSelector.setFilterExtensions(new String[] {"*.gol"});
+        dlgFileSelector.setFilterNames(new String[] {"GameOfLife files (*.gol)"});
+    }
 
-	private void initBtnSelectFile() {
-		btnSelectFile = new Button(compInitialBoard, SWT.NONE);
-		btnSelectFile.setText("Datei auswählen");
-		btnSelectFile.setLayoutData(new GridData(GridData.END, GridData.CENTER, true, false));
-	}
+    private void initBtnSelectFile() {
+        btnSelectFile = new Button(compInitialBoard, SWT.NONE);
+        btnSelectFile.setText("Datei auswählen");
+        btnSelectFile.setLayoutData(new GridData(GridData.END, GridData.CENTER, true, false));
+    }
 
-	private void initBtnCreateGame() {
-		btnCreateGame = new Button(shell, SWT.NONE);
-		btnCreateGame.setText("Spiel erstellen");
-		btnCreateGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
-	}
+    private void initBtnCreateGame() {
+        btnCreateGame = new Button(shell, SWT.NONE);
+        btnCreateGame.setText("Spiel erstellen");
+        btnCreateGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+                true, false));
+    }
 
 
-	public String getFilePath() {
-		return filePath;
-	}
+    public String getFilePath() {
+        return filePath;
+    }
 
-	public Shell getShell() {
-		return shell;
-	}
+    public Shell getShell() {
+        return shell;
+    }
 
-	public void start() {
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		shell.dispose();
-	}
+    public void start() {
+        shell.open();
+        while (!shell.isDisposed()) {
+            if (!display.readAndDispatch()) {
+                display.sleep();
+            }
+        }
+        shell.dispose();
+    }
 
-	public void dispose() {
-		shell.dispose();
-	}
+    public void dispose() {
+        shell.dispose();
+    }
 
-	public void selectFile() {
-		filePath = dlgFileSelector.open();
-		if (filePath != null) {
-			final String name = dlgFileSelector.getFileName();
-			lblBoardFileName.setText(name);
-		}
-	}
-	
-	public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {
-		btnSelectFile.addSelectionListener(listenForSelectFileButton);
-	}
+    public void selectFile() {
+        filePath = dlgFileSelector.open();
+        if (filePath != null) {
+            final String name = dlgFileSelector.getFileName();
+            lblBoardFileName.setText(name);
+        }
+    }
 
-	public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
-		btnCreateGame.addSelectionListener(listenForCreateGameButton);
-	}
-	
-	public ModeEnum getSelectedMode() throws GOLException {
-		int i = comboMode.getSelectionIndex();
-		if (i == -1) {
-			throw new GOLException("Bitte Spielmodus auswählen.");
-		} else {
-			return availableModes[i];
-		}
-	}
+    public void addSelectFileListener(SelectionAdapter listenForSelectFileButton) {
+        btnSelectFile.addSelectionListener(listenForSelectFileButton);
+    }
 
-	public BoardTypeEnum getSelectedBoardType() throws GOLException {
-		int i = comboBoard.getSelectionIndex();
-		if (i == -1) {
-			throw new GOLException("Bitte Art des Spielbretts auswählen.");
-		} else {
-			return availableBoardTypes[i];
-		}
-	}
+    public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
+        btnCreateGame.addSelectionListener(listenForCreateGameButton);
+    }
+
+    public ModeEnum getSelectedMode() throws GOLException {
+        int i = comboMode.getSelectionIndex();
+        if (i == -1) {
+            throw new GOLException("Bitte Spielmodus auswählen.");
+        } else {
+            return availableModes[i];
+        }
+    }
+
+    public BoardTypeEnum getSelectedBoardType() throws GOLException {
+        int i = comboBoard.getSelectionIndex();
+        if (i == -1) {
+            throw new GOLException("Bitte Art des Spielbretts auswählen.");
+        } else {
+            return availableBoardTypes[i];
+        }
+    }
 }

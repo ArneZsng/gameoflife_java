@@ -37,7 +37,7 @@ public class SettingsController {
         mySettingsView.addCreateGameListener(new CreateGameListener());
         mySettingsView.start();
     }
-    
+
     public void reset() {
         validBean = new ValidBean(false, null);
         mySettingsView.start();
@@ -50,7 +50,7 @@ public class SettingsController {
     public BoardTypeEnum getBoardType() {
         return myBoardTypeEnum;
     }
-    
+
     public Cell[][] getBoard() {
         return myFileParser.getBoard();
     }
@@ -58,7 +58,7 @@ public class SettingsController {
     public boolean isValid() {
         return validBean.isValid();
     }
-    
+
     private void throwErrorMessage(ValidBean validBean) {
         try {
             throw validBean.getExceptionOnInvalid();

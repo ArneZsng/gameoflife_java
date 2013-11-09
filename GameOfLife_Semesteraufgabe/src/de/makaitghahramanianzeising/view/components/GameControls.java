@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Slider;
  */
 
 public class GameControls extends Composite {
-    private static int controlsHeight = 50;
+    public static final int CONTROLS_HEIGHT = 50;
     private Button btnNewGame;
     private Game game;
     private Label lblRound;
@@ -30,11 +30,11 @@ public class GameControls extends Composite {
         this.game = game;
         initControls();
     }
-    
+
     public void initControls() {
-        setLayout(new GridLayout(10,false));
+        setLayout(new GridLayout(10, false));
         GridData gdControlsComposite = new GridData();
-        gdControlsComposite.heightHint = controlsHeight;
+        gdControlsComposite.heightHint = CONTROLS_HEIGHT;
         setLayoutData(gdControlsComposite);
         initRoundLabel();
         initSpeedAdjustment();
@@ -63,7 +63,7 @@ public class GameControls extends Composite {
 
         lblSpeedDesc.setText("Spielgeschwindigkeit:");
         lblSpeed = new Label(this, SWT.NONE);
-        lblSpeed.setText(String.valueOf(((double) getSpeed()) / 1000));
+        setSpeed();
 
         GridData gdSpeedLabel = new GridData();
         gdSpeedLabel.widthHint = 100;
@@ -80,10 +80,14 @@ public class GameControls extends Composite {
     }
 
     public void setSpeed() {
-        String speed = String.valueOf((double) (getSpeed()) / 1000);
+        String speed = String.valueOf(getSpeedInMs());
         lblSpeed.setText(speed);
     }
-    
+
+    public double getSpeedInMs() {
+        return (double) (getSpeed()) / 1000;
+    }
+
     public void setRoundLabel(String round) {
         lblRound.setText("Generation: " + round);
     }
