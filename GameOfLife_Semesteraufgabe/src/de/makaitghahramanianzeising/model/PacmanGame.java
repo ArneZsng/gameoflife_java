@@ -20,8 +20,8 @@ public class PacmanGame extends Game {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (!(i == 0 && j == 0)) {
-                    int xCoordinate = (x+i) % getWidth(); 
-                    int yCoordinate = (y+j) % getHeight();
+                    int xCoordinate = (x + i) % getWidth();
+                    int yCoordinate = (y + j) % getHeight();
                     if (board[xCoordinate][yCoordinate].isAlive()) {
                         numberOfLivingNeighbors++;
                     }

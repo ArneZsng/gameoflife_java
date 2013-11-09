@@ -32,6 +32,11 @@ public class SettingsController {
         mySettingsView.start();
     }
 
+    public void reset() {
+        validBean = new ValidBean(false, null);
+        mySettingsView.start();
+    }
+
     public Cell[][] getBoard() {
         return myFileParser.getBoard();
     }
@@ -57,10 +62,10 @@ public class SettingsController {
     class CreateGameListener extends SelectionAdapter {
         public void widgetSelected(SelectionEvent e) {
             saveSettings();
-            if (! isValid()) {
+            if (!isValid()) {
                 throwErrorMessage(validBean);
             } else {
-                mySettingsView.dispose();
+               mySettingsView.dispose();
             }
         }
     }

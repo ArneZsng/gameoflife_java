@@ -75,7 +75,7 @@ public class GameTest {
         //when
         game.playNextRound();
         //then
-        assertFalse(game.cellAlive(1,1));
+        assertFalse(game.cellAlive(1, 1));
     }
 
     @Test
@@ -90,14 +90,14 @@ public class GameTest {
         board[1][2] = new Cell(false);
         board[2][0] = new Cell(false);
         board[2][1] = new Cell(false);
-        board[2][2] = new Cell(false);		
+        board[2][2] = new Cell(false);
         game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
         game.playNextRound();
         //then
-        assertFalse(game.cellAlive(1,1));
+        assertFalse(game.cellAlive(1, 1));
     }
 
     @Test
@@ -112,14 +112,14 @@ public class GameTest {
         board[1][2] = new Cell(false);
         board[2][0] = new Cell(false);
         board[2][1] = new Cell(false);
-        board[2][2] = new Cell(false);		
+        board[2][2] = new Cell(false);
         game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
         game.playNextRound();
         //then
-        assertFalse(game.cellAlive(1,1));
+        assertFalse(game.cellAlive(1, 1));
     }
 
     @Test
@@ -134,14 +134,14 @@ public class GameTest {
         board[1][2] = new Cell(false);
         board[2][0] = new Cell(false);
         board[2][1] = new Cell(false);
-        board[2][2] = new Cell(false);		
+        board[2][2] = new Cell(false);
         game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
         game.playNextRound();
         //then
-        assertFalse(game.cellAlive(1,1));
+        assertFalse(game.cellAlive(1, 1));
     }
 
     @Test
@@ -156,14 +156,14 @@ public class GameTest {
         board[1][2] = new Cell(false);
         board[2][0] = new Cell(false);
         board[2][1] = new Cell(false);
-        board[2][2] = new Cell(false);		
+        board[2][2] = new Cell(false);
         game = new WallOfDeathGame(board, new Integer[] {2}, new Integer[] {3});
         //given
         game.prepareNextRound();
         //when
         game.playNextRound();
         //then
-        assertTrue(game.cellAlive(1,1));
+        assertTrue(game.cellAlive(1, 1));
     }
 
     @Test
@@ -185,7 +185,7 @@ public class GameTest {
         //when
         game.playNextRound();
         //then
-        assertTrue(game.cellAlive(1,1));
+        assertTrue(game.cellAlive(1, 1));
     }
 
     @Test

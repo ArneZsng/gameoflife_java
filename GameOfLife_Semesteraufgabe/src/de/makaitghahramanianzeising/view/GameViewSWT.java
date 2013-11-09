@@ -13,7 +13,6 @@ import de.makaitghahramanianzeising.model.Game;
 import de.makaitghahramanianzeising.view.components.BoardCanvas;
 import de.makaitghahramanianzeising.view.components.GameControls;
 
-//TODO: BUG CLOSING GAMEVIEW
 public final class GameViewSWT {
 
     private final Shell shell;
@@ -43,7 +42,7 @@ public final class GameViewSWT {
         return controls;
     }
 
-    public void addCloseButtonListener(Listener listenForCloseButton) {		
+    public void addCloseButtonListener(Listener listenForCloseButton) {
         shell.addListener(SWT.Close, listenForCloseButton);
     }
 
@@ -65,40 +64,6 @@ public final class GameViewSWT {
     public void dispose() {
         shell.dispose();
     }
-	
-	public GameViewSWT(Display display, Game game) {
-		this.display = display;
-		shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
-		shell.setText("Game of Life");
-		this.game = game;
-		game.addObserver(new GameObserver());
-		init();
-		shell.pack();
-	}
-	
-	private void init() {
-		shell.setLayout(new GridLayout());
-		controls = new GameControls(shell, game);
-		canvas = new BoardCanvas(shell, game);
-	}
-	
-	public GameControls getControls() {
-		return controls;
-	}
-	
-	public void addCloseButtonListener(Listener listenForCloseButton) {		
-		shell.addListener(SWT.Close, listenForCloseButton);
-	}
-	
-	public void start() {
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		shell.dispose();
-	}
 
     private class GameObserver implements Observer {
 
@@ -109,7 +74,7 @@ public final class GameViewSWT {
                     public void run() {
                         updateView();
                     }
-                }); 
+                });
             }
         }
     }

@@ -41,7 +41,7 @@ public class BoardCanvas extends Canvas {
     }
 
     private void paintCells() {
-        addPaintListener(new PaintBoardListener() {});
+        addPaintListener(new PaintBoardListener());
     }
 
     class PaintBoardListener implements PaintListener {
@@ -60,7 +60,7 @@ public class BoardCanvas extends Canvas {
 
         private void paintCell(PaintEvent event, int xCoordinate, int yCoordinate) {
             if (game.cellAlive(xCoordinate, yCoordinate)) {
-                event.gc.fillRectangle(xCoordinate*cellSize, yCoordinate*cellSize, cellSize, cellSize);
+                event.gc.fillRectangle(xCoordinate * cellSize, yCoordinate * cellSize, cellSize, cellSize);
             }
         }
     }

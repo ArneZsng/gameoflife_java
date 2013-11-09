@@ -23,7 +23,7 @@ public class GameControls extends Composite {
     public GameControls(Shell shell, Game game) {
         super(shell, SWT.NULL);
         this.game = game;
-        setLayout(new GridLayout(10,false));
+        setLayout(new GridLayout(10, false));
         GridData gdControlsComposite = new GridData();
         gdControlsComposite.heightHint = controlsHeight;
         setLayoutData(gdControlsComposite);
@@ -41,7 +41,7 @@ public class GameControls extends Composite {
     }
 
     public void setRoundLabel(String round) {
-        lblRound.setText("Generation: "+ round);
+        lblRound.setText("Generation: " + round);
     }
 
     private void initSpeedAdjustment() {
@@ -58,7 +58,7 @@ public class GameControls extends Composite {
 
         lblSpeedDesc.setText("Spielgeschwindigkeit:");
         lblSpeed = new Label(this, SWT.NONE);
-        lblSpeed.setText(String.valueOf(((double)getSpeed())/1000));
+        lblSpeed.setText(String.valueOf(((double) getSpeed()) / 1000));
 
         GridData gdSpeedLabel = new GridData();
         gdSpeedLabel.widthHint = 100;
@@ -71,7 +71,7 @@ public class GameControls extends Composite {
     }
 
     public void setSpeed() {
-        String speed = String.valueOf((double) (getSpeed())/1000);
+        String speed = String.valueOf((double) (getSpeed()) / 1000);
         lblSpeed.setText(speed);
     }
 
@@ -86,5 +86,5 @@ public class GameControls extends Composite {
 
     public void addSpeedSliderListener(SelectionAdapter listenForSpeedSlider) {
         sldSpeed.addSelectionListener(listenForSpeedSlider);
-    }	
+    }
 }
