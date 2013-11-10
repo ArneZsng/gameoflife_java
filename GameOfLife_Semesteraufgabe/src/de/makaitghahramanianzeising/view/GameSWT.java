@@ -1,6 +1,5 @@
 package de.makaitghahramanianzeising.view;
 
-import de.makaitghahramanianzeising.exceptions.GOLException;
 import de.makaitghahramanianzeising.model.AbstractGame;
 import de.makaitghahramanianzeising.view.components.BoardCanvas;
 import de.makaitghahramanianzeising.view.components.GameControls;
@@ -35,7 +34,7 @@ public final class GameSWT {
         init();
         if (!shell.isDisposed()) {
             game.addObserver(new GameObserver());
-            shell.pack();	
+            shell.pack();
         }
     }
 
@@ -61,9 +60,9 @@ public final class GameSWT {
     }
 
     public boolean isDisposed() {
-    	return shell.isDisposed();
+        return shell.isDisposed();
     }
-    
+
     public void dispose() {
         shell.dispose();
     }
@@ -77,7 +76,7 @@ public final class GameSWT {
         shell.addListener(SWT.Close, listenForCloseButton);
     }
 
-    
+
     private class GameObserver implements Observer {
 
         @Override
@@ -85,9 +84,9 @@ public final class GameSWT {
             if (!game.isInterrupted()) {
                 Display.getDefault().syncExec(new Runnable() {
                     public void run() {
-                    	if (!shell.isDisposed()) {
+                        if (!shell.isDisposed()) {
                             updateView();
-                    	}
+                        }
                     }
                 });
             }

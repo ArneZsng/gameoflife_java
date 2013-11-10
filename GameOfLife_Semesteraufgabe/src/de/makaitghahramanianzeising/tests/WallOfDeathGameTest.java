@@ -27,13 +27,13 @@ public class WallOfDeathGameTest {
     private static final String ENCODING = "UTF-8";
     private static final String FILENAME = "file.gol";
     private static final String LINESEPARATOR = "line.separator";
-    
+
     private final Integer[] survives = ModeEnum.GAMEOFLIFE.getSurvives();
     private final Integer[] revives = ModeEnum.GAMEOFLIFE.getRevives();
-    
+
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
-    
+
     @Test
     public void shouldCountAllLivingNeighbors() throws IOException, GOLException {
         //assume

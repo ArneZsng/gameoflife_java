@@ -19,9 +19,9 @@ import org.eclipse.swt.widgets.Display;
  */
 
 public class Settings {
-    
-	private Display display;
-	private SettingsSWT mySettingsSWT;
+
+    private Display display;
+    private SettingsSWT mySettingsSWT;
     private FileParser myFileParser;
     private ModeEnum myMode;
     private BoardTypeEnum myBoardType;
@@ -29,7 +29,7 @@ public class Settings {
     private ValidBean validBean;
 
     public Settings(Display display) {
-    	this.display = display;
+        this.display = display;
         validBean = new ValidBean(false, null);
         mySettingsSWT = new SettingsSWT(display);
         mySettingsSWT.addSelectFileListener(new SelectFileListener());
@@ -57,7 +57,7 @@ public class Settings {
         mySettingsSWT.addCreateGameListener(new CreateGameListener());
         mySettingsSWT.start();
     }
-    
+
     public boolean isValid() {
         return validBean.isValid();
     }

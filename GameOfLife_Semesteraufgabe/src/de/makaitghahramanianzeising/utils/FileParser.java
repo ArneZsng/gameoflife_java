@@ -18,7 +18,7 @@ import de.makaitghahramanianzeising.model.Cell;
 public class FileParser {
 
     private static final int MAX_FILE_SIZE = 250000;
-    
+
     private Cell[][] board;
     private final Path filePath;
 

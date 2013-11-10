@@ -9,7 +9,8 @@ import de.makaitghahramanianzeising.controller.Game;
 public class MainGame {
 
     public static void main(String[] args) {
-        new Game();
+        Game game = new Game();
+        game.init();
     }
 
 }

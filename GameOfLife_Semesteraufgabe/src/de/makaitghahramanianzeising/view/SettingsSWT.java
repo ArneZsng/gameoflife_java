@@ -52,8 +52,8 @@ public class SettingsSWT {
     }
 
     private void init() {
-    	GridLayout shellGrid = new GridLayout();
-    	shellGrid.marginHeight = 10;
+        GridLayout shellGrid = new GridLayout();
+        shellGrid.marginHeight = 10;
         shell.setLayout(shellGrid);
         compOptions = new Composite(shell, SWT.NULL);
         compOptions.setLayout(shellGrid);
@@ -108,7 +108,7 @@ public class SettingsSWT {
         compInitialBoard = new Composite(shell, SWT.NULL);
         compInitialBoard.setLayout(new GridLayout(2, false));
         compInitialBoard.setLayoutData(new GridData(GridData.FILL_BOTH));
-        
+
         GridData gdUploadLabel = new GridData();
         gdUploadLabel.horizontalSpan = 2;
         Label lblUpload = new Label(compInitialBoard, SWT.NONE);
@@ -171,11 +171,11 @@ public class SettingsSWT {
             return availableBoardTypes[i];
         }
     }
-    
+
     public void reloadSettings(String filePath, ModeEnum myMode, BoardTypeEnum myBoardType) {
         this.filePath = filePath;
         String fileName = new File(filePath).getName();
-        lblBoardFileName.setText(fileName);	
+        lblBoardFileName.setText(fileName);
         reloadMode(myMode);
         reloadBoardType(myBoardType);
     }
@@ -212,7 +212,7 @@ public class SettingsSWT {
     public void addCreateGameListener(SelectionAdapter listenForCreateGameButton) {
         btnCreateGame.addSelectionListener(listenForCreateGameButton);
     }
-    
+
     private void reloadBoardType(BoardTypeEnum myBoardType) {
         String[] boardTypes = comboBoard.getItems();
         String label = myBoardType.getLabel();
@@ -220,10 +220,10 @@ public class SettingsSWT {
             if (label.equals(boardTypes[index])) {
                 comboBoard.select(index);
                 break;
-    		}
-    	}
+            }
+        }
     }
-    
+
     private void reloadMode(ModeEnum myMode) {
         String[] modes = comboMode.getItems();
         String label = myMode.getLabel();
@@ -231,7 +231,7 @@ public class SettingsSWT {
             if (label.equals(modes[index])) {
                 comboMode.select(index);
                 break;
-    		}
-    	}
+            }
+        }
     }
 }

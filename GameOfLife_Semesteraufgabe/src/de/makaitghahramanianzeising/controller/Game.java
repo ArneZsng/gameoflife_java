@@ -33,10 +33,9 @@ public class Game {
 
     public Game() {
         mySettingsController = new Settings(display);
-        init();
     }
 
-    private void init() {
+    public void init() {
         if (mySettingsController.isValid()) {
             initGame();
         }
@@ -59,7 +58,7 @@ public class Game {
             initGameViewListeners();
             myGameSWT.start();
         } else {
-        	reloadSettings();
+            reloadSettings();
         }
     }
 

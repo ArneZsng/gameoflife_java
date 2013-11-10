@@ -28,7 +28,7 @@ public class BoardCanvas extends Canvas {
         int boardWidth = game.getBoardWidth();
         int boardHeight = game.getBoardHeight();
         cellSize = new CellSizeCalculator(shell).getPixelSize(boardWidth, boardHeight);
-        if (cellSize >= 2) {
+        if (cellSize > 0) {
             GC gc = new GC(this);
 
             setLayoutData(initCanvasGridData(boardWidth, boardHeight));
@@ -36,8 +36,8 @@ public class BoardCanvas extends Canvas {
             drawBackground(gc, 0, 0, boardWidth * cellSize, boardHeight * cellSize);
             paintCells();
         } else {
-        	new ErrorMessageBox(shell, "Die Auflösung reicht leider nicht aus, um das Spielfeld anzuzeigen.");
-        	shell.dispose();
+            new ErrorMessageBox(shell, "Die Auflösung reicht leider nicht aus, um das Spielfeld anzuzeigen.");
+            shell.dispose();
         }
     }
 
