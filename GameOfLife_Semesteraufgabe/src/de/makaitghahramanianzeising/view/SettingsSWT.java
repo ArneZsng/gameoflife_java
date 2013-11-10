@@ -1,10 +1,5 @@
 package de.makaitghahramanianzeising.view;
 
-/**
- * @author Hendrik Makait
- *
- */
-
 import java.io.File;
 import java.util.EnumSet;
 

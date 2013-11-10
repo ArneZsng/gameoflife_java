@@ -77,6 +77,7 @@ public final class GameSWT {
         shell.addListener(SWT.Close, listenForCloseButton);
     }
 
+    
     private class GameObserver implements Observer {
 
         @Override
@@ -84,7 +85,9 @@ public final class GameSWT {
             if (!game.isInterrupted()) {
                 Display.getDefault().syncExec(new Runnable() {
                     public void run() {
-                        updateView();
+                    	if (!shell.isDisposed()) {
+                            updateView();
+                    	}
                     }
                 });
             }

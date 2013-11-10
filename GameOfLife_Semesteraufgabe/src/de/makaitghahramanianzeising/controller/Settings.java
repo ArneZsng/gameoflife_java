@@ -1,10 +1,5 @@
 package de.makaitghahramanianzeising.controller;
 
-/**
- * @author Hendrik Makait
- *
- */
-
 import de.makaitghahramanianzeising.enums.BoardTypeEnum;
 import de.makaitghahramanianzeising.enums.ModeEnum;
 import de.makaitghahramanianzeising.model.Cell;
