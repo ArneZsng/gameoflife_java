@@ -1,5 +1,7 @@
 package de.makaitghahramanianzeising.utils;
 
+import java.awt.Dimension;
+
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Shell;
@@ -20,8 +22,8 @@ public class CellSizeCalculator {
 
     public int getPixelSize(int boardWidth, int boardHeight) {
         Dimension maxCanvas = getMaxCanvas();
-        int pixelWidth = maxCanvas.getWidth() / boardWidth;
-        int pixelHeight = maxCanvas.getHeight() / boardHeight;
+        int pixelWidth = maxCanvas.width / boardWidth;
+        int pixelHeight = maxCanvas.height / boardHeight;
         int pixelSize;
         if (pixelWidth <= pixelHeight) {
             pixelSize = pixelWidth;
@@ -45,26 +47,9 @@ public class CellSizeCalculator {
         int defaultMarginWidth = defaultGrid.marginWidth;
         Rectangle clientArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
         Dimension shellFrameSize = getShellFrameSize();
-        int maxCanvasHeight = clientArea.height - shellFrameSize.getHeight() - GameControls.CONTROLS_HEIGHT - 3 * defaultMarginHeight;
-        int maxCanvasWidth = clientArea.width - shellFrameSize.getWidth() - 2 * defaultMarginWidth;
+        int maxCanvasHeight = clientArea.height - shellFrameSize.height - GameControls.CONTROLS_HEIGHT - 3 * defaultMarginHeight;
+        int maxCanvasWidth = clientArea.width - shellFrameSize.width - 2 * defaultMarginWidth;
         return new Dimension(maxCanvasWidth, maxCanvasHeight);
     }
 
-    private class Dimension {
-        private final int width;
-        private final int height;
-
-        public Dimension(int width, int height) {
-            this.width = width;
-            this.height = height;
-        }
-
-        public int getWidth() {
-            return width;
-        }
-
-        public int getHeight() {
-            return height;
-        }
-    }
 }

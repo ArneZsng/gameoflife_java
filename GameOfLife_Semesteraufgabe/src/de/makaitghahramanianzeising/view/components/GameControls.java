@@ -67,7 +67,7 @@ public class GameControls extends Composite {
         setSpeed();
 
         GridData gdSpeedLabel = new GridData();
-        gdSpeedLabel.widthHint = 100;
+        gdSpeedLabel.widthHint = 50;
         lblSpeed.setLayoutData(gdSpeedLabel);
     }
 

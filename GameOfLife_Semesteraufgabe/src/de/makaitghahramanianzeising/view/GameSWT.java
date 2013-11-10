@@ -18,10 +18,8 @@ import org.eclipse.swt.widgets.Shell;
  * status of the game and allowing user interaction.
  */
 
-public final class GameSWT {
+public final class GameSWT extends GenericSWT {
 
-    private final Shell shell;
-    private final Display display;
     private final AbstractGame game;
     private GameControls controls;
     private BoardCanvas canvas;
@@ -29,12 +27,13 @@ public final class GameSWT {
     public GameSWT(Display display, AbstractGame game) {
         this.display = display;
         this.game = game;
-        shell = new Shell();
+        shell = new Shell(display, SWT.SHELL_TRIM & (~SWT.MAX) & (~SWT.RESIZE));
         shell.setText("Game of Life");
         init();
         if (!shell.isDisposed()) {
             game.addObserver(new GameObserver());
             shell.pack();
+            centerOnClientArea();
         }
     }
 
@@ -49,24 +48,6 @@ public final class GameSWT {
         return controls;
     }
 
-    public void start() {
-        shell.open();
-        while (!shell.isDisposed()) {
-            if (!display.readAndDispatch()) {
-                display.sleep();
-            }
-        }
-        shell.dispose();
-    }
-
-    public boolean isDisposed() {
-        return shell.isDisposed();
-    }
-
-    public void dispose() {
-        shell.dispose();
-    }
-
     public void updateView() {
         controls.setRoundLabel(game.getRoundAsString());
         canvas.redraw();
@@ -75,7 +56,6 @@ public final class GameSWT {
     public void addCloseButtonListener(Listener listenForCloseButton) {
         shell.addListener(SWT.Close, listenForCloseButton);
     }
-
 
     private class GameObserver implements Observer {
 
