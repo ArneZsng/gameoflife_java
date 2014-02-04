@@ -26,10 +26,8 @@ import org.eclipse.swt.widgets.Shell;
  * and the initial configuration of the board.
  */
 
-public class SettingsSWT {
+public class SettingsSWT extends GenericSWT {
 
-    private final Shell shell;
-    private final Display display;
     private Button btnSelectFile;
     private Button btnCreateGame;
     private Combo comboMode;
@@ -45,7 +43,7 @@ public class SettingsSWT {
 
     public SettingsSWT(Display display) {
         this.display = display;
-        shell = new Shell(display, SWT.CLOSE | SWT.TITLE | SWT.MIN);
+        shell = new Shell(display, SWT.SHELL_TRIM & (~SWT.MAX) & (~SWT.RESIZE));
         shell.setText("Game of Life");
         shell.setSize(400, 400);
         init();
@@ -61,6 +59,7 @@ public class SettingsSWT {
         initBoardTypeComposite();
         initInitialBoardComposite();
         initBtnCreateGame();
+        centerOnClientArea();
     }
 
     private void initGameMode() {
@@ -150,10 +149,6 @@ public class SettingsSWT {
         return filePath;
     }
 
-    public Shell getShell() {
-        return shell;
-    }
-
     public ModeEnum getSelectedMode() throws GOLException {
         int i = comboMode.getSelectionIndex();
         if (i == -1) {
@@ -178,20 +173,6 @@ public class SettingsSWT {
         lblBoardFileName.setText(fileName);
         reloadMode(myMode);
         reloadBoardType(myBoardType);
-    }
-
-    public void start() {
-        shell.open();
-        while (!shell.isDisposed()) {
-            if (!display.readAndDispatch()) {
-                display.sleep();
-            }
-        }
-        shell.dispose();
-    }
-
-    public void dispose() {
-        shell.dispose();
     }
 
     public void selectFile() {
